@@ -25,12 +25,13 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         Group board = new Group();
         Board b = new Board();
+        Image im = new Image(new File("hexagon.png").toURI().toString());
         for(int i=0;i<11;i++)
         {
             for(int j=0;j<11;j++)
             {
                 Hexagon img = new Hexagon(i,j);
-                Image im = new Image(new File("hexagon.png").toURI().toString());
+            
                 img.setImage(im);
                 img.setFitHeight(70);
                 img.setFitWidth(70);
@@ -55,9 +56,9 @@ public class HelloApplication extends Application {
 
 class Hexagon extends ImageView
 {
-    protected Image unclicked=new Image(new File("hexagon.png").toURI().toString());;
-    protected Image clicked=new Image(new File("hexagon2.png").toURI().toString());;
-    protected Image highlited=new Image(new File("hexagon3.png").toURI().toString());;
+    static protected Image unclicked=new Image(new File("hexagon.png").toURI().toString());;
+    static protected Image clicked=new Image(new File("hexagon2.png").toURI().toString());;
+    static protected Image highlited=new Image(new File("hexagon3.png").toURI().toString());;
     int x;
     int y;
 
