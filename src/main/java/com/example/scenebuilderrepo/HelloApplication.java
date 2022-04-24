@@ -15,9 +15,16 @@ import javafx.stage.Stage;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
+
+class MapConstants {
+    public static final int MAP_HEIGHT = 11;
+    public static final int MAP_LENGTH = 11;
+}
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("2.fxml"));
@@ -26,20 +33,23 @@ public class HelloApplication extends Application {
         Group board = new Group();
         Board b = new Board();
         Image im = new Image(new File("hexagon.png").toURI().toString());
-        for(int i=0;i<11;i++)
+        for(int i=0;i< MapConstants.MAP_LENGTH;i++)
         {
-            for(int j=0;j<11;j++)
+            b.addColumn();
+            for(int j=0;j< MapConstants.MAP_HEIGHT;j++)
             {
-                Hexagon img = new Hexagon(i,j);
+                Hexagon img = new Hexagon(i, j);
             
                 img.setImage(im);
                 img.setFitHeight(70);
                 img.setFitWidth(70);
                 img.setX(60*i);
 
-                b.addHex(img);
-                if(i%2==0) img.setY(70*j);
-                else img.setY(70*j+35);
+                b.addHex(img, i);
+                if(i%2==0)
+                    img.setY(70*j);
+                else
+                    img.setY(70*j+35);
                 board.getChildren().add(img);
 
             }
@@ -56,9 +66,9 @@ public class HelloApplication extends Application {
 
 class Hexagon extends ImageView
 {
-    static protected Image unclicked=new Image(new File("hexagon.png").toURI().toString());;
-    static protected Image clicked=new Image(new File("hexagon2.png").toURI().toString());;
-    static protected Image highlited=new Image(new File("hexagon3.png").toURI().toString());;
+    static protected Image unclicked=new Image(new File("hexagon.png").toURI().toString());
+    static protected Image clicked=new Image(new File("hexagon2.png").toURI().toString());
+    static protected Image highlighted=new Image(new File("hexagon3.png").toURI().toString());
     int x;
     int y;
 
@@ -81,7 +91,7 @@ class Hexagon extends ImageView
                 else
                 {
                     Board.unClickAll();
-                    Board.selectNerby(x,y);
+                    Board.selectNearby(x,y);
                     clicked();
                     isClicked=true;
                 }
@@ -95,9 +105,9 @@ class Hexagon extends ImageView
     {
         this.setImage(clicked);
     }
-    void highlited()
+    void highlighted()
     {
-        this.setImage(highlited);
+        this.setImage(highlighted);
     }
     void unclicked()
     {
@@ -111,43 +121,61 @@ class Board
 {
     static int width;
     static int height;
-    static Vector<Hexagon> hexes = new Vector<>();
 
-    void addHex(Hexagon hex)
+    static ArrayList<Vector<Hexagon>> hexes = new ArrayList<Vector<Hexagon>>();
+
+    void addHex(Hexagon hex, int x)
     {
-        hexes.add(hex);
+        hexes.get(x).add(hex);
+    }
+
+    void addColumn()
+    {
+        Vector<Hexagon> hexColumn = new Vector<>();
+        hexes.add(hexColumn);
     }
     static void unClickAll()
     {
-        for(int i=0;i<hexes.size();i++)
+        for(int i = 0;i < hexes.size();i++)
         {
-            hexes.get(i).unclicked();
+            for(int j = 0; j < hexes.get(i).size(); j++)
+            {
+                hexes.get(i).get(j).unclicked();
+            }
         }
     }
-    static void selectNerby(int x,int y)
+    static void selectNearby(int x,int y)
     {
-        for(int i=0;i<hexes.size();i++)
-        {
-            if(x%2==0) {
-                if ((hexes.get(i).x == x + 1 || hexes.get(i).x == x - 1) && (hexes.get(i).y == y ||  hexes.get(i).y == y - 1)) {
-                    hexes.get(i).highlited();
-                }
-                else if( (hexes.get(i).x == x) && (hexes.get(i).y == y-1 ||  hexes.get(i).y == y + 1) )
-                {
-                    hexes.get(i).highlited();
-                }
-            }
-            else
+        // The lookup tables are in a {x,y} format
+        int[][]  ODD_COLUMN_LOOKUP_TABLE = { {1,  1}, {1,  0}, { 0, -1}, {-1,  0}, {-1,  1}, { 0, 1}};
+        int[][] EVEN_COLUMN_LOOKUP_TABLE = { {1,  0}, {1, -1}, { 0, -1}, {-1, -1}, {-1,  0}, { 0, 1}};
+        if(x%2==0) { //Selecting neighbouring hexes from an even column
+            for(int i = 0; i < EVEN_COLUMN_LOOKUP_TABLE.length; i++)
             {
-                if ((hexes.get(i).x == x + 1 || hexes.get(i).x == x - 1) && (hexes.get(i).y == y ||  hexes.get(i).y == y + 1)) {
-                    hexes.get(i).highlited();
-                }
-                else if( (hexes.get(i).x == x) && (hexes.get(i).y == y-1 ||  hexes.get(i).y == y + 1) )
+                int x_offset = EVEN_COLUMN_LOOKUP_TABLE[i][0];
+                int y_offset = EVEN_COLUMN_LOOKUP_TABLE[i][1];
+                if(     (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
+                        (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT ))
                 {
-                    hexes.get(i).highlited();
+                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
                 }
             }
-
         }
+        else        //Selecting neighbouring hexes from an odd column
+        {
+            for(int i = 0; i < ODD_COLUMN_LOOKUP_TABLE.length; i++)
+            {
+                int x_offset = ODD_COLUMN_LOOKUP_TABLE[i][0];
+                int y_offset = ODD_COLUMN_LOOKUP_TABLE[i][1];
+                if(     (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
+                        (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT ))
+                {
+                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
+                }
+            }
+        }
+
+
     }
 }
+
