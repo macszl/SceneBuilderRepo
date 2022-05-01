@@ -3,16 +3,13 @@ package com.example.scenebuilderrepo;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +20,18 @@ class MapConstants {
     public static final int MAP_HEIGHT = 11;
     public static final int MAP_LENGTH = 11;
 }
+class ImageSetPaths {
+    public String unclicked;
+    public String clicked;
+    public String highlighted;
 
+    public ImageSetPaths(String _u, String _c, String _h)
+    {
+        unclicked = _u;
+        clicked = _c;
+        highlighted = _h;
+    }
+}
 
 enum Factions {
     CRYSTALGUYS,
@@ -41,7 +49,10 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         Group board = new Group();
         Board b = new Board();
-        Image im = new Image(new File("hexagon.png").toURI().toString());
+        Image im;
+        ImageSetPaths HQ_FilePaths = new ImageSetPaths("hexagon_hq.png" , "hexagon2_hq.png", "hexagon3_hq.png");
+        ImageSetPaths Unit_FilePaths = new ImageSetPaths("hexagon_u.png" , "hexagon2_u.png", "hexagon3_u.png");
+        ImageSetPaths Tile_FilePaths = new ImageSetPaths("hexagon.png" , "hexagon2.png", "hexagon3.png");
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
         {
             b.addColumn();
@@ -49,13 +60,18 @@ public class HelloApplication extends Application {
             {
                 Hexagon hex;
 
-                if(j == 10 && i == 0)
-                    hex = new HeadquartersHex(i, j, Factions.TREEGUYS);
-                else if ( (j == 9 || j == 8 || j == 7) && i == 0 )
-                    hex = new UnitHex(i, j, Factions.TREEGUYS);
-                else
-                    hex = new EmptyHex(i, j);
-
+                if(j == 10 && i == 0) {
+                    hex = new HeadquartersHex(i, j, HQ_FilePaths, Factions.TREEGUYS);
+                    im =  new Image(new File("hexagon_hq.png").toURI().toString());
+                }
+                else if ( (j == 9 || j == 8 || j == 7) && i == 0 ) {
+                    hex = new UnitHex(i, j, Unit_FilePaths, Factions.TREEGUYS);
+                    im =  new Image(new File("hexagon_u.png").toURI().toString());
+                }
+                else {
+                    hex = new EmptyHex(i, j, Tile_FilePaths);
+                    im =  new Image(new File("hexagon.png").toURI().toString());
+                }
                 hex.setImage(im);
                 hex.setFitHeight(70);
                 hex.setFitWidth(70);
@@ -82,19 +98,26 @@ public class HelloApplication extends Application {
 class Hexagon extends ImageView
 {
     //default images
-    static protected Image unclicked=new Image(new File("hexagon.png").toURI().toString());
-    static protected Image clicked=new Image(new File("hexagon2.png").toURI().toString());
-    static protected Image highlighted=new Image(new File("hexagon3.png").toURI().toString());
+    protected Image unclicked;
+    protected Image clicked;
+    protected Image highlighted;
     int x;
     int y;
 
     boolean isClicked = false;
-    Hexagon(int x,int y)
+    Hexagon(int x,int y, ImageSetPaths filePaths)
     {
         this.x=x;
         this.y=y;
+        assignImages(filePaths.unclicked, filePaths.clicked, filePaths.highlighted);
     }
 
+    void assignImages(String path1, String path2, String path3)
+    {
+        unclicked= new Image(new File(path1).toURI().toString());
+        clicked= new Image(new File(path2).toURI().toString());
+        highlighted = new Image(new File(path3).toURI().toString());
+    }
     void clicked()
     {
         this.setImage(clicked);
@@ -108,13 +131,12 @@ class Hexagon extends ImageView
         this.setImage(unclicked);
         isClicked=false;
     }
-
 }
 class UnitHex extends Hexagon
 {
     Factions faction;
-    UnitHex(int x, int y, Factions _faction) {
-        super(x, y);
+    UnitHex(int x, int y, ImageSetPaths filePaths, Factions _faction) {
+        super(x, y, filePaths);
         faction = _faction;
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -138,26 +160,12 @@ class UnitHex extends Hexagon
         });
         this.setPickOnBounds(true);
     }
-
-    void clicked()
-    {
-        this.setImage(clicked);
-    }
-    void highlighted()
-    {
-        this.setImage(highlighted);
-    }
-    void unclicked()
-    {
-        this.setImage(unclicked);
-        isClicked=false;
-    }
 }
 class HeadquartersHex extends Hexagon
 {
     Factions faction;
-    HeadquartersHex(int x, int y, Factions _faction) {
-        super(x, y);
+    HeadquartersHex(int x, int y, ImageSetPaths FilePaths, Factions _faction) {
+        super(x, y, FilePaths);
         faction = _faction;
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -181,25 +189,12 @@ class HeadquartersHex extends Hexagon
         this.setPickOnBounds(true);
     }
 
-    void clicked()
-    {
-        this.setImage(clicked);
-    }
-    void highlighted()
-    {
-        this.setImage(highlighted);
-    }
-    void unclicked()
-    {
-        this.setImage(unclicked);
-        isClicked=false;
-    }
 }
 
 class EmptyHex extends Hexagon
 {
-    EmptyHex(int x, int y) {
-        super(x, y);
+    EmptyHex(int x, int y, ImageSetPaths FilePaths) {
+        super(x, y, FilePaths);
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -220,6 +215,7 @@ class EmptyHex extends Hexagon
         });
         this.setPickOnBounds(true);
     }
+
 }
 class Board
 {
