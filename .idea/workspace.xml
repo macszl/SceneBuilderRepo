@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Podzielenie klasy Hexagon na EmptyHex, UnitHex, i HeadquartersHex">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" afterDir="false" />
-    </list>
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +80,7 @@
       <workItem from="1650747808438" duration="1660000" />
       <workItem from="1650749487340" duration="10054000" />
       <workItem from="1650784664511" duration="3969000" />
-      <workItem from="1651417053340" duration="8598000" />
+      <workItem from="1651417053340" duration="9357000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -113,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651422515348</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów.">
+      <created>1651426297309</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651426297309</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,7 +139,8 @@
     <MESSAGE value="Dodaję folder .idea dla łatwiejszego setupa" />
     <MESSAGE value="Refactoring selectNearby i dodanie stałych" />
     <MESSAGE value="Podzielenie klasy Hexagon na EmptyHex, UnitHex, i HeadquartersHex" />
-    <option name="LAST_COMMIT_MESSAGE" value="Podzielenie klasy Hexagon na EmptyHex, UnitHex, i HeadquartersHex" />
+    <MESSAGE value="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
