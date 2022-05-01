@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Dodaję folder .idea dla łatwiejszego setupa">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Refactoring selectNearby i dodanie stałych">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" afterDir="false" />
     </list>
@@ -84,7 +82,8 @@
       <updated>1650744610612</updated>
       <workItem from="1650747808438" duration="1660000" />
       <workItem from="1650749487340" duration="10054000" />
-      <workItem from="1650784664511" duration="2294000" />
+      <workItem from="1650784664511" duration="3969000" />
+      <workItem from="1651417053340" duration="4740000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -100,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650749092027</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refactoring selectNearby i dodanie stałych">
+      <created>1650788306999</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1650788306999</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,14 +126,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Poprawiam strukturę projektu" />
     <MESSAGE value="Dodaję folder .idea dla łatwiejszego setupa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodaję folder .idea dla łatwiejszego setupa" />
+    <MESSAGE value="Refactoring selectNearby i dodanie stałych" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring selectNearby i dodanie stałych" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>159</line>
+          <line>262</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

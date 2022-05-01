@@ -23,6 +23,15 @@ class MapConstants {
     public static final int MAP_HEIGHT = 11;
     public static final int MAP_LENGTH = 11;
 }
+
+
+enum Factions {
+    CRYSTALGUYS,
+    TREEGUYS,
+    SKYGUYS
+}
+
+
 public class HelloApplication extends Application {
 
     @Override
@@ -38,19 +47,26 @@ public class HelloApplication extends Application {
             b.addColumn();
             for(int j=0;j< MapConstants.MAP_HEIGHT;j++)
             {
-                Hexagon img = new Hexagon(i, j);
-            
-                img.setImage(im);
-                img.setFitHeight(70);
-                img.setFitWidth(70);
-                img.setX(60*i);
+                Hexagon hex;
 
-                b.addHex(img, i);
-                if(i%2==0)
-                    img.setY(70*j);
+                if(j == 10 && i == 0)
+                    hex = new HeadquartersHex(i, j, Factions.TREEGUYS);
+                else if ( (j == 9 || j == 8 || j == 7) && i == 0 )
+                    hex = new UnitHex(i, j, Factions.TREEGUYS);
                 else
-                    img.setY(70*j+35);
-                board.getChildren().add(img);
+                    hex = new EmptyHex(i, j);
+
+                hex.setImage(im);
+                hex.setFitHeight(70);
+                hex.setFitWidth(70);
+                hex.setX(60*i);
+
+                b.addHex(hex, i);
+                if(i%2==0)
+                    hex.setY(70*j);
+                else
+                    hex.setY(70*j+35);
+                board.getChildren().add(hex);
 
             }
         }
@@ -63,9 +79,9 @@ public class HelloApplication extends Application {
         launch();
     }
 }
-
 class Hexagon extends ImageView
 {
+    //default images
     static protected Image unclicked=new Image(new File("hexagon.png").toURI().toString());
     static protected Image clicked=new Image(new File("hexagon2.png").toURI().toString());
     static protected Image highlighted=new Image(new File("hexagon3.png").toURI().toString());
@@ -77,7 +93,29 @@ class Hexagon extends ImageView
     {
         this.x=x;
         this.y=y;
+    }
 
+    void clicked()
+    {
+        this.setImage(clicked);
+    }
+    void highlighted()
+    {
+        this.setImage(highlighted);
+    }
+    void unclicked()
+    {
+        this.setImage(unclicked);
+        isClicked=false;
+    }
+
+}
+class UnitHex extends Hexagon
+{
+    Factions faction;
+    UnitHex(int x, int y, Factions _faction) {
+        super(x, y);
+        faction = _faction;
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -114,15 +152,81 @@ class Hexagon extends ImageView
         this.setImage(unclicked);
         isClicked=false;
     }
+}
+class HeadquartersHex extends Hexagon
+{
+    Factions faction;
+    HeadquartersHex(int x, int y, Factions _faction) {
+        super(x, y);
+        faction = _faction;
+        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("mouse click detected! "+x+" "+y);
+                if(isClicked)
+                {
+                    Board.unClickAll();
+                    unclicked();
+                    isClicked=false;
+                }
+                else
+                {
+                    Board.unClickAll();
+                    clicked();
+                    isClicked=true;
+                }
 
+            }
+        });
+        this.setPickOnBounds(true);
+    }
+
+    void clicked()
+    {
+        this.setImage(clicked);
+    }
+    void highlighted()
+    {
+        this.setImage(highlighted);
+    }
+    void unclicked()
+    {
+        this.setImage(unclicked);
+        isClicked=false;
+    }
 }
 
+class EmptyHex extends Hexagon
+{
+    EmptyHex(int x, int y) {
+        super(x, y);
+        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("mouse click detected! "+x+" "+y);
+                if(isClicked)
+                {
+                    unclicked();
+                    isClicked=false;
+                }
+                else
+                {
+                    Board.unClickAll();
+                    clicked();
+                    isClicked=true;
+                }
+
+            }
+        });
+        this.setPickOnBounds(true);
+    }
+}
 class Board
 {
     static int width;
     static int height;
 
-    static ArrayList<Vector<Hexagon>> hexes = new ArrayList<Vector<Hexagon>>();
+    static ArrayList<Vector<Hexagon>> hexes = new ArrayList<>();
 
     void addHex(Hexagon hex, int x)
     {
