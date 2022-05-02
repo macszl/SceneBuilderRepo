@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,12 +149,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>277</line>
+          <line>278</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>147</line>
+          <line>148</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>

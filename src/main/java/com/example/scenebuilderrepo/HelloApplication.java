@@ -130,10 +130,11 @@ class MapTile extends StackPane
                         move();
                     }
                     Board.unClickAll();
+                    if(obj==null) return;
                     Board.selectNearby(hex.x,hex.y);
                     hex.clicked();
                     hex.isClicked=true;
-                    if(hex.faction==Factions.CRYSTALGUYS)
+                    if(obj.faction==Factions.CRYSTALGUYS)
                     {
                         hex.controller.set_portraitcrystal();
                     }
@@ -197,8 +198,7 @@ class Hexagon extends ImageView
 
 class MapObject extends ImageView
 {
-
-
+    Factions faction;
 }
 class Unit extends MapObject
 {
@@ -206,6 +206,7 @@ class Unit extends MapObject
     public Unit(Factions _faction)
     {
         if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("unit.png").toURI().toString()));
+        this.faction=_faction;
     }
 }
 
