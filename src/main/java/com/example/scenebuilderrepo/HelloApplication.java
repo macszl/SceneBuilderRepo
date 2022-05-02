@@ -3,12 +3,14 @@ package com.example.scenebuilderrepo;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -62,29 +64,36 @@ public class HelloApplication extends Application {
             {
                 Hexagon hex;
 
-                if(j == 10 && i == 0) {
-                    hex = new HeadquartersHex(i, j, HQ_FilePaths, Factions.CRYSTALGUYS,controller);
-                    im =  new Image(new File("hexagon_hq.png").toURI().toString());
-                }
-                else if ( (j == 9 || j == 8 || j == 7) && i == 0 ) {
-                    hex = new UnitHex(i, j, Unit_FilePaths, Factions.CRYSTALGUYS,controller);
-                    im =  new Image(new File("hexagon_u.png").toURI().toString());
-                }
-                else {
-                    hex = new EmptyHex(i, j, Tile_FilePaths,controller);
-                    im =  new Image(new File("hexagon.png").toURI().toString());
-                }
+
+                hex = new Hexagon(i, j, Tile_FilePaths,controller);
+                im =  new Image(new File("hexagon.png").toURI().toString());
+                MapTile container = new MapTile();
+
+
                 hex.setImage(im);
                 hex.setFitHeight(70);
                 hex.setFitWidth(70);
                 hex.setX(60*i);
 
-                b.addHex(hex, i);
+
+                container.getChildren().add(hex);
                 if(i%2==0)
-                    hex.setY(70*j);
+                    container.setLayoutY(70*j);
                 else
-                    hex.setY(70*j+35);
-                board.getChildren().add(hex);
+                     container.setLayoutY(70*j+35);
+                container.setLayoutX(60*i);
+                container.hex=hex;
+                if(j==10 &&i==0)
+                {
+                    Unit unit = new Unit(Factions.CRYSTALGUYS);
+                    container.getChildren().add(unit);
+                    unit.setFitHeight(50);
+                    unit.setFitWidth(50);
+                    container.obj=unit;
+
+                }
+                b.addHex(container, i);
+                board.getChildren().add(container);
 
             }
         }
@@ -97,6 +106,49 @@ public class HelloApplication extends Application {
         launch();
     }
 }
+
+class MapTile extends StackPane
+{
+    Hexagon hex;
+    MapObject obj=null;
+    MapTile()
+    {
+        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("mouse click detected! "+hex.x+" "+hex.y);
+                if(hex.isClicked)
+                {
+                    Board.unClickAll();
+                    hex.unclicked();
+                    hex.isClicked=false;
+                }
+                else
+                {
+                    if(hex.isSelected)
+                    {
+                        move();
+                    }
+                    Board.unClickAll();
+                    Board.selectNearby(hex.x,hex.y);
+                    hex.clicked();
+                    hex.isClicked=true;
+                    if(hex.faction==Factions.CRYSTALGUYS)
+                    {
+                        hex.controller.set_portraitcrystal();
+                    }
+                }
+
+            }
+        });
+    }
+
+    void move()
+    {
+        Board.unitMove(this);
+    }
+
+}
 class Hexagon extends ImageView
 {
     //default images
@@ -105,16 +157,19 @@ class Hexagon extends ImageView
     protected Image highlighted;
     int x;
     int y;
-
     HelloController controller;
 
+    Factions faction;
+
     boolean isClicked = false;
+    boolean isSelected = false;
     Hexagon(int x,int y, ImageSetPaths filePaths,HelloController controller)
     {
         this.x=x;
         this.y=y;
         assignImages(filePaths.unclicked, filePaths.clicked, filePaths.highlighted);
         this.controller=controller;
+
     }
 
     void assignImages(String path1, String path2, String path3)
@@ -130,118 +185,47 @@ class Hexagon extends ImageView
     void highlighted()
     {
         this.setImage(highlighted);
+        this.isSelected=true;
     }
     void unclicked()
     {
         this.setImage(unclicked);
         isClicked=false;
+        this.isSelected=false;
     }
 }
-class UnitHex extends Hexagon
+
+class MapObject extends ImageView
 {
-    Factions faction;
-    UnitHex(int x, int y, ImageSetPaths filePaths, Factions _faction, HelloController controller) {
-        super(x, y, filePaths,controller);
-        faction = _faction;
-        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("mouse click detected! "+x+" "+y);
-                if(isClicked)
-                {
-                    Board.unClickAll();
-                    unclicked();
-                    isClicked=false;
-                }
-                else
-                {
-                    Board.unClickAll();
-                    Board.selectNearby(x,y);
-                    clicked();
-                    isClicked=true;
-                    if(faction==Factions.CRYSTALGUYS)
-                    {
-                        controller.set_portraitcrystal();
-                    }
-                }
 
-            }
-        });
-        this.setPickOnBounds(true);
-    }
+
 }
-class HeadquartersHex extends Hexagon
+class Unit extends MapObject
 {
-    Factions faction;
-    HeadquartersHex(int x, int y, ImageSetPaths FilePaths, Factions _faction, HelloController controller) {
-        super(x, y, FilePaths,controller);
-        faction = _faction;
-        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("mouse click detected! "+x+" "+y);
-                if(isClicked)
-                {
-                    Board.unClickAll();
-                    unclicked();
-                    isClicked=false;
-                }
-                else
-                {
-                    Board.unClickAll();
-                    clicked();
-                    controller.set_HQportraitcrystal();
-                    isClicked=true;
-                }
 
-            }
-        });
-        this.setPickOnBounds(true);
+    public Unit(Factions _faction)
+    {
+        if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("unit.png").toURI().toString()));
     }
-
 }
 
-class EmptyHex extends Hexagon
-{
-    EmptyHex(int x, int y, ImageSetPaths FilePaths,HelloController controller) {
-        super(x, y, FilePaths,controller);
-        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("mouse click detected! "+x+" "+y);
-                if(isClicked)
-                {
-                    unclicked();
-                    isClicked=false;
-                }
-                else
-                {
-                    Board.unClickAll();
-                    clicked();
-                    isClicked=true;
-                }
 
-            }
-        });
-        this.setPickOnBounds(true);
-    }
-
-}
 class Board
 {
     static int width;
     static int height;
+    static MapTile selected = null;
 
-    static ArrayList<Vector<Hexagon>> hexes = new ArrayList<>();
+    static ArrayList<Vector<MapTile>> hexes = new ArrayList<>();
 
-    void addHex(Hexagon hex, int x)
+    void addHex(MapTile hex, int x)
     {
         hexes.get(x).add(hex);
     }
 
     void addColumn()
     {
-        Vector<Hexagon> hexColumn = new Vector<>();
+        Vector<MapTile> hexColumn = new Vector<>();
         hexes.add(hexColumn);
     }
     static void unClickAll()
@@ -250,12 +234,14 @@ class Board
         {
             for(int j = 0; j < hexes.get(i).size(); j++)
             {
-                hexes.get(i).get(j).unclicked();
+                hexes.get(i).get(j).hex.unclicked();
             }
         }
+        selected = null;
     }
     static void selectNearby(int x,int y)
     {
+        selected=hexes.get(x).get(y);
         // The lookup tables are in a {x,y} format
         int[][]  ODD_COLUMN_LOOKUP_TABLE = { {1,  1}, {1,  0}, { 0, -1}, {-1,  0}, {-1,  1}, { 0, 1}};
         int[][] EVEN_COLUMN_LOOKUP_TABLE = { {1,  0}, {1, -1}, { 0, -1}, {-1, -1}, {-1,  0}, { 0, 1}};
@@ -267,7 +253,7 @@ class Board
                 if(     (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT ))
                 {
-                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
+                    hexes.get(x + x_offset).get(y + y_offset).hex.highlighted();
                 }
             }
         }
@@ -280,12 +266,23 @@ class Board
                 if(     (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT ))
                 {
-                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
+                    hexes.get(x + x_offset).get(y + y_offset).hex.highlighted();
                 }
             }
         }
-
-
     }
+
+    @FXML
+    static void unitMove(MapTile moveHere)
+    {
+        if(moveHere.obj==null&&selected!=null)
+        {
+            moveHere.obj=selected.obj;
+            moveHere.getChildren().add(moveHere.obj);
+            selected.getChildren().remove(selected.obj);
+            selected.obj=null;
+        }
+    }
+
 }
 
