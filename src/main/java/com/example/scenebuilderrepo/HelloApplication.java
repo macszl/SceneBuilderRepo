@@ -3,6 +3,7 @@ package com.example.scenebuilderrepo;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -44,8 +45,9 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("2.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("game.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
+        HelloController controller = fxmlLoader.getController();
         stage.setTitle("Hello!");
         Group board = new Group();
         Board b = new Board();
@@ -61,15 +63,15 @@ public class HelloApplication extends Application {
                 Hexagon hex;
 
                 if(j == 10 && i == 0) {
-                    hex = new HeadquartersHex(i, j, HQ_FilePaths, Factions.TREEGUYS);
+                    hex = new HeadquartersHex(i, j, HQ_FilePaths, Factions.CRYSTALGUYS,controller);
                     im =  new Image(new File("hexagon_hq.png").toURI().toString());
                 }
                 else if ( (j == 9 || j == 8 || j == 7) && i == 0 ) {
-                    hex = new UnitHex(i, j, Unit_FilePaths, Factions.TREEGUYS);
+                    hex = new UnitHex(i, j, Unit_FilePaths, Factions.CRYSTALGUYS,controller);
                     im =  new Image(new File("hexagon_u.png").toURI().toString());
                 }
                 else {
-                    hex = new EmptyHex(i, j, Tile_FilePaths);
+                    hex = new EmptyHex(i, j, Tile_FilePaths,controller);
                     im =  new Image(new File("hexagon.png").toURI().toString());
                 }
                 hex.setImage(im);
@@ -86,7 +88,7 @@ public class HelloApplication extends Application {
 
             }
         }
-        Scene scene = new Scene(board,1600,900);
+        controller.set_board(board);
         stage.setScene(scene);
         stage.show();
     }
@@ -104,12 +106,15 @@ class Hexagon extends ImageView
     int x;
     int y;
 
+    HelloController controller;
+
     boolean isClicked = false;
-    Hexagon(int x,int y, ImageSetPaths filePaths)
+    Hexagon(int x,int y, ImageSetPaths filePaths,HelloController controller)
     {
         this.x=x;
         this.y=y;
         assignImages(filePaths.unclicked, filePaths.clicked, filePaths.highlighted);
+        this.controller=controller;
     }
 
     void assignImages(String path1, String path2, String path3)
@@ -135,8 +140,8 @@ class Hexagon extends ImageView
 class UnitHex extends Hexagon
 {
     Factions faction;
-    UnitHex(int x, int y, ImageSetPaths filePaths, Factions _faction) {
-        super(x, y, filePaths);
+    UnitHex(int x, int y, ImageSetPaths filePaths, Factions _faction, HelloController controller) {
+        super(x, y, filePaths,controller);
         faction = _faction;
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -154,6 +159,10 @@ class UnitHex extends Hexagon
                     Board.selectNearby(x,y);
                     clicked();
                     isClicked=true;
+                    if(faction==Factions.CRYSTALGUYS)
+                    {
+                        controller.set_portraitcrystal();
+                    }
                 }
 
             }
@@ -164,8 +173,8 @@ class UnitHex extends Hexagon
 class HeadquartersHex extends Hexagon
 {
     Factions faction;
-    HeadquartersHex(int x, int y, ImageSetPaths FilePaths, Factions _faction) {
-        super(x, y, FilePaths);
+    HeadquartersHex(int x, int y, ImageSetPaths FilePaths, Factions _faction, HelloController controller) {
+        super(x, y, FilePaths,controller);
         faction = _faction;
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -181,6 +190,7 @@ class HeadquartersHex extends Hexagon
                 {
                     Board.unClickAll();
                     clicked();
+                    controller.set_HQportraitcrystal();
                     isClicked=true;
                 }
 
@@ -193,8 +203,8 @@ class HeadquartersHex extends Hexagon
 
 class EmptyHex extends Hexagon
 {
-    EmptyHex(int x, int y, ImageSetPaths FilePaths) {
-        super(x, y, FilePaths);
+    EmptyHex(int x, int y, ImageSetPaths FilePaths,HelloController controller) {
+        super(x, y, FilePaths,controller);
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
