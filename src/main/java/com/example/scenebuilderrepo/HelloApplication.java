@@ -37,9 +37,9 @@ class ImageSetPaths {
 }
 
 enum Factions {
-    CRYSTALGUYS,
-    TREEGUYS,
-    SKYGUYS
+    CRYSTAL_GUYS,
+    TREE_GUYS,
+    SKY_GUYS
 }
 
 
@@ -85,7 +85,7 @@ public class HelloApplication extends Application {
                 container.hex=hex;
                 if(j==10 &&i==0)
                 {
-                    Unit unit = new Unit(Factions.CRYSTALGUYS);
+                    MapObjectUnit unit = new MapObjectUnit(Factions.CRYSTAL_GUYS);
                     container.getChildren().add(unit);
                     unit.setFitHeight(50);
                     unit.setFitWidth(50);
@@ -97,7 +97,7 @@ public class HelloApplication extends Application {
 
             }
         }
-        controller.set_board(board);
+        controller.setBoard(board);
         stage.setScene(scene);
         stage.show();
     }
@@ -122,6 +122,7 @@ class MapTile extends StackPane
                     Board.unClickAll();
                     hex.unclicked();
                     hex.isClicked=false;
+                    hex.controller.clearPortrait();
                 }
                 else
                 {
@@ -130,14 +131,19 @@ class MapTile extends StackPane
                         move();
                     }
                     Board.unClickAll();
-                    if(obj==null) return;
-                    Board.selectNearby(hex.x,hex.y);
                     hex.clicked();
                     hex.isClicked=true;
-                    if(obj.faction==Factions.CRYSTALGUYS)
+                    hex.controller.clearPortrait();
+                    if(obj != null)
                     {
-                        hex.controller.set_portraitcrystal();
+                        Board.selectNearby(hex.x,hex.y);
+
+                        if(obj.faction==Factions.CRYSTAL_GUYS)
+                        {
+                            hex.controller.setPortraitCrystal();
+                        }
                     }
+
                 }
 
             }
@@ -200,16 +206,75 @@ class MapObject extends ImageView
 {
     Factions faction;
 }
-class Unit extends MapObject
+class MapObjectUnit extends MapObject
 {
 
-    public Unit(Factions _faction)
+    public MapObjectUnit(Factions _faction)
     {
-        if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("unit.png").toURI().toString()));
+        if(_faction==Factions.CRYSTAL_GUYS)
+        {
+            setImage(new Image(new File("unit.png").toURI().toString()));
+        }
+        //TODO
+        //Do uzycia pozniej
+//        else if (_faction == Factions.SKY_GUYS)
+//        {
+//            setImage(new Image(new File("unit_sky.png").toURI().toString()));
+//        }
+//        else
+//        {
+//            setImage(new Image(new File("unit_tree.png").toURI().toString()));
+//        }
         this.faction=_faction;
     }
 }
 
+class MapObjectHeadquarters extends MapObject
+{
+    //TODO
+    //Do użycia pozniej
+    public MapObjectHeadquarters(Factions _faction)
+    {
+        if(_faction == Factions.CRYSTAL_GUYS)
+        {
+            setImage(new Image(new File("hq_crystal.png").toURI().toString()));
+        }
+        else if (_faction == Factions.SKY_GUYS)
+        {
+            setImage(new Image(new File("hq_sky.png").toURI().toString()));
+        }
+        else
+        {
+            setImage(new Image(new File("hq_tree.png").toURI().toString()));
+        }
+        this.faction = _faction;
+    }
+}
+class MapObjectCity extends MapObject
+{
+    //TODO
+    //Do użycia pozniej
+    public MapObjectCity(Factions _faction)
+    {
+        if(_faction == Factions.CRYSTAL_GUYS)
+        {
+            setImage(new Image(new File("city_crystal.png").toURI().toString()));
+        }
+        else if (_faction == Factions.SKY_GUYS)
+        {
+            setImage(new Image(new File("city_sky.png").toURI().toString()));
+        }
+        else if(_faction == Factions.TREE_GUYS)
+        {
+            setImage(new Image(new File("city_tree.png").toURI().toString()));
+        }
+        else
+        {
+            setImage(new Image(new File("city_neutral.png").toURI().toString()));
+        }
+        this.faction = _faction;
+    }
+}
 
 class Board
 {

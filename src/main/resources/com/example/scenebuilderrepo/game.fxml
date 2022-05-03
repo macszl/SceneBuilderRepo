@@ -84,10 +84,10 @@
     </MenuBar>
       <SplitPane dividerPositions="0.7494432071269488" VBox.vgrow="ALWAYS">
         <items>
-          <AnchorPane fx:id="map_anchor" />
+          <AnchorPane fx:id="mapAnchor" />
           <AnchorPane>
                <children>
-                  <ImageView fx:id="unitport" fitHeight="281.0" fitWidth="200.0" layoutX="11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="unitPortrait" fitHeight="281.0" fitWidth="200.0" layoutX="11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </items>

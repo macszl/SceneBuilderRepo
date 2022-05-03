@@ -2,39 +2,36 @@ package com.example.scenebuilderrepo;
 
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class HelloController {
 
     @FXML
-    private AnchorPane map_anchor;
+    private AnchorPane mapAnchor;
 
     @FXML
-    private ImageView unitport;
+    private ImageView unitPortrait;
 
-    public void set_portraitcrystal()
+    public void setPortraitCrystal()
     {
-        unitport.setImage(new Image(new File("crystalgirl.png").toURI().toString()));
+        unitPortrait.setImage(new Image(new File("crystalgirl.png").toURI().toString()));
     }
-    public void set_HQportraitcrystal()
+    public void setHQPortraitCrystal()
     {
-        unitport.setImage(new Image(new File("crystalHQ.png").toURI().toString()));
-    }
-
-    public void set_board(Group board)
-    {
-        map_anchor.getChildren().add(board);
+        unitPortrait.setImage(new Image(new File("crystalHQ.png").toURI().toString()));
     }
 
+    public void setBoard(Group board)
+    {
+        mapAnchor.getChildren().add(board);
+    }
+    public void clearPortrait()
+    {
+        unitPortrait.setImage(null);
+    }
 }
