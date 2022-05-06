@@ -53,7 +53,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
         //HelloController controller = fxmlLoader.getController();
-        stage.setTitle("Hello!");
+        stage.setTitle("Wojna meteorytów");
         /*
         Group board = new Group();
         Board b = new Board();
@@ -141,7 +141,7 @@ class MapTile extends StackPane
                     hex.isClicked=true;
                     if(obj.faction==Factions.CRYSTALGUYS)
                     {
-                        hex.controller.set_portraitcrystal();
+                        hex.controller.setPortraitCrystal();
                     }
                 }
 
