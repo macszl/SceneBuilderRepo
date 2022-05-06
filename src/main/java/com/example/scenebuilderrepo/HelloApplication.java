@@ -7,10 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -37,9 +40,9 @@ class ImageSetPaths {
 }
 
 enum Factions {
-    CRYSTAL_GUYS,
-    TREE_GUYS,
-    SKY_GUYS
+    CRYSTALGUYS,
+    TREEGUYS,
+    SKYGUYS
 }
 
 
@@ -47,10 +50,11 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("game.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
-        HelloController controller = fxmlLoader.getController();
+        //HelloController controller = fxmlLoader.getController();
         stage.setTitle("Hello!");
+        /*
         Group board = new Group();
         Board b = new Board();
         Image im;
@@ -85,7 +89,7 @@ public class HelloApplication extends Application {
                 container.hex=hex;
                 if(j==10 &&i==0)
                 {
-                    MapObjectUnit unit = new MapObjectUnit(Factions.CRYSTAL_GUYS);
+                    Unit unit = new Unit(Factions.CRYSTALGUYS);
                     container.getChildren().add(unit);
                     unit.setFitHeight(50);
                     unit.setFitWidth(50);
@@ -97,7 +101,8 @@ public class HelloApplication extends Application {
 
             }
         }
-        controller.setBoard(board);
+        controller.set_board(board);
+        */
         stage.setScene(scene);
         stage.show();
     }
@@ -122,7 +127,6 @@ class MapTile extends StackPane
                     Board.unClickAll();
                     hex.unclicked();
                     hex.isClicked=false;
-                    hex.controller.clearPortrait();
                 }
                 else
                 {
@@ -131,19 +135,14 @@ class MapTile extends StackPane
                         move();
                     }
                     Board.unClickAll();
+                    if(obj==null) return;
+                    Board.selectNearby(hex.x,hex.y);
                     hex.clicked();
                     hex.isClicked=true;
-                    hex.controller.clearPortrait();
-                    if(obj != null)
+                    if(obj.faction==Factions.CRYSTALGUYS)
                     {
-                        Board.selectNearby(hex.x,hex.y);
-
-                        if(obj.faction==Factions.CRYSTAL_GUYS)
-                        {
-                            hex.controller.setPortraitCrystal();
-                        }
+                        hex.controller.set_portraitcrystal();
                     }
-
                 }
 
             }
@@ -206,75 +205,16 @@ class MapObject extends ImageView
 {
     Factions faction;
 }
-class MapObjectUnit extends MapObject
+class Unit extends MapObject
 {
 
-    public MapObjectUnit(Factions _faction)
+    public Unit(Factions _faction)
     {
-        if(_faction==Factions.CRYSTAL_GUYS)
-        {
-            setImage(new Image(new File("unit.png").toURI().toString()));
-        }
-        //TODO
-        //Do uzycia pozniej
-//        else if (_faction == Factions.SKY_GUYS)
-//        {
-//            setImage(new Image(new File("unit_sky.png").toURI().toString()));
-//        }
-//        else
-//        {
-//            setImage(new Image(new File("unit_tree.png").toURI().toString()));
-//        }
+        if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("unit.png").toURI().toString()));
         this.faction=_faction;
     }
 }
 
-class MapObjectHeadquarters extends MapObject
-{
-    //TODO
-    //Do użycia pozniej
-    public MapObjectHeadquarters(Factions _faction)
-    {
-        if(_faction == Factions.CRYSTAL_GUYS)
-        {
-            setImage(new Image(new File("hq_crystal.png").toURI().toString()));
-        }
-        else if (_faction == Factions.SKY_GUYS)
-        {
-            setImage(new Image(new File("hq_sky.png").toURI().toString()));
-        }
-        else
-        {
-            setImage(new Image(new File("hq_tree.png").toURI().toString()));
-        }
-        this.faction = _faction;
-    }
-}
-class MapObjectCity extends MapObject
-{
-    //TODO
-    //Do użycia pozniej
-    public MapObjectCity(Factions _faction)
-    {
-        if(_faction == Factions.CRYSTAL_GUYS)
-        {
-            setImage(new Image(new File("city_crystal.png").toURI().toString()));
-        }
-        else if (_faction == Factions.SKY_GUYS)
-        {
-            setImage(new Image(new File("city_sky.png").toURI().toString()));
-        }
-        else if(_faction == Factions.TREE_GUYS)
-        {
-            setImage(new Image(new File("city_tree.png").toURI().toString()));
-        }
-        else
-        {
-            setImage(new Image(new File("city_neutral.png").toURI().toString()));
-        }
-        this.faction = _faction;
-    }
-}
 
 class Board
 {
