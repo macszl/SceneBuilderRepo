@@ -3,6 +3,7 @@ package com.example.scenebuilderrepo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +31,16 @@ public class Menucontrol implements Initializable {
 
     @FXML
     private Button MMb;
+
+    @FXML
+    void setRez(int x)
+    {
+       // Stage stageTheLabelBelongs = (Stage) label.getScene().getWindow();
+        if(x==1920)
+        {
+            menuScene.setPrefSize(1920,1080);
+        }
+    }
 
     @FXML
     void toMenu(MouseEvent event) throws IOException {
