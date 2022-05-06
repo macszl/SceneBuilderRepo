@@ -7,10 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -47,10 +50,11 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("game.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
-        HelloController controller = fxmlLoader.getController();
+        //HelloController controller = fxmlLoader.getController();
         stage.setTitle("Hello!");
+        /*
         Group board = new Group();
         Board b = new Board();
         Image im;
@@ -98,6 +102,7 @@ public class HelloApplication extends Application {
             }
         }
         controller.set_board(board);
+        */
         stage.setScene(scene);
         stage.show();
     }
