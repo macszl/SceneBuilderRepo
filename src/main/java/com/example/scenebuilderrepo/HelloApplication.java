@@ -21,7 +21,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-
+class GameInfo
+{
+    static int x=1600;
+    static int y=900;
+    static int players;
+}
 class MapConstants {
     public static final int MAP_HEIGHT = 11;
     public static final int MAP_LENGTH = 11;
@@ -51,7 +56,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainmenu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
+        Scene scene = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
         //HelloController controller = fxmlLoader.getController();
         stage.setTitle("Wojna meteorytów");
         /*
@@ -139,9 +144,35 @@ class MapTile extends StackPane
                     Board.selectNearby(hex.x,hex.y);
                     hex.clicked();
                     hex.isClicked=true;
-                    if(obj.faction==Factions.CRYSTALGUYS)
+                    if(obj.getClass()==Unit.class)
                     {
-                        hex.controller.setPortraitCrystal();
+                        if(obj.faction==Factions.CRYSTALGUYS)
+                        {
+                            hex.controller.setUnitPortraitCrystal();
+                        }
+                        if(obj.faction==Factions.TREEGUYS)
+                        {
+                            hex.controller.setUnitPortraitForest();
+                        }
+                        if(obj.faction==Factions.SKYGUYS)
+                        {
+                            hex.controller.setUnitPortraitFlying();
+                        }
+                    }
+                    if(obj.getClass()==HQ.class)
+                    {
+                        if(obj.faction==Factions.CRYSTALGUYS)
+                        {
+                            hex.controller.setHQPortraitCrystal();
+                        }
+                        if(obj.faction==Factions.TREEGUYS)
+                        {
+                            hex.controller.setHQPortraitForest();
+                        }
+                        if(obj.faction==Factions.SKYGUYS)
+                        {
+                            hex.controller.setHQPortraitFlying();
+                        }
                     }
                 }
 
@@ -210,12 +241,35 @@ class Unit extends MapObject
 
     public Unit(Factions _faction)
     {
-        if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("unit.png").toURI().toString()));
+        if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
+        if(_faction==Factions.TREEGUYS) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));
+        if(_faction==Factions.SKYGUYS) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
         this.faction=_faction;
     }
 }
 
+class HQ extends MapObject
+{
+    public HQ(Factions _faction)
+    {
+        if(_faction==Factions.CRYSTALGUYS) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
+        if(_faction==Factions.TREEGUYS) setImage(new Image(new File("FOREST_HQ.png").toURI().toString()));
+        if(_faction==Factions.SKYGUYS) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
+        this.faction=_faction;
+    }
+}
 
+class Player
+{
+    int number;
+    Factions faction;
+
+    public Player(int x,Factions _Faction)
+    {
+        number=x;
+        faction = _Faction;
+    }
+}
 class Board
 {
     static int width;
@@ -251,6 +305,7 @@ class Board
         // The lookup tables are in a {x,y} format
         int[][]  ODD_COLUMN_LOOKUP_TABLE = { {1,  1}, {1,  0}, { 0, -1}, {-1,  0}, {-1,  1}, { 0, 1}};
         int[][] EVEN_COLUMN_LOOKUP_TABLE = { {1,  0}, {1, -1}, { 0, -1}, {-1, -1}, {-1,  0}, { 0, 1}};
+        if(!selected.obj.getClass().equals(Unit.class)) return;
         if(x%2==0) { //Selecting neighbouring hexes from an even column
             for(int i = 0; i < EVEN_COLUMN_LOOKUP_TABLE.length; i++)
             {
@@ -281,7 +336,7 @@ class Board
     @FXML
     static void unitMove(MapTile moveHere)
     {
-        if(moveHere.obj==null&&selected!=null)
+        if(moveHere.obj==null&&selected!=null&&selected.obj.getClass().equals(Unit.class))
         {
             moveHere.obj=selected.obj;
             moveHere.getChildren().add(moveHere.obj);

@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class OptionsController implements Initializable {
 
-    private int x=1600;
-    private int y=900;
     private MenuController menuController;
     @FXML
     private ToggleGroup resolutionSettings;
@@ -27,7 +25,7 @@ public class OptionsController implements Initializable {
     private RadioButton getTo1600Button;
 
     @FXML
-    private RadioButton getTo1920Button;
+    private static RadioButton getTo1920Button;
 
     @FXML
     private RadioButton muteSoundButton;
@@ -37,22 +35,26 @@ public class OptionsController implements Initializable {
 
     @FXML
     private Button backToMenuButton;
+
+    private Scene menuScene;
+
+    private Stage stage;
     @FXML
     void getResolutionTo1600(ActionEvent event) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        y=900;
-        x=1600;
-        stage.setWidth(x);
-        stage.setHeight(y);
+        GameInfo.y=900;
+        GameInfo.x=1600;
+        stage.setWidth(GameInfo.x);
+        stage.setHeight(GameInfo.y);
     }
 
     @FXML
     void getResolutionTo1920(ActionEvent event) {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        y=1080;
-        x=1920;
-        stage.setWidth(x);
-        stage.setHeight(y);
+        GameInfo.y=1080;
+        GameInfo.x=1920;
+        stage.setWidth(GameInfo.x);
+        stage.setHeight(GameInfo.y);
     }
 
     @FXML
@@ -67,10 +69,12 @@ public class OptionsController implements Initializable {
 
     @FXML
     void switchToMenu(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainmenu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), x, y);
-        stage.setScene(scene);
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        if(menuScene==null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainmenu.fxml"));
+            menuScene = new Scene(fxmlLoader.load(), 1600, 900);
+        }
+        stage.setScene(menuScene);
         stage.show();
     }
     //co to robi
