@@ -29,7 +29,7 @@ public class HelloController implements Initializable {
     }
     public void setHQPortraitCrystal()
     {
-        unitPortrait.setImage(new Image(new File("crystalHQ.png").toURI().toString()));
+        unitPortrait.setImage(new Image(new File("crystal_meteor.png").toURI().toString()));
     }
     public void setUnitPortraitForest()
     {
@@ -37,7 +37,7 @@ public class HelloController implements Initializable {
     }
     public void setHQPortraitForest()
     {
-        unitPortrait.setImage(new Image(new File("crystalHQ.png").toURI().toString()));
+        unitPortrait.setImage(new Image(new File("tree_meteor.png").toURI().toString()));
     }
 
     public void setUnitPortraitFlying()
@@ -46,7 +46,7 @@ public class HelloController implements Initializable {
     }
     public void setHQPortraitFlying()
     {
-        unitPortrait.setImage(new Image(new File("crystalHQ.png").toURI().toString()));
+        unitPortrait.setImage(new Image(new File("flying_meteor.png").toURI().toString()));
     }
     public void setBoard(Group board)
     {
