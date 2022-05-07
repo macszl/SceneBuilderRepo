@@ -4,10 +4,15 @@ package com.example.scenebuilderrepo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,16 +69,20 @@ public class HelloController implements Initializable {
         Image im;
         int imagesize=80;
         int hexsize=80;
-        ImageSetPaths HQ_FilePaths = new ImageSetPaths("hexagon_hq.png" , "hexagon2_hq.png", "hexagon3_hq.png");
-        ImageSetPaths Unit_FilePaths = new ImageSetPaths("hexagon_u.png" , "hexagon2_u.png", "hexagon3_u.png");
-        ImageSetPaths Tile_FilePaths = new ImageSetPaths("hexagon.png" , "hexagon2.png", "hexagon3.png");
+        HexImages Purple = new HexImages("hexagon_purple.png" , "hexagon_purple2.png", "hexagon_purple3.png");
+        HexImages Blue = new HexImages("hexagon_blue.png" , "hexagon_blue2.png", "hexagon_blue3.png");
+        HexImages Brown = new HexImages("hexagon_brown.png" , "hexagon_brown2.png", "hexagon_brown3.png");
+
+        HexImages Neutral = new HexImages("hexagon.png" , "hexagon2.png", "hexagon3.png");
 
         unitPortrait.setFitWidth(unitPortrait.getFitWidth()*1.5);
         unitPortrait.setFitHeight(unitPortrait.getFitHeight()*1.5);
 
-        Player player1= new Player(1,Factions.CRYSTALGUYS);
-        Player player2= new Player(2,Factions.TREEGUYS);
-        Player player3= new Player(3,Factions.SKYGUYS);
+        Player player1= new Player(1,Factions.CRYSTALGUYS,Purple);
+        Player player2= new Player(2,Factions.TREEGUYS,Brown);
+        Player player3= new Player(3,Factions.SKYGUYS,Blue);
+
+        Player None= new Player(0,null,Neutral);
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
         {
             b.addColumn();
@@ -82,7 +91,7 @@ public class HelloController implements Initializable {
                 Hexagon hex;
 
 
-                hex = new Hexagon(i, j, Tile_FilePaths,this);
+                hex = new Hexagon(i, j, None,this);
                 im =  new Image(new File("hexagon.png").toURI().toString());
                 MapTile container = new MapTile();
 
@@ -93,15 +102,11 @@ public class HelloController implements Initializable {
                 hex.setX(hexsize*i);
 
 
-                container.getChildren().add(hex);
-                if(i%2==0)
-                    container.setLayoutY((hexsize-5)*j);
-                else
-                    container.setLayoutY((hexsize-5)*j+((hexsize-5)/2));
-                container.setLayoutX((hexsize-10)*i);
-                container.hex=hex;
+
                 if(j==MapConstants.MAP_HEIGHT-2 &&i==0)
                 {
+                    hex.setOwner(player1);
+                    hex.setImage(player1.imgs.unclicked);
                     Unit unit = new Unit(player1.faction);
                     container.getChildren().add(unit);
                     unit.setFitHeight(imagesize);
@@ -111,6 +116,8 @@ public class HelloController implements Initializable {
                 }
                 if(j==MapConstants.MAP_HEIGHT-1 &&i==0)
                 {
+                    hex.setOwner(player1);
+                    hex.setImage(player1.imgs.unclicked);
                     HQ hq = new HQ(player1.faction);
                     container.getChildren().add(hq);
                     hq.setFitHeight(imagesize);
@@ -121,6 +128,8 @@ public class HelloController implements Initializable {
 
                 if(j==MapConstants.MAP_HEIGHT-2 &&i==MapConstants.MAP_LENGTH-1)
                 {
+                    hex.setOwner(player2);
+                    hex.setImage(player2.imgs.unclicked);
                     Unit unit = new Unit(player2.faction);
                     container.getChildren().add(unit);
                     unit.setFitHeight(imagesize);
@@ -130,6 +139,8 @@ public class HelloController implements Initializable {
                 }
                 if(j==MapConstants.MAP_HEIGHT-1 &&i==MapConstants.MAP_LENGTH-1)
                 {
+                    hex.setOwner(player2);
+                    hex.setImage(player2.imgs.unclicked);
                     HQ hq = new HQ(player2.faction);
                     container.getChildren().add(hq);
                     hq.setFitHeight(imagesize);
@@ -139,6 +150,8 @@ public class HelloController implements Initializable {
                 }
                 if(GameInfo.players==3) {
                     if (j == 0 && i == MapConstants.MAP_LENGTH / 2) {
+                        hex.setOwner(player3);
+                        hex.setImage(player3.imgs.unclicked);
                         HQ hq = new HQ(player3.faction);
                         container.getChildren().add(hq);
                         hq.setFitHeight(imagesize);
@@ -146,13 +159,24 @@ public class HelloController implements Initializable {
                         container.obj=hq;
                     }
                     if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
+                        hex.setOwner(player3);
+                        hex.setImage(player3.imgs.unclicked);
                         Unit unit = new Unit(player3.faction);
                         container.getChildren().add(unit);
                         unit.setFitHeight(imagesize);
                         unit.setFitWidth(imagesize);
                         container.obj=unit;
                     }
-                }b.addHex(container, i);
+                }
+                container.getChildren().add(hex);
+                if(i%2==0)
+                    container.setLayoutY((hexsize-5)*j);
+                else
+                    container.setLayoutY((hexsize-5)*j+((hexsize-5)/2));
+                container.setLayoutX((hexsize-10)*i);
+                container.hex=hex;
+
+                b.addHex(container, i);
                 board.getChildren().add(container);
 
             }

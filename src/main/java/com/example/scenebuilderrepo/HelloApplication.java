@@ -57,57 +57,8 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainmenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
-        //HelloController controller = fxmlLoader.getController();
         stage.setTitle("Wojna meteorytów");
-        /*
-        Group board = new Group();
-        Board b = new Board();
-        Image im;
-        ImageSetPaths HQ_FilePaths = new ImageSetPaths("hexagon_hq.png" , "hexagon2_hq.png", "hexagon3_hq.png");
-        ImageSetPaths Unit_FilePaths = new ImageSetPaths("hexagon_u.png" , "hexagon2_u.png", "hexagon3_u.png");
-        ImageSetPaths Tile_FilePaths = new ImageSetPaths("hexagon.png" , "hexagon2.png", "hexagon3.png");
-        for(int i=0;i< MapConstants.MAP_LENGTH;i++)
-        {
-            b.addColumn();
-            for(int j=0;j< MapConstants.MAP_HEIGHT;j++)
-            {
-                Hexagon hex;
 
-
-                hex = new Hexagon(i, j, Tile_FilePaths,controller);
-                im =  new Image(new File("hexagon.png").toURI().toString());
-                MapTile container = new MapTile();
-
-
-                hex.setImage(im);
-                hex.setFitHeight(70);
-                hex.setFitWidth(70);
-                hex.setX(60*i);
-
-
-                container.getChildren().add(hex);
-                if(i%2==0)
-                    container.setLayoutY(70*j);
-                else
-                     container.setLayoutY(70*j+35);
-                container.setLayoutX(60*i);
-                container.hex=hex;
-                if(j==10 &&i==0)
-                {
-                    Unit unit = new Unit(Factions.CRYSTALGUYS);
-                    container.getChildren().add(unit);
-                    unit.setFitHeight(50);
-                    unit.setFitWidth(50);
-                    container.obj=unit;
-
-                }
-                b.addHex(container, i);
-                board.getChildren().add(container);
-
-            }
-        }
-        controller.set_board(board);
-        */
         stage.setScene(scene);
         stage.show();
     }
@@ -189,9 +140,7 @@ class MapTile extends StackPane
 class Hexagon extends ImageView
 {
     //default images
-    protected Image unclicked;
-    protected Image clicked;
-    protected Image highlighted;
+    Player owner;
     int x;
     int y;
     HelloController controller;
@@ -200,36 +149,37 @@ class Hexagon extends ImageView
 
     boolean isClicked = false;
     boolean isSelected = false;
-    Hexagon(int x,int y, ImageSetPaths filePaths,HelloController controller)
+    Hexagon(int x,int y, Player _onwer,HelloController controller)
     {
         this.x=x;
         this.y=y;
-        assignImages(filePaths.unclicked, filePaths.clicked, filePaths.highlighted);
+        owner=_onwer;
         this.controller=controller;
 
     }
 
-    void assignImages(String path1, String path2, String path3)
+   /* void assignImages(String path1, String path2, String path3)
     {
         unclicked= new Image(new File(path1).toURI().toString());
         clicked= new Image(new File(path2).toURI().toString());
         highlighted = new Image(new File(path3).toURI().toString());
-    }
+    }*/
     void clicked()
     {
-        this.setImage(clicked);
+        this.setImage(owner.imgs.clicked);
     }
     void highlighted()
     {
-        this.setImage(highlighted);
+        this.setImage(owner.imgs.highlighted);
         this.isSelected=true;
     }
     void unclicked()
     {
-        this.setImage(unclicked);
+        this.setImage(owner.imgs.unclicked);
         isClicked=false;
         this.isSelected=false;
     }
+    void setOwner(Player _owner) {owner=_owner;}
 }
 
 class MapObject extends ImageView
@@ -264,11 +214,30 @@ class Player
     int number;
     Factions faction;
 
-    public Player(int x,Factions _Faction)
+    HexImages imgs;
+
+    public Player(int x,Factions _Faction,HexImages _imgs)
     {
         number=x;
         faction = _Faction;
+        imgs=_imgs;
     }
+}
+
+class HexImages
+{
+    public Image unclicked;
+    public Image clicked;
+    public Image highlighted;
+
+    public HexImages(String _u, String _c, String _h)
+    {
+        unclicked = new Image(new File(_u).toURI().toString());
+        clicked =new Image(new File(_c).toURI().toString());
+        highlighted =new Image(new File(_h).toURI().toString());
+    }
+
+
 }
 class Board
 {
