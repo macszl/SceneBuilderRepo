@@ -7,13 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -23,6 +20,7 @@ import java.util.Vector;
 
 class GameInfo
 {
+    static int hexsize=80;
     static int x=1600;
     static int y=900;
     static int players;
@@ -70,31 +68,88 @@ public class HelloApplication extends Application {
 
 class MapTile extends StackPane
 {
+
+    private Player owner;
     Hexagon hex;
+    ImageView base = new ImageView();
+    ImageView ring = new ImageView();;
+
+    HexImages rings;
     MapObject obj=null;
-    MapTile()
+
+    boolean isClicked = false;
+    boolean isSelected = false;
+
+    void clicked()
     {
+        ring.setImage(rings.clicked);
+    }
+    void highlighted()
+    {
+        ring.setImage(rings.highlighted);
+        isSelected=true;
+    }
+    void unclicked()
+    {
+        ring.setImage(rings.unclicked);
+        isClicked=false;
+        this.isSelected=false;
+    }
+
+    void setRing(Image _ring)
+    {
+        ring.setImage(_ring);
+    }
+    void setRings(HexImages _rings)
+    {
+        rings=_rings;
+    }
+    void setBase(Image _base)
+    {
+        base.setImage(_base);
+    }
+    void addMapObject(MapObject x)
+    {
+        obj=x;
+        getChildren().add(x);
+    }
+    Player getOwner() {return owner;}
+    void setOwner(Player _owner)
+    {
+        owner=_owner;
+        setBase(owner.color);
+    }
+    MapTile(HexImages rings)
+    {
+        setRings(rings);
+        setRing(rings.unclicked);
+        this.getChildren().add(ring);
+        this.getChildren().add(base);
+        base.setFitHeight(GameInfo.hexsize);
+        base.setFitWidth(GameInfo.hexsize);
+        ring.setFitHeight(GameInfo.hexsize);
+        ring.setFitWidth(GameInfo.hexsize);
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 System.out.println("mouse click detected! "+hex.x+" "+hex.y);
-                if(hex.isClicked)
+                if(isClicked)
                 {
                     Board.unClickAll();
-                    hex.unclicked();
-                    hex.isClicked=false;
+                    unclicked();
+                    isClicked=false;
                 }
                 else
                 {
-                    if(hex.isSelected)
+                    if(isSelected)
                     {
                         move();
                     }
                     Board.unClickAll();
                     if(obj==null) return;
                     Board.selectNearby(hex.x,hex.y);
-                    hex.clicked();
-                    hex.isClicked=true;
+                    clicked();
+                    isClicked=true;
                     if(obj.getClass()==Unit.class)
                     {
                         if(obj.faction==Factions.CRYSTALGUYS)
@@ -140,47 +195,20 @@ class MapTile extends StackPane
 class Hexagon extends ImageView
 {
     //default images
-     private Player owner;
     int x;
     int y;
     HelloController controller;
 
-    Factions faction;
 
-    boolean isClicked = false;
-    boolean isSelected = false;
+
     Hexagon(int x,int y, Player _onwer,HelloController controller)
     {
         this.x=x;
         this.y=y;
-        owner=_onwer;
         this.controller=controller;
 
     }
 
-   /* void assignImages(String path1, String path2, String path3)
-    {
-        unclicked= new Image(new File(path1).toURI().toString());
-        clicked= new Image(new File(path2).toURI().toString());
-        highlighted = new Image(new File(path3).toURI().toString());
-    }*/
-    void clicked()
-    {
-        this.setImage(owner.imgs.clicked);
-    }
-    void highlighted()
-    {
-        this.setImage(owner.imgs.highlighted);
-        this.isSelected=true;
-    }
-    void unclicked()
-    {
-        this.setImage(owner.imgs.unclicked);
-        isClicked=false;
-        this.isSelected=false;
-    }
-    void setOwner(Player _owner) {owner=_owner;}
-    Player getOwner() {return owner;}
 }
 
 class MapObject extends ImageView
@@ -215,13 +243,16 @@ class Player
     int number;
     Factions faction;
 
-    HexImages imgs;
+    //HexImages imgs;
 
-    public Player(int x,Factions _Faction,HexImages _imgs)
+    Image color;
+
+    public Player(int x,Factions _Faction,Image img)
     {
         number=x;
         faction = _Faction;
-        imgs=_imgs;
+        color=img;
+        //imgs=_imgs;
     }
 }
 
@@ -264,7 +295,7 @@ class Board
         {
             for(int j = 0; j < hexes.get(i).size(); j++)
             {
-                hexes.get(i).get(j).hex.unclicked();
+                hexes.get(i).get(j).unclicked();
             }
         }
         selected = null;
@@ -284,7 +315,7 @@ class Board
                 if(     (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT ))
                 {
-                    hexes.get(x + x_offset).get(y + y_offset).hex.highlighted();
+                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
                 }
             }
         }
@@ -297,7 +328,7 @@ class Board
                 if(     (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT ))
                 {
-                    hexes.get(x + x_offset).get(y + y_offset).hex.highlighted();
+                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
                 }
             }
         }
@@ -310,7 +341,7 @@ class Board
         {
             moveHere.obj=selected.obj;
             moveHere.getChildren().add(moveHere.obj);
-            moveHere.hex.setOwner(selected.hex.getOwner());
+            moveHere.setOwner(selected.getOwner());
             selected.getChildren().remove(selected.obj);
             selected.obj=null;
         }

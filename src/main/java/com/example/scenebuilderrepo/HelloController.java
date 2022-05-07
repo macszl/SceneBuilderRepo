@@ -67,13 +67,26 @@ public class HelloController implements Initializable {
         Group board = new Group();
         Board b = new Board();
         Image im;
-        int imagesize=80;
-        int hexsize=80;
-        HexImages Purple = new HexImages("hexagon_purple.png" , "hexagon_purple2.png", "hexagon_purple3.png");
-        HexImages Blue = new HexImages("hexagon_blue.png" , "hexagon_blue2.png", "hexagon_blue3.png");
-        HexImages Brown = new HexImages("hexagon_brown.png" , "hexagon_brown2.png", "hexagon_brown3.png");
+        //HexImages Purple = new HexImages("hexagon_purple.png" , "hexagon_purple2.png", "hexagon_purple3.png");
+        //HexImages Blue = new HexImages("hexagon_blue.png" , "hexagon_blue2.png", "hexagon_blue3.png");
+        //HexImages Brown = new HexImages("hexagon_brown.png" , "hexagon_brown2.png", "hexagon_brown3.png");
 
-        HexImages Neutral = new HexImages("hexagon.png" , "hexagon2.png", "hexagon3.png");
+//        HexImages Neutral = new HexImages("hexagon.png" , "hexagon2.png", "hexagon3.png");
+
+        Image Purple = new Image(new File("hexagon_purple.png").toURI().toString());
+        Image Brown = new Image(new File("hexagon_brown.png").toURI().toString());
+        Image Blue = new Image(new File("hexagon_blue.png").toURI().toString());
+        Image Neutral = new Image(new File("hexagon.png").toURI().toString());
+
+        Image city = new Image(new File("BIGCITY_HEX.png").toURI().toString());
+        Image village = new Image(new File("VILLAGE_HEX.png").toURI().toString());
+        Image forest = new Image(new File("FOREST_HEX.png").toURI().toString());
+        Image pondst = new Image(new File("POND_RIVEREND_UP_HEX.png").toURI().toString());
+        Image ponden = new Image(new File("POND_RIVEREND_DOWN_HEX.png").toURI().toString());
+        Image riverfl = new Image(new File("RIVER_WITHFLOW_HEX.png").toURI().toString());
+
+
+        HexImages rings =new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
 
         unitPortrait.setFitWidth(unitPortrait.getFitWidth()*1.5);
         unitPortrait.setFitHeight(unitPortrait.getFitHeight()*1.5);
@@ -81,8 +94,8 @@ public class HelloController implements Initializable {
         Player player1= new Player(1,Factions.CRYSTALGUYS,Purple);
         Player player2= new Player(2,Factions.TREEGUYS,Brown);
         Player player3= new Player(3,Factions.SKYGUYS,Blue);
-
         Player None= new Player(0,null,Neutral);
+
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
         {
             b.addColumn();
@@ -93,88 +106,117 @@ public class HelloController implements Initializable {
 
                 hex = new Hexagon(i, j, None,this);
                 im =  new Image(new File("hexagon.png").toURI().toString());
-                MapTile container = new MapTile();
+                MapTile container = new MapTile(rings);
+
+
 
 
                 hex.setImage(im);
-                hex.setFitHeight(hexsize);
-                hex.setFitWidth(hexsize);
-                hex.setX(hexsize*i);
+                hex.setFitHeight(GameInfo.hexsize);
+                hex.setFitWidth(GameInfo.hexsize);
+                hex.setX(GameInfo.hexsize*i);
+
+                container.getChildren().add(hex);
+                container.hex=hex;
+
+                if(j>8&&i>8)
+                {
+                    hex.setImage(forest);
+                }
+
+                if(j==8&&i==10)
+                {
+                    hex.setImage(pondst);
+                }
+                if((i == 9 && j == 8)||(i==8&&j==9)||(i==7&&j==9))
+                {
+                    hex.setImage(riverfl);
+                }
+                if(j==10&&i==6)
+                {
+                    hex.setImage(ponden);
+                }
 
 
+
+                if(j<3&&i>3&&i<8)
+                {
+                    hex.setImage(village);
+                }
+                if(j<2&&i>3&&i<7)
+                {
+                    hex.setImage(city);
+                }
 
                 if(j==MapConstants.MAP_HEIGHT-2 &&i==0)
                 {
-                    hex.setOwner(player1);
-                    hex.setImage(player1.imgs.unclicked);
+                    container.setOwner(player1);
+                    container.setBase(player1.color);
                     Unit unit = new Unit(player1.faction);
-                    container.getChildren().add(unit);
-                    unit.setFitHeight(imagesize);
-                    unit.setFitWidth(imagesize);
-                    container.obj=unit;
+                    unit.setFitHeight(GameInfo.hexsize);
+                    unit.setFitWidth(GameInfo.hexsize);
+                    container.addMapObject(unit);
+
 
                 }
                 if(j==MapConstants.MAP_HEIGHT-1 &&i==0)
                 {
-                    hex.setOwner(player1);
-                    hex.setImage(player1.imgs.unclicked);
+                    hex.setImage(im);
+                    container.setOwner(player1);
+                    container.setBase(player1.color);
                     HQ hq = new HQ(player1.faction);
-                    container.getChildren().add(hq);
-                    hq.setFitHeight(imagesize);
-                    hq.setFitWidth(imagesize);
-                    container.obj=hq;
+                    hq.setFitHeight(GameInfo.hexsize);
+                    hq.setFitWidth(GameInfo.hexsize);
+                    container.addMapObject(hq);
 
                 }
 
                 if(j==MapConstants.MAP_HEIGHT-2 &&i==MapConstants.MAP_LENGTH-1)
                 {
-                    hex.setOwner(player2);
-                    hex.setImage(player2.imgs.unclicked);
+                    container.setOwner(player2);
+                    container.setBase(player2.color);
                     Unit unit = new Unit(player2.faction);
-                    container.getChildren().add(unit);
-                    unit.setFitHeight(imagesize);
-                    unit.setFitWidth(imagesize);
-                    container.obj=unit;
+                    unit.setFitHeight(GameInfo.hexsize);
+                    unit.setFitWidth(GameInfo.hexsize);
+                    container.addMapObject(unit);
 
                 }
                 if(j==MapConstants.MAP_HEIGHT-1 &&i==MapConstants.MAP_LENGTH-1)
                 {
-                    hex.setOwner(player2);
-                    hex.setImage(player2.imgs.unclicked);
+                    hex.setImage(im);
+                    container.setOwner(player2);
+                    container.setBase(player2.color);
                     HQ hq = new HQ(player2.faction);
-                    container.getChildren().add(hq);
-                    hq.setFitHeight(imagesize);
-                    hq.setFitWidth(imagesize);
-                    container.obj=hq;
+                    hq.setFitHeight(GameInfo.hexsize);
+                    hq.setFitWidth(GameInfo.hexsize);
+                    container.addMapObject(hq);
 
                 }
                 if(GameInfo.players==3) {
                     if (j == 0 && i == MapConstants.MAP_LENGTH / 2) {
-                        hex.setOwner(player3);
-                        hex.setImage(player3.imgs.unclicked);
+                        hex.setImage(im);
+                        container.setOwner(player3);
+                        container.setBase(player3.color);
                         HQ hq = new HQ(player3.faction);
-                        container.getChildren().add(hq);
-                        hq.setFitHeight(imagesize);
-                        hq.setFitWidth(imagesize);
-                        container.obj=hq;
+                        hq.setFitHeight(GameInfo.hexsize);
+                        hq.setFitWidth(GameInfo.hexsize);
+                        container.addMapObject(hq);
                     }
                     if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
-                        hex.setOwner(player3);
-                        hex.setImage(player3.imgs.unclicked);
+                        container.setOwner(player3);
+                        container.setBase(player3.color);
                         Unit unit = new Unit(player3.faction);
-                        container.getChildren().add(unit);
-                        unit.setFitHeight(imagesize);
-                        unit.setFitWidth(imagesize);
-                        container.obj=unit;
+                        unit.setFitHeight(GameInfo.hexsize);
+                        unit.setFitWidth(GameInfo.hexsize);
+                        container.addMapObject(unit);
                     }
                 }
-                container.getChildren().add(hex);
                 if(i%2==0)
-                    container.setLayoutY((hexsize-5)*j);
+                    container.setLayoutY((GameInfo.hexsize-5)*j);
                 else
-                    container.setLayoutY((hexsize-5)*j+((hexsize-5)/2));
-                container.setLayoutX((hexsize-10)*i);
-                container.hex=hex;
+                    container.setLayoutY((GameInfo.hexsize-5)*j+((GameInfo.hexsize-5)/2));
+                container.setLayoutX((GameInfo.hexsize-10)*i);
+
 
                 b.addHex(container, i);
                 board.getChildren().add(container);
