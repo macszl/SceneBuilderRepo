@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scenebuilderrepo.Optionscontorl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="356.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0">
+      <GridPane alignment="CENTER" prefHeight="360.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Text layoutX="13.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1920x1080" />
-            <RadioButton layoutX="79.0" layoutY="39.0" mnemonicParsing="false" onAction="#to1920" text="RadioButton" fx:id="x1920">
-               <toggleGroup>
-                  <ToggleGroup fx:id="rez" />
-               </toggleGroup>
-            </RadioButton>
-            <Text layoutX="16.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1600x900" />
-            <RadioButton layoutX="80.0" layoutY="82.0" mnemonicParsing="false" onMouseClicked="#to1600" text="RadioButton" toggleGroup="$rez" fx:id="x1600" />
+            <RadioButton mnemonicParsing="false" text="Mute sound" GridPane.rowIndex="1" />
+            <RadioButton mnemonicParsing="false" text="Mute music" GridPane.rowIndex="2" />
+            <Label text="Sound and music settings">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Resolution settings" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <RadioButton mnemonicParsing="false" text="1920x1080" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton mnemonicParsing="false" text="1600x900" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
-      </AnchorPane>
+      </GridPane>
    </children>
-</Pane>
+</VBox>

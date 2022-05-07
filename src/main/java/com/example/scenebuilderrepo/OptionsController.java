@@ -4,43 +4,51 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Optionscontorl implements Initializable {
+public class OptionsController implements Initializable {
 
-    private Menucontrol menucontrol;
-    @FXML
-    private ToggleGroup rez;
-    @FXML
-    private RadioButton x1600;
+    private MenuController menuController;
 
     @FXML
-    private RadioButton x1920;
+    private RadioButton getTo1600Button;
 
     @FXML
-    void to1600(MouseEvent event) {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setWidth(1600);
-        stage.setHeight(900);
-        stage.setFullScreen(false);
+    private RadioButton getTo1920Button;
+
+    @FXML
+    private RadioButton muteSoundButton;
+
+    @FXML
+    private RadioButton muteMusicButton;
+    @FXML
+    void getResolutionTo1600(MouseEvent event) {
+
     }
 
     @FXML
-    void to1920(ActionEvent event) {
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        //stage.setWidth(1920);
-        // stage.setHeight(1080);
-        stage.setFullScreen(true);
+    void getResolutionTo1920(ActionEvent event) {
+
     }
 
+    @FXML
+    void muteMusic(ActionEvent event) {
+
+    }
+
+    @FXML
+    void muteSound(ActionEvent event) {
+
+    }
+
+
+    //co to robi
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
@@ -49,6 +57,6 @@ public class Optionscontorl implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        menucontrol = fxmlLoader.getController();
+        menuController = fxmlLoader.getController();
     }
 }

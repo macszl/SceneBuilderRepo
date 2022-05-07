@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="zepsuty FXML">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/Menucontrol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/Optionscontorl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/OptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/mainmenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/mainmenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/menu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/options.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/options.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +83,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.com.example.scenebuilderrepo.HelloApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651426297309</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="zepsuty FXML">
+      <created>1651840344607</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651840344608</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,7 +165,8 @@
     <MESSAGE value="Refactoring selectNearby i dodanie stałych" />
     <MESSAGE value="Podzielenie klasy Hexagon na EmptyHex, UnitHex, i HeadquartersHex" />
     <MESSAGE value="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
+    <MESSAGE value="zepsuty FXML" />
+    <option name="LAST_COMMIT_MESSAGE" value="zepsuty FXML" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
