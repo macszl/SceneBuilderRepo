@@ -140,7 +140,7 @@ class MapTile extends StackPane
 class Hexagon extends ImageView
 {
     //default images
-    Player owner;
+     private Player owner;
     int x;
     int y;
     HelloController controller;
@@ -180,6 +180,7 @@ class Hexagon extends ImageView
         this.isSelected=false;
     }
     void setOwner(Player _owner) {owner=_owner;}
+    Player getOwner() {return owner;}
 }
 
 class MapObject extends ImageView
@@ -309,6 +310,7 @@ class Board
         {
             moveHere.obj=selected.obj;
             moveHere.getChildren().add(moveHere.obj);
+            moveHere.hex.setOwner(selected.hex.getOwner());
             selected.getChildren().remove(selected.obj);
             selected.obj=null;
         }
