@@ -36,33 +36,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="380.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scenebuilderrepo.MenuController">
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="145.0" layoutY="37.0" prefHeight="21.0" prefWidth="350.0" style="&#10;" text="Wojna meteorytów" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="350.0" style="&#10;" text="Wojna meteorytów" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <GridPane alignment="CENTER" layoutX="270.0" layoutY="90.0" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0">
+      <GridPane alignment="CENTER" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitScene" prefHeight="24.0" prefWidth="100.0" text="Exit" GridPane.rowIndex="3" />
+            <Button fx:id="exitButton" blendMode="SRC_ATOP" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitScene" prefHeight="24.0" prefWidth="100.0" text="Exit" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#switchToOptions" prefHeight="24.0" prefWidth="100.0" text="Options" GridPane.rowIndex="2" />
             <Button fx:id="newGameButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToNewGame" prefHeight="24.0" prefWidth="100.0" text="New game" />
             <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#switchToLoadedGame" prefHeight="24.0" prefWidth="100.0" text="Load game" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
-</Pane>
+</VBox>
