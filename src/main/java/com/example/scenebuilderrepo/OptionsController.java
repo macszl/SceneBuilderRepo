@@ -4,9 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +18,8 @@ import java.util.ResourceBundle;
 public class OptionsController implements Initializable {
 
     private MenuController menuController;
-
+    @FXML
+    private ToggleGroup resolutionSettings;
     @FXML
     private RadioButton getTo1600Button;
 
@@ -27,9 +31,12 @@ public class OptionsController implements Initializable {
 
     @FXML
     private RadioButton muteMusicButton;
-    @FXML
-    void getResolutionTo1600(MouseEvent event) {
 
+    @FXML
+    private Button backToMenuButton;
+    @FXML
+    void getResolutionTo1600(ActionEvent event) {
+        
     }
 
     @FXML
@@ -47,7 +54,10 @@ public class OptionsController implements Initializable {
 
     }
 
+    @FXML
+    void switchToMenu() {
 
+    }
     //co to robi
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
