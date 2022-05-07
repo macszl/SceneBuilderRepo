@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -17,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class OptionsController implements Initializable {
 
+    private int x=1600;
+    private int y=900;
     private MenuController menuController;
     @FXML
     private ToggleGroup resolutionSettings;
@@ -36,12 +39,20 @@ public class OptionsController implements Initializable {
     private Button backToMenuButton;
     @FXML
     void getResolutionTo1600(ActionEvent event) {
-        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        y=900;
+        x=1600;
+        stage.setWidth(x);
+        stage.setHeight(y);
     }
 
     @FXML
     void getResolutionTo1920(ActionEvent event) {
-
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        y=1080;
+        x=1920;
+        stage.setWidth(x);
+        stage.setHeight(y);
     }
 
     @FXML
@@ -55,13 +66,17 @@ public class OptionsController implements Initializable {
     }
 
     @FXML
-    void switchToMenu() {
-
+    void switchToMenu(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainmenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), x, y);
+        stage.setScene(scene);
+        stage.show();
     }
     //co to robi
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainmenu.fxml"));
         try {
             fxmlLoader.load();
         } catch (IOException e) {
