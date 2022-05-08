@@ -89,6 +89,11 @@ public class RaceSelect implements Initializable {
             if(im3==1) GameInfo.p3=tree;
             if(im3==2) GameInfo.p3=sky;
         }
+        checkSelect();
+    }
+
+    void checkSelect()
+    {
         if(im1!=im2&&im1!=im3&&im3!=im2) controller.enableCnt();
         else controller.disableCnt();
     }
@@ -134,12 +139,14 @@ public class RaceSelect implements Initializable {
         bl3.setDisable(true);
         imgp3.setImage(null);
         im3=4;
+        checkSelect();
     }
     @FXML void enableP3()
     {
         br3.setDisable(false);
         bl3.setDisable(false);
         im3=0;
+        checkSelect();
     }
 
     @Override
