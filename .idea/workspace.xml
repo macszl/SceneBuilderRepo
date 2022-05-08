@@ -5,17 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRYSTAL_UNIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/CRYSTAL_UNIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FLYING_UNIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/FLYING_UNIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOREST_UNIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/FOREST_UNIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_blue2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_blue3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_brown2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_brown3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_hq.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_purple2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_purple3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagon_red3.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nowymaster" />
+        <entry key="$PROJECT_DIR$" value="menu" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +62,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/reksa11/IdeaProjects/kck/SceneBuilderRepo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/reksa11/IdeaProjects/kck/SceneBuilderRepo/src/main/java/com/example/scenebuilderrepo/charm-glisten-4.4.1-javadoc.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.42643678&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
@@ -119,7 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651426297309</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="zepsuty FXML">
+      <created>1651840344607</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651840344608</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Pusty FXML - tak chce aby to wygladalo mniej wiecej">
+      <created>1651906832624</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651906832624</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,22 +179,39 @@
     <MESSAGE value="Refactoring selectNearby i dodanie stałych" />
     <MESSAGE value="Podzielenie klasy Hexagon na EmptyHex, UnitHex, i HeadquartersHex" />
     <MESSAGE value="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodanie placeholderów do zdjęć jednostek i baz. Dodanie paru constów." />
+    <MESSAGE value="zepsuty FXML" />
+    <MESSAGE value="Pusty FXML - tak chce aby to wygladalo mniej wiecej" />
+    <MESSAGE value="Small changes to the options menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small changes to the options menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>278</line>
+          <line>344</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>148</line>
+          <line>195</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MenuController.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
