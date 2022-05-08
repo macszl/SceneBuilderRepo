@@ -69,15 +69,7 @@ public class HelloController implements Initializable {
         Group board = new Group();
         Board b = new Board();
         Image im;
-        //HexImages Purple = new HexImages("hexagon_purple.png" , "hexagon_purple2.png", "hexagon_purple3.png");
-        //HexImages Blue = new HexImages("hexagon_blue.png" , "hexagon_blue2.png", "hexagon_blue3.png");
-        //HexImages Brown = new HexImages("hexagon_brown.png" , "hexagon_brown2.png", "hexagon_brown3.png");
 
-//        HexImages Neutral = new HexImages("hexagon.png" , "hexagon2.png", "hexagon3.png");
-
-        Image Purple = new Image(new File("hexagon_purple.png").toURI().toString());
-        Image Brown = new Image(new File("hexagon_brown.png").toURI().toString());
-        Image Blue = new Image(new File("hexagon_blue.png").toURI().toString());
         Image Neutral = new Image(new File("hexagon.png").toURI().toString());
 
         Image city = new Image(new File("BIGCITY_HEX.png").toURI().toString());
@@ -94,14 +86,37 @@ public class HelloController implements Initializable {
         Image riverfl_right = new Image(new File("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png").toURI().toString());
 
         HexImages rings =new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
+        HexImages bases =new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
 
         unitPortrait.setFitWidth(unitPortrait.getFitWidth()*1.5);
         unitPortrait.setFitHeight(unitPortrait.getFitHeight()*1.5);
 
-        Player player1= new Player(1,Factions.SKYGUYS,Blue);
-        Player player2= new Player(2,Factions.TREEGUYS,Brown);
-        Player player3= new Player(3,Factions.CRYSTALGUYS,Purple);
-        Player None= new Player(0,null,Neutral);
+
+        Player player1= new Player(1,GameInfo.p1);
+        GameInfo.p1.pl=player1;
+        Player player2= new Player(2,GameInfo.p2);
+        GameInfo.p2.pl=player2;
+        Player player3= new Player(3,GameInfo.p3);
+        GameInfo.p3.pl=player3;
+
+        Faction neutral=new Faction(0,Neutral);
+        Player None= new Player(0,neutral);
+
+        Faction tempcrystal = null;
+        Faction temptree = null;
+        Faction tempsky = null;
+        if(GameInfo.p1.id==1) tempcrystal=GameInfo.p1;
+        if(GameInfo.p1.id==2) temptree=GameInfo.p1;
+        if(GameInfo.p1.id==3) tempsky=GameInfo.p1;
+
+        if(GameInfo.p2.id==1) tempcrystal=GameInfo.p2;
+        if(GameInfo.p2.id==2) temptree=GameInfo.p2;
+        if(GameInfo.p2.id==3) tempsky=GameInfo.p2;
+        if(GameInfo.players==3) {
+            if (GameInfo.p3.id == 1) tempcrystal = GameInfo.p3;
+            if (GameInfo.p3.id == 2) temptree = GameInfo.p3;
+            if (GameInfo.p3.id == 3) tempsky = GameInfo.p3;
+        }
 
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
         {
@@ -113,7 +128,7 @@ public class HelloController implements Initializable {
 
                 hex = new Hexagon(i, j, None,this);
                 im =  new Image(new File("hexagon.png").toURI().toString());
-                MapTile container = new MapTile(rings);
+                MapTile container = new MapTile(rings,bases);
 
 
 
@@ -188,65 +203,65 @@ public class HelloController implements Initializable {
                 {
                     hex.setImage(ponden);
                 }
+                if(tempcrystal!=null) {
+                    if (j == 9 && i == 0) {
 
-                if(j==MapConstants.MAP_HEIGHT-2 &&i==0)
-                {
-                    container.setOwner(player1);
-                    container.setBase(player1.color);
-                    Unit unit = new Unit(player1.faction);
-                    unit.setFitHeight(GameInfo.hexsize);
-                    unit.setFitWidth(GameInfo.hexsize);
-                    container.addMapObject(unit);
+                        container.setOwner(tempcrystal.pl);
+                        container.setBase(tempcrystal.color);
+                        Unit unit = new Unit(tempcrystal);
+                        unit.setFitHeight(GameInfo.hexsize);
+                        unit.setFitWidth(GameInfo.hexsize);
+                        container.addMapObject(unit);
 
 
+                    }
+                    if (j == 10 && i == 0) {
+                        hex.setImage(im);
+                        container.setOwner(tempcrystal.pl);
+                        container.setBase(tempcrystal.color);
+                        HQ hq = new HQ(tempcrystal);
+                        hq.setFitHeight(GameInfo.hexsize);
+                        hq.setFitWidth(GameInfo.hexsize);
+                        container.addMapObject(hq);
+
+                    }
                 }
-                if(j==MapConstants.MAP_HEIGHT-1 &&i==0)
-                {
-                    hex.setImage(im);
-                    container.setOwner(player1);
-                    container.setBase(player1.color);
-                    HQ hq = new HQ(player1.faction);
-                    hq.setFitHeight(GameInfo.hexsize);
-                    hq.setFitWidth(GameInfo.hexsize);
-                    container.addMapObject(hq);
 
+                if(temptree!=null) {
+                    if (j == MapConstants.MAP_HEIGHT - 2 && i == MapConstants.MAP_LENGTH - 1) {
+                        container.setOwner(temptree.pl);
+                        container.setBase(temptree.color);
+                        Unit unit = new Unit(temptree);
+                        unit.setFitHeight(GameInfo.hexsize);
+                        unit.setFitWidth(GameInfo.hexsize);
+                        container.addMapObject(unit);
+
+                    }
+                    if (j == MapConstants.MAP_HEIGHT - 1 && i == MapConstants.MAP_LENGTH - 1) {
+                        hex.setImage(im);
+                        container.setOwner(temptree.pl);
+                        container.setBase(temptree.color);
+                        HQ hq = new HQ(temptree);
+                        hq.setFitHeight(GameInfo.hexsize);
+                        hq.setFitWidth(GameInfo.hexsize);
+                        container.addMapObject(hq);
+
+                    }
                 }
-
-                if(j==MapConstants.MAP_HEIGHT-2 &&i==MapConstants.MAP_LENGTH-1)
-                {
-                    container.setOwner(player2);
-                    container.setBase(player2.color);
-                    Unit unit = new Unit(player2.faction);
-                    unit.setFitHeight(GameInfo.hexsize);
-                    unit.setFitWidth(GameInfo.hexsize);
-                    container.addMapObject(unit);
-
-                }
-                if(j==MapConstants.MAP_HEIGHT-1 &&i==MapConstants.MAP_LENGTH-1)
-                {
-                    hex.setImage(im);
-                    container.setOwner(player2);
-                    container.setBase(player2.color);
-                    HQ hq = new HQ(player2.faction);
-                    hq.setFitHeight(GameInfo.hexsize);
-                    hq.setFitWidth(GameInfo.hexsize);
-                    container.addMapObject(hq);
-
-                }
-                if(GameInfo.players==3) {
+                if(tempsky!=null) {
                     if (j == 0 && i == MapConstants.MAP_LENGTH / 2) {
                         hex.setImage(im);
-                        container.setOwner(player3);
-                        container.setBase(player3.color);
-                        HQ hq = new HQ(player3.faction);
+                        container.setOwner(tempsky.pl);
+                        container.setBase(tempsky.color);
+                        HQ hq = new HQ(tempsky);
                         hq.setFitHeight(GameInfo.hexsize);
                         hq.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(hq);
                     }
                     if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
-                        container.setOwner(player3);
-                        container.setBase(player3.color);
-                        Unit unit = new Unit(player3.faction);
+                        container.setOwner(tempsky.pl);
+                        container.setBase(tempsky.color);
+                        Unit unit = new Unit(tempsky);
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);

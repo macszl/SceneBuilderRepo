@@ -3,14 +3,19 @@ package com.example.scenebuilderrepo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PlayerSelect {
+public class PlayerSelect implements Initializable {
 
     private Stage stage;
     @FXML
@@ -23,13 +28,37 @@ public class PlayerSelect {
     private Button cont;
 
     @FXML
-    void setThreePlayer(ActionEvent event) {
+    private AnchorPane raceSelect;
+    RaceSelect controller;
+
+    boolean loaded=false;
+    @FXML
+    void setThreePlayer(ActionEvent event) throws IOException {
+
         GameInfo.players=3;
+        if(!loaded) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("raceselect.fxml"));
+            AnchorPane pane = (AnchorPane) fxmlLoader.load();
+            raceSelect.getChildren().clear();
+            raceSelect.getChildren().add(pane);
+            controller = fxmlLoader.getController();
+            controller.controller=this;
+        }
+        controller.enableP3();
     }
 
     @FXML
-    void setTwoPlayer(ActionEvent event) {
+    void setTwoPlayer(ActionEvent event) throws IOException {
         GameInfo.players=2;
+        if(!loaded) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("raceselect.fxml"));
+            AnchorPane pane = (AnchorPane) fxmlLoader.load();
+            raceSelect.getChildren().clear();
+            raceSelect.getChildren().add(pane);
+            controller = fxmlLoader.getController();
+            controller.controller=this;
+        }
+        controller.disableP3();
     }
 
     @FXML
@@ -41,4 +70,16 @@ public class PlayerSelect {
         stage.show();
     }
 
+    void enableCnt()
+    {
+        cont.setDisable(false);
+    }
+    void disableCnt()
+    {
+        cont.setDisable(true);
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cont.setDisable(true);
+    }
 }
