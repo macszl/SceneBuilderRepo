@@ -17,7 +17,9 @@ import javafx.scene.paint.Color;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.random.RandomGenerator;
 
 public class HelloController implements Initializable {
 
@@ -81,19 +83,24 @@ public class HelloController implements Initializable {
         Image city = new Image(new File("BIGCITY_HEX.png").toURI().toString());
         Image village = new Image(new File("VILLAGE_HEX.png").toURI().toString());
         Image forest = new Image(new File("FOREST_HEX.png").toURI().toString());
+        Image forest2 = new Image(new File("FOREST2_HEX.png").toURI().toString());
+        Image mountain =  new Image(new File("MOUNTAIN_HEX.png").toURI().toString());
+        Image hills =  new Image(new File("HILLS_HEX.png").toURI().toString());
+        Image desert =  new Image(new File("DESERT_HEX.png").toURI().toString());
+        Image desertPond =  new Image(new File("POND_HEX.png").toURI().toString());
         Image pondst = new Image(new File("POND_RIVEREND_UP_HEX.png").toURI().toString());
         Image ponden = new Image(new File("POND_RIVEREND_DOWN_HEX.png").toURI().toString());
         Image riverfl = new Image(new File("RIVER_WITHFLOW_HEX.png").toURI().toString());
-
+        Image riverfl_right = new Image(new File("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png").toURI().toString());
 
         HexImages rings =new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
 
         unitPortrait.setFitWidth(unitPortrait.getFitWidth()*1.5);
         unitPortrait.setFitHeight(unitPortrait.getFitHeight()*1.5);
 
-        Player player1= new Player(1,Factions.CRYSTALGUYS,Purple);
+        Player player1= new Player(1,Factions.SKYGUYS,Blue);
         Player player2= new Player(2,Factions.TREEGUYS,Brown);
-        Player player3= new Player(3,Factions.SKYGUYS,Blue);
+        Player player3= new Player(3,Factions.CRYSTALGUYS,Purple);
         Player None= new Player(0,null,Neutral);
 
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
@@ -119,10 +126,40 @@ public class HelloController implements Initializable {
                 container.getChildren().add(hex);
                 container.hex=hex;
 
-                if(j>8&&i>8)
+                //terrain
+                if( ((j > 3) && (i > 5)) && !( j == 4 && i == 6) )
                 {
-                    hex.setImage(forest);
+                    Random random = new Random();
+                    int randomNum = random.nextInt(2);
+                    if( randomNum == 1)
+                        hex.setImage(forest);
+                    else
+                        hex.setImage(forest2);
                 }
+                else if(  j > 4 )
+                {
+                    Random random = new Random();
+                    int randomNum = random.nextInt(2);
+                    if( randomNum == 1)
+                        hex.setImage(hills);
+                    else
+                        hex.setImage(mountain);
+                }
+                else
+                {
+                    Random random = new Random();
+                    int randomNum = random.nextInt(7);
+                    if(randomNum < 5)
+                        hex.setImage(desert);
+                    else
+                        hex.setImage(desertPond);
+                }
+
+                if( (j < 3 && (i > 2 && i < 8) ) && !(j == 2 && i == 7) && !(j == 2 && i == 3))
+                {
+                    hex.setImage(city);
+                }
+
 
                 if(j==8&&i==10)
                 {
@@ -137,15 +174,19 @@ public class HelloController implements Initializable {
                     hex.setImage(ponden);
                 }
 
-
-
-                if(j<3&&i>3&&i<8)
+                if(     (i == 5 && j == 5) || (i == 6 && j == 5) || (i == 7  && j == 4) ||
+                        (i == 8 && j == 4) || (i == 9 && j == 3) || (i == 10 && j == 3) )
                 {
-                    hex.setImage(village);
+                    hex.setImage(riverfl);
                 }
-                if(j<2&&i>3&&i<7)
+                if(      (i == 0 && j == 6) || (i == 1 && j == 6) || (i == 2 && j == 7) ||
+                         (i == 3 && j == 7) || (i == 4 && j == 8))
                 {
-                    hex.setImage(city);
+                    hex.setImage(riverfl_right);
+                }
+                if( i == 4 && j == 6)
+                {
+                    hex.setImage(ponden);
                 }
 
                 if(j==MapConstants.MAP_HEIGHT-2 &&i==0)

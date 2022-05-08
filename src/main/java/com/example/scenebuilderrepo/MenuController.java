@@ -42,7 +42,7 @@ public class MenuController implements Initializable {
 
     public void exitScene()
     {
-
+        stage.close();
     }
     @FXML
     void switchToOptions(ActionEvent event)  throws IOException {
