@@ -27,7 +27,7 @@ public class HelloController implements Initializable {
 
 
     @FXML
-    private Label FactionGold;
+    private Label factionGold;
 
     @FXML
     private Button recruitmentButton;
@@ -57,12 +57,10 @@ public class HelloController implements Initializable {
     public void setUnitPortrait(MapObject unit)
     {
         unitPortrait.setImage(unit.portriat);
-        unitStatsATK.setText("ATK REERERE");
+        unitStatsATK.setText("ATK "+unit.atk);
+        unitStatsDEF.setText("DEF "+unit.def);
+        unitStatsHP.setText("HP "+unit.hp_current+"/"+unit.hp_max);
 
-    }
-    public void setHQPortrait(MapObject hq)
-    {
-        unitPortrait.setImage(hq.portriat);
     }
     public void setUnitPortraitForest()
     {
@@ -306,6 +304,6 @@ public class HelloController implements Initializable {
             }
         }
         setBoard(board);
-
+        factionGold.setText("Ilosc zlota "+5);
     }
 }

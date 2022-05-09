@@ -172,14 +172,9 @@ class MapTile extends StackPane
                     Board.selectNearby(hex.x,hex.y);
                     clicked();
                     isClicked=true;
-                    if(obj.getClass()==Unit.class)
-                    {
-                        hex.controller.setUnitPortrait(obj);
-                    }
-                    if(obj.getClass()==HQ.class)
-                    {
-                        hex.controller.setHQPortrait(obj);
-                    }
+
+                    hex.controller.setUnitPortrait(obj);
+
                 }
 
             }
@@ -216,13 +211,15 @@ class MapObject extends ImageView
     Image portriat;
     Faction faction;
 
-    int def=3;
-    int atk=8;
-    int hp_current=20;
-    int hp_max=20;
+    int def;
+    int atk;
+    int hp_current;
+    int hp_max;
 }
 class Unit extends MapObject
 {
+
+
 
     public Unit(Faction _faction, Image _portriat)
     {
@@ -231,11 +228,17 @@ class Unit extends MapObject
         if(_faction.id==3) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
         this.faction=_faction;
         this.portriat = _portriat;
+
+        def=3;
+        atk=8;
+        hp_current=20;
+        hp_max=20;
     }
 }
 
 class HQ extends MapObject
 {
+
     public HQ(Faction _faction, Image _portriat)
     {
         if(_faction.id==1) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
@@ -243,6 +246,11 @@ class HQ extends MapObject
         if(_faction.id==3) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
         this.faction=_faction;
         this.portriat=_portriat;
+
+        def=4;
+        atk=0;
+        hp_current=95;
+        hp_max=100;
     }
 }
 
