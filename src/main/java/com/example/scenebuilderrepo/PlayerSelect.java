@@ -65,7 +65,7 @@ public class PlayerSelect implements Initializable {
     void startGame(ActionEvent event) throws IOException {
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game.fxml"));
-        Scene scene= new Scene(fxmlLoader.load(), 1600, 900);
+        Scene scene= new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
         stage.setScene(scene);
         stage.show();
     }

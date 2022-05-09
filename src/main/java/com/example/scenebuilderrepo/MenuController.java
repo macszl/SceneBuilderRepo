@@ -47,6 +47,7 @@ public class MenuController implements Initializable {
     }
     @FXML
     void switchToOptions(ActionEvent event)  throws IOException {
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         if(optionsScene==null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("options.fxml"));
             optionsScene = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
@@ -61,7 +62,7 @@ public class MenuController implements Initializable {
     public void switchToNewGame(ActionEvent event) throws IOException {
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("playerselect.fxml"));
-        Scene scene= new Scene(fxmlLoader.load(), 1600, 900);
+        Scene scene= new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
         stage.setScene(scene);
         stage.show();
     }

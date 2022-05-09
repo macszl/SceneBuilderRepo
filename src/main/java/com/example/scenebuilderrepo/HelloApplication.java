@@ -21,7 +21,7 @@ import java.util.Vector;
 class GameInfo
 {
     static int hexsize=80;
-    static int x=1600;
+    static int x=1400;
     static int y=900;
     static int players;
     static int turn=0;

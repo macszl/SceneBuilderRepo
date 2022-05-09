@@ -72,7 +72,7 @@ public class OptionsController implements Initializable {
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         if(menuScene==null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainmenu.fxml"));
-            menuScene = new Scene(fxmlLoader.load(), 1600, 900);
+            menuScene = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
         }
         stage.setScene(menuScene);
         stage.show();
