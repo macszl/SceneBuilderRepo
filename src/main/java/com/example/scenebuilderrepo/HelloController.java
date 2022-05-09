@@ -114,8 +114,8 @@ public class HelloController implements Initializable {
         HexImages rings =new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
         HexImages bases =new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
 
-        unitPortrait.setFitWidth(unitPortrait.getFitWidth()*1.5);
-        unitPortrait.setFitHeight(unitPortrait.getFitHeight()*1.5);
+        unitPortrait.setFitWidth(unitPortrait.getFitWidth());
+        unitPortrait.setFitHeight(unitPortrait.getFitHeight());
 
 
         Player player1= new Player(1,GameInfo.p1);
