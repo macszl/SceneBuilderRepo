@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -23,20 +25,44 @@ import java.util.random.RandomGenerator;
 
 public class HelloController implements Initializable {
 
+
+    @FXML
+    private Label FactionGold;
+
+    @FXML
+    private Button recruitmentButton;
+
+    @FXML
+    private Button turnEndButton;
+
+    @FXML
+    private Label unitStatsATK;
+
+    @FXML
+    private Label unitStatsDEF;
+
+    @FXML
+    private Label unitStatsDesc;
+
+    @FXML
+    private Label unitStatsHP;
+
     @FXML
     private AnchorPane mapAnchor;
 
     @FXML
     private ImageView unitPortrait;
 
-    public void setUnitPortraitCrystal()
+    @FXML
+    public void setUnitPortrait(MapObject unit)
     {
-        unitPortrait.setImage(new Image(new File("crystal_unit_portriat.png").toURI().toString()));
+        unitPortrait.setImage(unit.portriat);
+        unitStatsATK.setText("ATK REERERE");
 
     }
-    public void setHQPortraitCrystal()
+    public void setHQPortrait(MapObject hq)
     {
-        unitPortrait.setImage(new Image(new File("crystal_meteor.png").toURI().toString()));
+        unitPortrait.setImage(hq.portriat);
     }
     public void setUnitPortraitForest()
     {
@@ -208,7 +234,7 @@ public class HelloController implements Initializable {
 
                         container.setOwner(tempcrystal.pl);
                         container.setBase(tempcrystal.color);
-                        Unit unit = new Unit(tempcrystal);
+                        Unit unit = new Unit(tempcrystal,new Image(new File("crystal_unit_portriat.png").toURI().toString()));
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);
@@ -219,7 +245,7 @@ public class HelloController implements Initializable {
                         hex.setImage(im);
                         container.setOwner(tempcrystal.pl);
                         container.setBase(tempcrystal.color);
-                        HQ hq = new HQ(tempcrystal);
+                        HQ hq = new HQ(tempcrystal,new Image(new File("crystal_meteor.png").toURI().toString()));
                         hq.setFitHeight(GameInfo.hexsize);
                         hq.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(hq);
@@ -231,7 +257,7 @@ public class HelloController implements Initializable {
                     if (j == MapConstants.MAP_HEIGHT - 2 && i == MapConstants.MAP_LENGTH - 1) {
                         container.setOwner(temptree.pl);
                         container.setBase(temptree.color);
-                        Unit unit = new Unit(temptree);
+                        Unit unit = new Unit(temptree,new Image(new File("tree_unit_portriat.png").toURI().toString()));
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);
@@ -241,7 +267,7 @@ public class HelloController implements Initializable {
                         hex.setImage(im);
                         container.setOwner(temptree.pl);
                         container.setBase(temptree.color);
-                        HQ hq = new HQ(temptree);
+                        HQ hq = new HQ(temptree,new Image(new File("tree_meteor.png").toURI().toString()));
                         hq.setFitHeight(GameInfo.hexsize);
                         hq.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(hq);
@@ -253,7 +279,7 @@ public class HelloController implements Initializable {
                         hex.setImage(im);
                         container.setOwner(tempsky.pl);
                         container.setBase(tempsky.color);
-                        HQ hq = new HQ(tempsky);
+                        HQ hq = new HQ(tempsky,new Image(new File("flying_meteor.png").toURI().toString()));
                         hq.setFitHeight(GameInfo.hexsize);
                         hq.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(hq);
@@ -261,7 +287,7 @@ public class HelloController implements Initializable {
                     if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
                         container.setOwner(tempsky.pl);
                         container.setBase(tempsky.color);
-                        Unit unit = new Unit(tempsky);
+                        Unit unit = new Unit(tempsky,new Image(new File("flying_unit_portriat.png").toURI().toString()));
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);

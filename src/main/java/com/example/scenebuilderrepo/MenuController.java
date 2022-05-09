@@ -42,11 +42,11 @@ public class MenuController implements Initializable {
 
     public void exitScene()
     {
+        stage = (Stage) newGameButton.getScene().getWindow();
         stage.close();
     }
     @FXML
     void switchToOptions(ActionEvent event)  throws IOException {
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         if(optionsScene==null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("options.fxml"));
             optionsScene = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);

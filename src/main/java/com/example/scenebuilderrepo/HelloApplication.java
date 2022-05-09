@@ -24,6 +24,7 @@ class GameInfo
     static int x=1600;
     static int y=900;
     static int players;
+    static int turn=0;
 
     static Faction p1;
     static Faction p2;
@@ -173,33 +174,11 @@ class MapTile extends StackPane
                     isClicked=true;
                     if(obj.getClass()==Unit.class)
                     {
-                        if(obj.faction.id==1)
-                        {
-                            hex.controller.setUnitPortraitCrystal();
-                        }
-                        if(obj.faction.id==2)
-                        {
-                            hex.controller.setUnitPortraitForest();
-                        }
-                        if(obj.faction.id==3)
-                        {
-                            hex.controller.setUnitPortraitFlying();
-                        }
+                        hex.controller.setUnitPortrait(obj);
                     }
                     if(obj.getClass()==HQ.class)
                     {
-                        if(obj.faction.id==1)
-                        {
-                            hex.controller.setHQPortraitCrystal();
-                        }
-                        if(obj.faction.id==2)
-                        {
-                            hex.controller.setHQPortraitForest();
-                        }
-                        if(obj.faction.id==3)
-                        {
-                            hex.controller.setHQPortraitFlying();
-                        }
+                        hex.controller.setHQPortrait(obj);
                     }
                 }
 
@@ -234,34 +213,43 @@ class Hexagon extends ImageView
 
 class MapObject extends ImageView
 {
+    Image portriat;
     Faction faction;
+
+    int def=3;
+    int atk=8;
+    int hp_current=20;
+    int hp_max=20;
 }
 class Unit extends MapObject
 {
 
-    public Unit(Faction _faction)
+    public Unit(Faction _faction, Image _portriat)
     {
         if(_faction.id==1) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
         if(_faction.id==2) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));
         if(_faction.id==3) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
         this.faction=_faction;
+        this.portriat = _portriat;
     }
 }
 
 class HQ extends MapObject
 {
-    public HQ(Faction _faction)
+    public HQ(Faction _faction, Image _portriat)
     {
         if(_faction.id==1) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
         if(_faction.id==2) setImage(new Image(new File("FOREST_HQ.png").toURI().toString()));
         if(_faction.id==3) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
         this.faction=_faction;
+        this.portriat=_portriat;
     }
 }
 
 class Player
 {
     int number;
+    int gold=5;
     Faction faction;
 
 
