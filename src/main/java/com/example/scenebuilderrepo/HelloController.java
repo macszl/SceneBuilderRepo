@@ -103,7 +103,7 @@ public class HelloController implements Initializable {
         Image mountain =  new Image(new File("MOUNTAIN_HEX.png").toURI().toString());
         Image hills =  new Image(new File("HILLS_HEX.png").toURI().toString());
         Image desert =  new Image(new File("DESERT_HEX.png").toURI().toString());
-        Image desertPond =  new Image(new File("POND_HEX.png").toURI().toString());
+        Image desertPond =  new Image(new File("RADIOACTIVE_POND_HEX_WIATRACZEK.png").toURI().toString());
         Image pondst = new Image(new File("POND_RIVEREND_UP_HEX.png").toURI().toString());
         Image ponden = new Image(new File("POND_RIVEREND_DOWN_HEX.png").toURI().toString());
         Image riverfl = new Image(new File("RIVER_WITHFLOW_HEX.png").toURI().toString());
