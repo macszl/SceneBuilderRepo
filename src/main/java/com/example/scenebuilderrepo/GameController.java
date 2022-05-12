@@ -1,55 +1,36 @@
 package com.example.scenebuilderrepo;
 
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.random.RandomGenerator;
 
-public class HelloController implements Initializable {
-
-
+public class GameController implements Initializable {
     @FXML
     private Label factionGold;
-
     @FXML
     private Button recruitmentButton;
-
     @FXML
     private Button turnEndButton;
-
     @FXML
     private Label unitStatsATK;
-
     @FXML
     private Label unitStatsDEF;
-
     @FXML
     private Label unitStatsDesc;
-
     @FXML
     private Label unitStatsHP;
-
     @FXML
     private AnchorPane mapAnchor;
-
     @FXML
     private ImageView unitPortrait;
 
@@ -64,7 +45,7 @@ public class HelloController implements Initializable {
     }
     public void setUnitPortraitForest()
     {
-        unitPortrait.setImage(new Image(new File("tree_unit_portriat.png").toURI().toString()));
+        unitPortrait.setImage(new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
     }
     public void setHQPortraitForest()
     {
@@ -73,7 +54,7 @@ public class HelloController implements Initializable {
 
     public void setUnitPortraitFlying()
     {
-        unitPortrait.setImage(new Image(new File("flying_unit_portriat.png").toURI().toString()));
+        unitPortrait.setImage(new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
     }
     public void setHQPortraitFlying()
     {
@@ -232,7 +213,7 @@ public class HelloController implements Initializable {
 
                         container.setOwner(tempcrystal.pl);
                         container.setBase(tempcrystal.color);
-                        Unit unit = new Unit(tempcrystal,new Image(new File("crystal_unit_portriat.png").toURI().toString()));
+                        Unit unit = new Unit(tempcrystal,new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()));
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);
@@ -255,7 +236,7 @@ public class HelloController implements Initializable {
                     if (j == MapConstants.MAP_HEIGHT - 2 && i == MapConstants.MAP_LENGTH - 1) {
                         container.setOwner(temptree.pl);
                         container.setBase(temptree.color);
-                        Unit unit = new Unit(temptree,new Image(new File("tree_unit_portriat.png").toURI().toString()));
+                        Unit unit = new Unit(temptree,new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);
@@ -285,7 +266,7 @@ public class HelloController implements Initializable {
                     if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
                         container.setOwner(tempsky.pl);
                         container.setBase(tempsky.color);
-                        Unit unit = new Unit(tempsky,new Image(new File("flying_unit_portriat.png").toURI().toString()));
+                        Unit unit = new Unit(tempsky,new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
                         unit.setFitHeight(GameInfo.hexsize);
                         unit.setFitWidth(GameInfo.hexsize);
                         container.addMapObject(unit);

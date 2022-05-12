@@ -2,19 +2,17 @@ package com.example.scenebuilderrepo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-public class RaceSelect implements Initializable {
+public class RaceSelectController implements Initializable {
 
     Image Purple = new Image(new File("hexagon_purple.png").toURI().toString());
     Image Brown = new Image(new File("hexagon_brown.png").toURI().toString());
@@ -51,7 +49,7 @@ public class RaceSelect implements Initializable {
     @FXML
     private ImageView imgp3;
 
-    PlayerSelect controller;
+    PlayerSelectController controller;
 
     Vector<Image> imgs=new Vector<>();
 

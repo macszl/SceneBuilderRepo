@@ -80,7 +80,7 @@ public class OptionsController implements Initializable {
     //co to robi
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainmenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("mainmenu.fxml"));
         try {
             fxmlLoader.load();
         } catch (IOException e) {

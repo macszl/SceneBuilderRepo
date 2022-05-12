@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="added desert pond">
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Mały refactoring kilku klas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crystal_unit_portriat.png" beforeDir="false" afterPath="$PROJECT_DIR$/CRYSTAL_UNIT_PORTRAIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flying_unit_portriat.png" beforeDir="false" afterPath="$PROJECT_DIR$/FLYING_UNIT_PORTRAIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/OptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/OptionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/playerselect.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/playerselect.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/raceselect.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/raceselect.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tree_unit_portriat.png" beforeDir="false" afterPath="$PROJECT_DIR$/TREE_UNIT_PORTRAIT.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,18 +58,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.com.example.scenebuilderrepo.HelloApplication">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.HelloApplication" />
+  <component name="RunManager">
+    <configuration name="MainMenuApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.MainMenuApplication" />
       <module name="SceneBuilderRepo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.scenebuilderrepo.*" />
+          <option name="PATTERN" value="com.example.scenebuilderrepo.HelloApplication" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -82,15 +95,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.com.example.scenebuilderrepo.HelloApplication" />
-      <item itemvalue="Application.HelloApplication" />
-    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainMenuApplication" />
         <item itemvalue="Application.com.example.scenebuilderrepo.HelloApplication" />
-        <item itemvalue="Application.HelloApplication" />
-        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.MainMenuApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -106,6 +115,8 @@
       <workItem from="1650749487340" duration="10054000" />
       <workItem from="1650784664511" duration="3969000" />
       <workItem from="1651417053340" duration="9357000" />
+      <workItem from="1652291032024" duration="611000" />
+      <workItem from="1652349715625" duration="655000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -163,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652097751697</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Zmiany wykonane na KCK">
+      <created>1652100038120</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1652100038120</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,33 +209,36 @@
     <MESSAGE value="Pusty FXML - tak chce aby to wygladalo mniej wiecej" />
     <MESSAGE value="Small changes to the options menu" />
     <MESSAGE value="added desert pond" />
-    <option name="LAST_COMMIT_MESSAGE" value="added desert pond" />
+    <MESSAGE value="Zmiany na KCK" />
+    <MESSAGE value="Zmiany wykonane na KCK" />
+    <MESSAGE value="Mały refactoring kilku klas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mały refactoring kilku klas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>356</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java</url>
+          <line>318</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloApplication.java</url>
-          <line>190</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java</url>
+          <line>183</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelect.java</url>
-          <line>91</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java</url>
+          <line>89</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloController.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
           <line>70</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HelloController.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
           <line>58</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
