@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="ekstraktcja metod kont.">
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="kontynuacja refactoringu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/HexDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,12 +61,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.MainMenuApplication">
-    <configuration name="MainMenuApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.MainMenuApplication" />
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.HelloApplication" />
       <module name="SceneBuilderRepo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.scenebuilderrepo.HelloApplication" />
+          <option name="PATTERN" value="com.example.scenebuilderrepo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -74,12 +74,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.example.scenebuilderrepo.HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.HelloApplication" />
+    <configuration name="MainMenuApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.MainMenuApplication" />
       <module name="SceneBuilderRepo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.scenebuilderrepo.*" />
+          <option name="PATTERN" value="com.example.scenebuilderrepo.HelloApplication" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,7 +109,7 @@
       <workItem from="1651417053340" duration="9357000" />
       <workItem from="1652291032024" duration="611000" />
       <workItem from="1652349715625" duration="6612000" />
-      <workItem from="1652423963929" duration="2837000" />
+      <workItem from="1652423963929" duration="4830000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -195,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652420827520</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="kontynuacja refactoringu">
+      <created>1652427012873</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1652427012873</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,14 +235,15 @@
     <MESSAGE value="Mały refactoring kilku klas" />
     <MESSAGE value="Wyrzucenie generacji terrainu do metod" />
     <MESSAGE value="ekstraktcja metod kont." />
-    <option name="LAST_COMMIT_MESSAGE" value="ekstraktcja metod kont." />
+    <MESSAGE value="kontynuacja refactoringu" />
+    <option name="LAST_COMMIT_MESSAGE" value="kontynuacja refactoringu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java</url>
-          <line>172</line>
+          <line>33</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
