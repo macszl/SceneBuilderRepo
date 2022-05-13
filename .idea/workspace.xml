@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Wyrzucenie generacji terrainu do metod">
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="ekstraktcja metod kont.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -59,7 +60,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainMenuApplication">
     <configuration name="MainMenuApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.scenebuilderrepo.MainMenuApplication" />
       <module name="SceneBuilderRepo" />
@@ -107,7 +108,8 @@
       <workItem from="1650784664511" duration="3969000" />
       <workItem from="1651417053340" duration="9357000" />
       <workItem from="1652291032024" duration="611000" />
-      <workItem from="1652349715625" duration="5388000" />
+      <workItem from="1652349715625" duration="6612000" />
+      <workItem from="1652423963929" duration="2837000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -186,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652418539257</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ekstraktcja metod kont.">
+      <created>1652420827520</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1652420827520</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,19 +227,15 @@
     <MESSAGE value="Zmiany wykonane na KCK" />
     <MESSAGE value="Mały refactoring kilku klas" />
     <MESSAGE value="Wyrzucenie generacji terrainu do metod" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wyrzucenie generacji terrainu do metod" />
+    <MESSAGE value="ekstraktcja metod kont." />
+    <option name="LAST_COMMIT_MESSAGE" value="ekstraktcja metod kont." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java</url>
-          <line>318</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java</url>
-          <line>183</line>
+          <line>172</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

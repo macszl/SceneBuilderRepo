@@ -17,17 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-class MapConstants {
-    public static final int MAP_HEIGHT = 11;
-    public static final int MAP_LENGTH = 11;
-}
-
-enum FactionEnum {
-    NO_FACTION,
-    FORESTMEN,
-    CRYSTALMEN,
-    SKYMEN
-}
 class Faction {
     Image color;
 
@@ -217,13 +206,11 @@ class HQ extends MapObject {
 }
 
 class Player {
-    int number;
     int gold = 5;
     Faction faction;
 
 
-    public Player(int x, Faction _Faction) {
-        number = x;
+    public Player(Faction _Faction) {
         faction = _Faction;
     }
 }
@@ -247,40 +234,40 @@ class Board {
     static int height;
     static MapTile selected = null;
 
-    static ArrayList<Vector<MapTile>> hexes = new ArrayList<>();
+    static ArrayList<Vector<MapTile>> mapTiles = new ArrayList<>();
 
     static void unClickAll() {
-        for (int i = 0; i < hexes.size(); i++) {
-            for (int j = 0; j < hexes.get(i).size(); j++) {
-                hexes.get(i).get(j).unclicked();
+        for (int i = 0; i < mapTiles.size(); i++) {
+            for (int j = 0; j < mapTiles.get(i).size(); j++) {
+                mapTiles.get(i).get(j).unclicked();
             }
         }
         selected = null;
     }
 
     static void selectNearby(int x, int y) {
-        selected = hexes.get(x).get(y);
+        selected = mapTiles.get(x).get(y);
         // The lookup tables are in a {x,y} format
         int[][] ODD_COLUMN_LOOKUP_TABLE = {{1, 1}, {1, 0}, {0, -1}, {-1, 0}, {-1, 1}, {0, 1}};
         int[][] EVEN_COLUMN_LOOKUP_TABLE = {{1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {0, 1}};
         if (!selected.obj.getClass().equals(Unit.class)) return;
-        if (x % 2 == 0) { //Selecting neighbouring hexes from an even column
+        if (x % 2 == 0) { //Selecting neighbouring mapTiles from an even column
             for (int i = 0; i < EVEN_COLUMN_LOOKUP_TABLE.length; i++) {
                 int x_offset = EVEN_COLUMN_LOOKUP_TABLE[i][0];
                 int y_offset = EVEN_COLUMN_LOOKUP_TABLE[i][1];
                 if ((x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT)) {
-                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
+                    mapTiles.get(x + x_offset).get(y + y_offset).highlighted();
                 }
             }
-        } else        //Selecting neighbouring hexes from an odd column
+        } else        //Selecting neighbouring mapTiles from an odd column
         {
             for (int i = 0; i < ODD_COLUMN_LOOKUP_TABLE.length; i++) {
                 int x_offset = ODD_COLUMN_LOOKUP_TABLE[i][0];
                 int y_offset = ODD_COLUMN_LOOKUP_TABLE[i][1];
                 if ((x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT)) {
-                    hexes.get(x + x_offset).get(y + y_offset).highlighted();
+                    mapTiles.get(x + x_offset).get(y + y_offset).highlighted();
                 }
             }
         }
@@ -297,13 +284,13 @@ class Board {
         }
     }
 
-    void addHex(MapTile hex, int x) {
-        hexes.get(x).add(hex);
+    void addMapTile(MapTile tile, int x) {
+        mapTiles.get(x).add(tile);
     }
 
     void addColumn() {
         Vector<MapTile> hexColumn = new Vector<>();
-        hexes.add(hexColumn);
+        mapTiles.add(hexColumn);
     }
 
 }

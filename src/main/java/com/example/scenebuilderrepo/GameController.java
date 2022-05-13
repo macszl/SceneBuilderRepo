@@ -55,18 +55,18 @@ public class GameController implements Initializable {
     Faction skymenFaction = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Group board = new Group();
-        Board b = new Board();
+        Group group = new Group();
+        Board board = new Board();
         Image im;
 
-        HexImages rings =new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
-        HexImages bases =new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
+        HexImages rings = new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
+        HexImages bases = new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
 
         unitPortrait.setFitWidth(unitPortrait.getFitWidth());
         unitPortrait.setFitHeight(unitPortrait.getFitHeight());
 
         Faction neutral=new Faction(FactionEnum.NO_FACTION,Neutral);
-        Player None= new Player(0,neutral);
+        Player None= new Player(neutral);
 
         setPlayersGameInfo();
 
@@ -78,7 +78,7 @@ public class GameController implements Initializable {
 
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
         {
-            b.addColumn();
+            board.addColumn();
             for(int j=0;j< MapConstants.MAP_HEIGHT;j++)
             {
                 Hexagon hex;
@@ -87,13 +87,9 @@ public class GameController implements Initializable {
                 im =  new Image(new File("hexagon.png").toURI().toString());
                 MapTile container = new MapTile(rings,bases);
 
-                hex.setImage(im);
-                hex.setFitHeight(GameInfo.hexsize);
-                hex.setFitWidth(GameInfo.hexsize);
-                hex.setX(GameInfo.hexsize*i);
+                setHexAttributes(im, i, hex);
 
-                container.getChildren().add(hex);
-                container.hex=hex;
+                addHexToContainer(hex, container);
 
                 setTerrainBase(  hex, i, j);
                 setTerrainRivers(hex, i, j);
@@ -102,20 +98,35 @@ public class GameController implements Initializable {
                 setTerrainFactionTree(im, treemenFaction, i, j, hex, container);
                 setTerrainFactionSky(im, skymenFaction, i, j, hex, container);
 
+                setContainerLayoutAttributes(i, j, container);
 
-                if(i%2==0)
-                    container.setLayoutY((GameInfo.hexsize-5)*j);
-                else
-                    container.setLayoutY((GameInfo.hexsize-5)*j+((GameInfo.hexsize-5)/2));
-                container.setLayoutX((GameInfo.hexsize-10)*i);
-
-
-                b.addHex(container, i);
-                board.getChildren().add(container);
+                board.addMapTile(container, i);
+                group.getChildren().add(container);
             }
         }
-        setBoard(board);
+        setBoard(group);
         factionGold.setText("Ilosc zlota "+5);
+    }
+
+    private void setContainerLayoutAttributes(int i, int j, MapTile container) {
+        if(i %2==0)
+            container.setLayoutY((GameInfo.hexsize-5)* j);
+        else
+            container.setLayoutY((GameInfo.hexsize-5)* j +((GameInfo.hexsize-5)/2));
+
+        container.setLayoutX((GameInfo.hexsize-10)* i);
+    }
+
+    private void addHexToContainer(Hexagon hex, MapTile container) {
+        container.getChildren().add(hex);
+        container.hex= hex;
+    }
+
+    private void setHexAttributes(Image im, int i, Hexagon hex) {
+        hex.setImage(im);
+        hex.setFitHeight(GameInfo.hexsize);
+        hex.setFitWidth(GameInfo.hexsize);
+        hex.setX(GameInfo.hexsize* i);
     }
 
     private void getP3GameInfo() {
@@ -298,8 +309,8 @@ public class GameController implements Initializable {
 
     public void setPlayersGameInfo()
     {
-        GameInfo.p1.pl= new Player(1,GameInfo.p1);
-        GameInfo.p2.pl= new Player(2,GameInfo.p2);
-        GameInfo.p3.pl= new Player(3,GameInfo.p3);
+        GameInfo.p1.pl= new Player(GameInfo.p1);
+        GameInfo.p2.pl= new Player(GameInfo.p2);
+        GameInfo.p3.pl= new Player(GameInfo.p3);
     }
 }

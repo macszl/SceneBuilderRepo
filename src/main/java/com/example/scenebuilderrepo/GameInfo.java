@@ -11,3 +11,15 @@ public class GameInfo {
     static Faction p2;
     static Faction p3;
 }
+
+enum FactionEnum {
+    NO_FACTION,
+    FORESTMEN,
+    CRYSTALMEN,
+    SKYMEN
+}
+
+class MapConstants {
+    public static final int MAP_HEIGHT = 11;
+    public static final int MAP_LENGTH = 11;
+}
