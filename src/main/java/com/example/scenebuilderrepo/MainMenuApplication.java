@@ -22,26 +22,20 @@ class MapConstants {
     public static final int MAP_LENGTH = 11;
 }
 
-class ImageSetPaths {
-    public String unclicked;
-    public String clicked;
-    public String highlighted;
-
-    public ImageSetPaths(String _u, String _c, String _h) {
-        unclicked = _u;
-        clicked = _c;
-        highlighted = _h;
-    }
+enum FactionEnum {
+    NO_FACTION,
+    FORESTMEN,
+    CRYSTALMEN,
+    SKYMEN
 }
-
 class Faction {
     Image color;
 
     Player pl;
 
-    int id;
+    FactionEnum id;
 
-    public Faction(int _id, Image _color) {
+    public Faction(FactionEnum _id, Image _color) {
         id = _id;
         color = _color;
     }
@@ -104,7 +98,7 @@ class MapTile extends StackPane {
                     clicked();
                     isClicked = true;
 
-                    hex.controller.setUnitPortrait(obj);
+                    hex.controller.setUnitPortraitAndDesc(obj);
 
                 }
 
@@ -193,9 +187,9 @@ class Unit extends MapObject {
 
 
     public Unit(Faction _faction, Image _portriat) {
-        if (_faction.id == 1) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
-        if (_faction.id == 2) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));
-        if (_faction.id == 3) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
+        if (_faction.id == FactionEnum.CRYSTALMEN) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
+        if (_faction.id == FactionEnum.FORESTMEN) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));
+        if (_faction.id == FactionEnum.SKYMEN) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
         this.faction = _faction;
         this.portriat = _portriat;
 
@@ -209,9 +203,9 @@ class Unit extends MapObject {
 class HQ extends MapObject {
 
     public HQ(Faction _faction, Image _portriat) {
-        if (_faction.id == 1) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
-        if (_faction.id == 2) setImage(new Image(new File("FOREST_HQ.png").toURI().toString()));
-        if (_faction.id == 3) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
+        if (_faction.id == FactionEnum.CRYSTALMEN) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
+        if (_faction.id == FactionEnum.FORESTMEN) setImage(new Image(new File("FOREST_HQ.png").toURI().toString()));
+        if (_faction.id == FactionEnum.SKYMEN) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
         this.faction = _faction;
         this.portriat = _portriat;
 

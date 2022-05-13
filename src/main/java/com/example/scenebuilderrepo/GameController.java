@@ -50,6 +50,9 @@ public class GameController implements Initializable {
     Image riverfl = new Image(new File("RIVER_WITHFLOW_HEX.png").toURI().toString());
     Image riverfl_right = new Image(new File("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png").toURI().toString());
 
+    Faction crystalmenFaction = null;
+    Faction treemenFaction = null;
+    Faction skymenFaction = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Group board = new Group();
@@ -62,30 +65,15 @@ public class GameController implements Initializable {
         unitPortrait.setFitWidth(unitPortrait.getFitWidth());
         unitPortrait.setFitHeight(unitPortrait.getFitHeight());
 
-        Player player1= new Player(1,GameInfo.p1);
-        GameInfo.p1.pl=player1;
-        Player player2= new Player(2,GameInfo.p2);
-        GameInfo.p2.pl=player2;
-        Player player3= new Player(3,GameInfo.p3);
-        GameInfo.p3.pl=player3;
-
-        Faction neutral=new Faction(0,Neutral);
+        Faction neutral=new Faction(FactionEnum.NO_FACTION,Neutral);
         Player None= new Player(0,neutral);
 
-        Faction tempcrystal = null;
-        Faction temptree = null;
-        Faction tempsky = null;
-        if(GameInfo.p1.id==1) tempcrystal=GameInfo.p1;
-        if(GameInfo.p1.id==2) temptree=GameInfo.p1;
-        if(GameInfo.p1.id==3) tempsky=GameInfo.p1;
+        setPlayersGameInfo();
 
-        if(GameInfo.p2.id==1) tempcrystal=GameInfo.p2;
-        if(GameInfo.p2.id==2) temptree=GameInfo.p2;
-        if(GameInfo.p2.id==3) tempsky=GameInfo.p2;
+        getP1GameInfo();
+        getP2GameInfo();
         if(GameInfo.players==3) {
-            if (GameInfo.p3.id == 1) tempcrystal = GameInfo.p3;
-            if (GameInfo.p3.id == 2) temptree = GameInfo.p3;
-            if (GameInfo.p3.id == 3) tempsky = GameInfo.p3;
+            getP3GameInfo();
         }
 
         for(int i=0;i< MapConstants.MAP_LENGTH;i++)
@@ -110,9 +98,9 @@ public class GameController implements Initializable {
                 setTerrainBase(  hex, i, j);
                 setTerrainRivers(hex, i, j);
                 setTerrainCities(hex, i, j);
-                setTerrainFactionCrystal(im, tempcrystal, i, j, hex, container);
-                setTerrainFactionTree(im, temptree, i, j, hex, container);
-                setTerrainFactionSky(im, tempsky, i, j, hex, container);
+                setTerrainFactionCrystal(im, crystalmenFaction, i, j, hex, container);
+                setTerrainFactionTree(im, treemenFaction, i, j, hex, container);
+                setTerrainFactionSky(im, skymenFaction, i, j, hex, container);
 
 
                 if(i%2==0)
@@ -124,11 +112,28 @@ public class GameController implements Initializable {
 
                 b.addHex(container, i);
                 board.getChildren().add(container);
-
             }
         }
         setBoard(board);
         factionGold.setText("Ilosc zlota "+5);
+    }
+
+    private void getP3GameInfo() {
+        if (GameInfo.p3.id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.p3;
+        else if (GameInfo.p3.id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.p3;
+        else if (GameInfo.p3.id == FactionEnum.SKYMEN) skymenFaction = GameInfo.p3;
+    }
+
+    private void getP2GameInfo() {
+        if(GameInfo.p2.id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.p2;
+        else if(GameInfo.p2.id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.p2;
+        else if(GameInfo.p2.id == FactionEnum.SKYMEN) skymenFaction =GameInfo.p2;
+    }
+
+    private void getP1GameInfo() {
+        if(GameInfo.p1.id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.p1;
+        else if(GameInfo.p1.id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.p1;
+        else if(GameInfo.p1.id == FactionEnum.SKYMEN) skymenFaction =GameInfo.p1;
     }
 
     private void setTerrainFactionSky(Image im, Faction tempsky, int i, int j, Hexagon hex, MapTile container) {
@@ -279,36 +284,22 @@ public class GameController implements Initializable {
     }
 
     @FXML
-    public void setUnitPortrait(MapObject unit)
+    public void setUnitPortraitAndDesc(MapObject unit)
     {
         unitPortrait.setImage(unit.portriat);
         unitStatsATK.setText("ATK "+unit.atk);
         unitStatsDEF.setText("DEF "+unit.def);
         unitStatsHP.setText("HP "+unit.hp_current+"/"+unit.hp_max);
     }
-    public void setUnitPortraitForest()
-    {
-        unitPortrait.setImage(new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
-    }
-    public void setHQPortraitForest()
-    {
-        unitPortrait.setImage(new Image(new File("tree_meteor.png").toURI().toString()));
-    }
-
-    public void setUnitPortraitFlying()
-    {
-        unitPortrait.setImage(new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
-    }
-    public void setHQPortraitFlying()
-    {
-        unitPortrait.setImage(new Image(new File("flying_meteor.png").toURI().toString()));
-    }
     public void setBoard(Group board)
     {
         mapAnchor.getChildren().add(board);
     }
-    public void clearPortrait()
+
+    public void setPlayersGameInfo()
     {
-        unitPortrait.setImage(null);
+        GameInfo.p1.pl= new Player(1,GameInfo.p1);
+        GameInfo.p2.pl= new Player(2,GameInfo.p2);
+        GameInfo.p3.pl= new Player(3,GameInfo.p3);
     }
 }

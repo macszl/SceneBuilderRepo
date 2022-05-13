@@ -19,9 +19,9 @@ public class RaceSelectController implements Initializable {
     Image Blue = new Image(new File("hexagon_blue.png").toURI().toString());
 
 
-    Faction crystal=new Faction(1,Purple);
-    Faction tree=new Faction(2,Brown);
-    Faction sky=new Faction(3,Blue );
+    Faction crystal=new Faction(FactionEnum.CRYSTALMEN,Purple);
+    Faction tree=new Faction(FactionEnum.FORESTMEN,Brown);
+    Faction sky=new Faction(FactionEnum.SKYMEN,Blue );
     @FXML
     private Button bl1;
 
