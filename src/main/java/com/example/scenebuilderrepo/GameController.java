@@ -3,6 +3,7 @@ package com.example.scenebuilderrepo;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,6 +34,9 @@ public class GameController implements Initializable {
     private AnchorPane mapAnchor;
     @FXML
     private ImageView unitPortrait;
+
+    private double mouseAnchorX;
+    private double mouseAnchorY;
 
 
     Image Neutral = new Image(new File("hexagon.png").toURI().toString());
@@ -304,6 +308,7 @@ public class GameController implements Initializable {
     }
     public void setBoard(Group board)
     {
+        makeDraggable(board);
         mapAnchor.getChildren().add(board);
     }
 
@@ -312,5 +317,27 @@ public class GameController implements Initializable {
         GameInfo.p1.pl= new Player(GameInfo.p1);
         GameInfo.p2.pl= new Player(GameInfo.p2);
         GameInfo.p3.pl= new Player(GameInfo.p3);
+    }
+
+    public void makeDraggable(Node node){
+
+        node.setOnMousePressed(mouseEvent -> {
+            mouseAnchorX = mouseEvent.getX();
+            mouseAnchorY = mouseEvent.getY();
+        });
+
+        node.setOnMouseDragged(mouseEvent -> {
+            if(mouseEvent.getSceneY() - mouseAnchorY<0&&GameInfo.y==900) {
+                node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+            }
+            else if(mouseEvent.getSceneY() - mouseAnchorY<125&&GameInfo.y==1080){
+                node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+            }
+            if(mouseEvent.getSceneX() - mouseAnchorX>0)
+            {
+                node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
+            }
+            
+        });
     }
 }
