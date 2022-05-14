@@ -134,21 +134,21 @@ public class GameController implements Initializable {
     }
 
     private void getP3GameInfo() {
-        if (GameInfo.players[2].id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.players[2];
-        else if (GameInfo.players[2].id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.players[2];
-        else if (GameInfo.players[2].id == FactionEnum.SKYMEN) skymenFaction = GameInfo.players[2];
+        if (GameInfo.playerFactions[2].id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.playerFactions[2];
+        else if (GameInfo.playerFactions[2].id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.playerFactions[2];
+        else if (GameInfo.playerFactions[2].id == FactionEnum.SKYMEN) skymenFaction = GameInfo.playerFactions[2];
     }
 
     private void getP2GameInfo() {
-        if(GameInfo.players[1].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.players[1];
-        else if(GameInfo.players[1].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.players[1];
-        else if(GameInfo.players[1].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.players[1];
+        if(GameInfo.playerFactions[1].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[1];
+        else if(GameInfo.playerFactions[1].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[1];
+        else if(GameInfo.playerFactions[1].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[1];
     }
 
     private void getP1GameInfo() {
-        if(GameInfo.players[0].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.players[0];
-        else if(GameInfo.players[0].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.players[0];
-        else if(GameInfo.players[0].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.players[0];
+        if(GameInfo.playerFactions[0].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[0];
+        else if(GameInfo.playerFactions[0].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[0];
+        else if(GameInfo.playerFactions[0].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[0];
     }
 
     private void setTerrainFactionSky(Image im, Faction tempsky, int i, int j, Hexagon hex, MapTile container) {
@@ -159,7 +159,7 @@ public class GameController implements Initializable {
         if (j == 0 && i == MapConstants.MAP_LENGTH / 2) {
             hex.setImage(im);
             container.setOwner(tempsky.pl);
-            container.setBase(tempsky.color);
+            container.setHexColorBase(tempsky.color);
             HQ hq = new HQ(tempsky,new Image(new File("flying_meteor.png").toURI().toString()));
             hq.setFitHeight(GameInfo.hexsize);
             hq.setFitWidth(GameInfo.hexsize);
@@ -167,7 +167,7 @@ public class GameController implements Initializable {
         }
         if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
             container.setOwner(tempsky.pl);
-            container.setBase(tempsky.color);
+            container.setHexColorBase(tempsky.color);
             Unit unit = new Unit(tempsky,new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
             unit.setFitHeight(GameInfo.hexsize);
             unit.setFitWidth(GameInfo.hexsize);
@@ -181,7 +181,7 @@ public class GameController implements Initializable {
 
         if (j == MapConstants.MAP_HEIGHT - 2 && i == MapConstants.MAP_LENGTH - 1) {
             container.setOwner(temptree.pl);
-            container.setBase(temptree.color);
+            container.setHexColorBase(temptree.color);
             Unit unit = new Unit(temptree,new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
             unit.setFitHeight(GameInfo.hexsize);
             unit.setFitWidth(GameInfo.hexsize);
@@ -191,7 +191,7 @@ public class GameController implements Initializable {
         if (j == MapConstants.MAP_HEIGHT - 1 && i == MapConstants.MAP_LENGTH - 1) {
             hex.setImage(im);
             container.setOwner(temptree.pl);
-            container.setBase(temptree.color);
+            container.setHexColorBase(temptree.color);
             HQ hq = new HQ(temptree,new Image(new File("tree_meteor.png").toURI().toString()));
             hq.setFitHeight(GameInfo.hexsize);
             hq.setFitWidth(GameInfo.hexsize);
@@ -207,7 +207,7 @@ public class GameController implements Initializable {
         if (j == 9 && i == 0) {
 
             container.setOwner(tempcrystal.pl);
-            container.setBase(tempcrystal.color);
+            container.setHexColorBase(tempcrystal.color);
             Unit unit = new Unit(tempcrystal,new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()));
             unit.setFitHeight(GameInfo.hexsize);
             unit.setFitWidth(GameInfo.hexsize);
@@ -218,7 +218,7 @@ public class GameController implements Initializable {
         if (j == 10 && i == 0) {
             hex.setImage(im);
             container.setOwner(tempcrystal.pl);
-            container.setBase(tempcrystal.color);
+            container.setHexColorBase(tempcrystal.color);
             HQ hq = new HQ(tempcrystal,new Image(new File("crystal_meteor.png").toURI().toString()));
             hq.setFitHeight(GameInfo.hexsize);
             hq.setFitWidth(GameInfo.hexsize);
@@ -314,9 +314,9 @@ public class GameController implements Initializable {
 
     public void setPlayersGameInfo()
     {
-        GameInfo.players[0].pl= new Player(GameInfo.players[0]);
-        GameInfo.players[1].pl= new Player(GameInfo.players[1]);
-        GameInfo.players[2].pl= new Player(GameInfo.players[2]);
+        GameInfo.playerFactions[0].pl= new Player(GameInfo.playerFactions[0]);
+        GameInfo.playerFactions[1].pl= new Player(GameInfo.playerFactions[1]);
+        GameInfo.playerFactions[2].pl= new Player(GameInfo.playerFactions[2]);
     }
 
     public void makeDraggable(Node node){

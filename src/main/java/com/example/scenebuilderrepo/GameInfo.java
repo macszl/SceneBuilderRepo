@@ -11,7 +11,16 @@ public class GameInfo {
     static int playerAmount;
     static int turn = 0;
     static int currentPlayerCounter;
-    static Faction[] players = new Faction[3];
+    static Faction[] playerFactions = new Faction[3];
+
+    public static int getPlayerId(FactionEnum _fac)
+    {
+        for (int i = 0; i < playerFactions.length; i++) {
+            if(playerFactions[i].id == _fac)
+                return i;
+        }
+        return -1;
+    }
 }
 
 enum FactionEnum {
