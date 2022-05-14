@@ -76,7 +76,7 @@ public class GameController implements Initializable {
 
         getP1GameInfo();
         getP2GameInfo();
-        if(GameInfo.players==3) {
+        if(GameInfo.playerAmount ==3) {
             getP3GameInfo();
         }
 
@@ -134,21 +134,21 @@ public class GameController implements Initializable {
     }
 
     private void getP3GameInfo() {
-        if (GameInfo.p3.id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.p3;
-        else if (GameInfo.p3.id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.p3;
-        else if (GameInfo.p3.id == FactionEnum.SKYMEN) skymenFaction = GameInfo.p3;
+        if (GameInfo.players[2].id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.players[2];
+        else if (GameInfo.players[2].id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.players[2];
+        else if (GameInfo.players[2].id == FactionEnum.SKYMEN) skymenFaction = GameInfo.players[2];
     }
 
     private void getP2GameInfo() {
-        if(GameInfo.p2.id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.p2;
-        else if(GameInfo.p2.id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.p2;
-        else if(GameInfo.p2.id == FactionEnum.SKYMEN) skymenFaction =GameInfo.p2;
+        if(GameInfo.players[1].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.players[1];
+        else if(GameInfo.players[1].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.players[1];
+        else if(GameInfo.players[1].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.players[1];
     }
 
     private void getP1GameInfo() {
-        if(GameInfo.p1.id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.p1;
-        else if(GameInfo.p1.id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.p1;
-        else if(GameInfo.p1.id == FactionEnum.SKYMEN) skymenFaction =GameInfo.p1;
+        if(GameInfo.players[0].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.players[0];
+        else if(GameInfo.players[0].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.players[0];
+        else if(GameInfo.players[0].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.players[0];
     }
 
     private void setTerrainFactionSky(Image im, Faction tempsky, int i, int j, Hexagon hex, MapTile container) {
@@ -314,9 +314,9 @@ public class GameController implements Initializable {
 
     public void setPlayersGameInfo()
     {
-        GameInfo.p1.pl= new Player(GameInfo.p1);
-        GameInfo.p2.pl= new Player(GameInfo.p2);
-        GameInfo.p3.pl= new Player(GameInfo.p3);
+        GameInfo.players[0].pl= new Player(GameInfo.players[0]);
+        GameInfo.players[1].pl= new Player(GameInfo.players[1]);
+        GameInfo.players[2].pl= new Player(GameInfo.players[2]);
     }
 
     public void makeDraggable(Node node){
@@ -339,5 +339,19 @@ public class GameController implements Initializable {
             }
             
         });
+    }
+
+    public void endTurn()
+    {
+        System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
+        if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
+        {
+            GameInfo.currentPlayerCounter += 1;
+        }
+        else {
+            GameInfo.turn += 1;
+            GameInfo.currentPlayerCounter = 0;
+        }
+        System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
     }
 }
