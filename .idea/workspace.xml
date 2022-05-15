@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="kontynuacja refactoringu">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/playerSelectBG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/raceSelectBG.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/mainmenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/mainmenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/playerselect.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/playerselect.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/raceselect.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/raceselect.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +127,9 @@
       <workItem from="1652349715625" duration="6612000" />
       <workItem from="1652423963929" duration="4830000" />
       <workItem from="1652439757920" duration="102000" />
+      <workItem from="1652439882209" duration="426000" />
+      <workItem from="1652447366235" duration="8000" />
+      <workItem from="1652631863330" duration="5383000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -259,11 +268,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/MainMenuApplication.java</url>
           <line>33</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>

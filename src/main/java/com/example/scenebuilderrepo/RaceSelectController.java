@@ -49,7 +49,32 @@ public class RaceSelectController implements Initializable {
     @FXML
     private ImageView imgp3;
 
+    @FXML
+    private ImageView rightArrowImage1;
+
+    @FXML
+    private ImageView rightArrowImage2;
+
+    @FXML
+    private ImageView rightArrowImage3;
+
+    @FXML
+    private ImageView leftArrowImage1;
+
+    @FXML
+    private ImageView leftArrowImage2;
+
+    @FXML
+    private ImageView leftArrowImage3;
+
+    @FXML
+    private ImageView backgroundImage;
+
     PlayerSelectController controller;
+
+    Image arrowImage = new Image(new File("ARROW.png").toURI().toString());
+    Image clickarrowImage = new Image(new File("ARROWCLICK.png").toURI().toString());
+    Image bg = new Image(new File("raceSelectBG.png").toURI().toString());
 
     Vector<Image> imgs=new Vector<>();
 
@@ -153,11 +178,17 @@ public class RaceSelectController implements Initializable {
         imgs.add(new Image(new File("FOREST_HQ.png").toURI().toString()));
         imgs.add(new Image(new File("FLYING_HQ.png").toURI().toString()));
         imgp1.setImage(imgs.get(0));
-        imgp2.setImage(imgs.get(0));
-        imgp3.setImage(imgs.get(0));
+        imgp2.setImage(imgs.get(1));
+        imgp3.setImage(imgs.get(2));
+        leftArrowImage1.setImage(arrowImage);
+        leftArrowImage2.setImage(arrowImage);
+        leftArrowImage3.setImage(arrowImage);
+        rightArrowImage1.setImage(arrowImage);
+        rightArrowImage2.setImage(arrowImage);
+        rightArrowImage3.setImage(arrowImage);
+        backgroundImage.setImage(bg);
         GameInfo.p1=crystal;
-        GameInfo.p2=crystal;
-        GameInfo.p3=crystal;
-
+        GameInfo.p2=tree;
+        GameInfo.p3=sky;
     }
 }
