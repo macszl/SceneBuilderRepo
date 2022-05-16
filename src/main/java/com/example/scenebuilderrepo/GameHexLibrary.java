@@ -241,6 +241,10 @@ class Board {
             selectedTile.getChildren().remove(selectedTile.obj);
             selectedTile.obj = null;
         }
+        else if(moveHere.obj.getClass().equals(Unit.class)&&moveHere.getOwner()!=selectedTile.getOwner())
+        {
+            moveHere.hex.controller.doAttack();
+        }
     }
 
     void addMapTile(MapTile tile, int x) {

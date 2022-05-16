@@ -1,5 +1,6 @@
 package com.example.scenebuilderrepo;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,11 +8,11 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
     @FXML
-    private SplitPane BigVBox;
+    private StackPane coverPane;
     @FXML
     private Label factionGold;
     @FXML
@@ -63,8 +64,21 @@ public class GameController implements Initializable {
     Faction crystalmenFaction = null;
     Faction treemenFaction = null;
     Faction skymenFaction = null;
+
+    AnchorPane atkPane;
+    ImageView cover=new ImageView(new Image(new File("Cover.png").toURI().toString()));
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("attackwindows.fxml"));
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        AttackController atk = fxmlLoader.getController();
+        atkPane = atk.getattackPane();
+
         Group group = new Group();
         Board board = new Board();
         Image im;
@@ -333,45 +347,25 @@ public class GameController implements Initializable {
         });
 
         node.setOnMouseDragged(mouseEvent -> {
-            if(mouseEvent.getSceneY() - mouseAnchorY<0&&GameInfo.y==900) {
-                node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+            if(mouseEvent.getY()-mouseAnchorY>15||mouseEvent.getY()-mouseAnchorY<-15) {
+                if (mouseEvent.getSceneY() - mouseAnchorY < 0 && GameInfo.y == 900) {
+                    node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+                } else if (mouseEvent.getSceneY() - mouseAnchorY < 125 && GameInfo.y == 1080) {
+                    node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+                }
             }
-            else if(mouseEvent.getSceneY() - mouseAnchorY<125&&GameInfo.y==1080){
-                node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
-            }
-            if(mouseEvent.getSceneX() - mouseAnchorX>0)
-            {
-                node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
+            if(mouseEvent.getX()-mouseAnchorX>15||mouseEvent.getX()-mouseAnchorX<-15) {
+                if (mouseEvent.getSceneX() - mouseAnchorX > 0) {
+                    node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
+                }
             }
             
         });
     }
 
-    VBox vbox;
-    int paused=0;
-    int done=0;
-    ImageView cover=new ImageView(new Image(new File("Cover.png").toURI().toString()));
+
     public void endTurn() throws IOException, InterruptedException {
 
-        if(done==0) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("attackwindows.fxml"));
-            fxmlLoader.load();
-            AttackController atk = fxmlLoader.getController();
-            vbox = atk.getAttackBox();
-            done=1;
-        }
-        if(paused==0) {
-           // BigVBox.
-           // mapAnchor.getChildren().add(vbox);
-            paused=1;
-        }
-        else {
-           // BigVBox.getChildren().remove(cover);
-           // mapAnchor.getChildren().remove(vbox);
-            paused=0;
-        }
-
-        /*
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
         if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
         {
@@ -382,7 +376,30 @@ public class GameController implements Initializable {
             GameInfo.currentPlayerCounter = 0;
         }
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
-        */
+
+
+    }
+
+    public void doAttack()
+    {
+        showAttack();
+        PauseTransition p = new PauseTransition(Duration.millis(1000));
+        p.setOnFinished(e -> hideAttack());
+        p.play();
+
+    }
+    @FXML
+    public void hideAttack()
+    {
+        coverPane.getChildren().remove(cover);
+        coverPane.getChildren().remove(atkPane);
+    }
+    @FXML
+    public void showAttack()  {
+        cover.setFitWidth(coverPane.getWidth());
+        cover.setFitHeight(coverPane.getHeight());
+        coverPane.getChildren().add(cover) ;
+        coverPane.getChildren().add(atkPane);
 
     }
 }
