@@ -34,7 +34,7 @@ public class PlayerSelectController implements Initializable {
     @FXML
     void setThreePlayer(ActionEvent event) throws IOException {
 
-        GameInfo.players=3;
+        GameInfo.playerAmount =3;
         if(!loaded) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("raceselect.fxml"));
             AnchorPane pane = (AnchorPane) fxmlLoader.load();
@@ -48,7 +48,7 @@ public class PlayerSelectController implements Initializable {
 
     @FXML
     void setTwoPlayer(ActionEvent event) throws IOException {
-        GameInfo.players=2;
+        GameInfo.playerAmount =2;
         if(!loaded) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("raceselect.fxml"));
             AnchorPane pane = (AnchorPane) fxmlLoader.load();

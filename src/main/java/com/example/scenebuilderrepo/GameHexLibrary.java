@@ -14,80 +14,86 @@ import java.util.Vector;
 class MapTile extends StackPane {
 
     Hexagon hex;
-    ImageView base = new ImageView();
-    HexImages bases;
-    ImageView ring = new ImageView();
-    HexImages rings;
+    ImageView hexColorBase = new ImageView();
+    HexImages hexColorBases;
+    ImageView hexStateRing = new ImageView();
+    HexImages hexStateRings;
     MapObject obj = null;
     boolean isClicked = false;
-    boolean isSelected = false;
+    boolean isHighlighted = false;
     private Player owner;
 
-    MapTile(HexImages rings, HexImages bases) {
-        setRings(rings);
-        setBases(bases);
-        setRing(rings.unclicked);
-        this.getChildren().add(ring);
-        this.getChildren().add(base);
-        base.setFitHeight(GameInfo.hexsize);
-        base.setFitWidth(GameInfo.hexsize);
-        ring.setFitHeight(GameInfo.hexsize);
-        ring.setFitWidth(GameInfo.hexsize);
+    MapTile(HexImages rings, HexImages hexColorBases) {
+        setHexStateRings(rings);
+        setHexColorBases(hexColorBases);
+        setHexStateRing(rings.unclicked);
+        this.getChildren().add(hexStateRing);
+        this.getChildren().add(hexColorBase);
+        hexColorBase.setFitHeight(GameInfo.hexsize);
+        hexColorBase.setFitWidth(GameInfo.hexsize);
+        hexStateRing.setFitHeight(GameInfo.hexsize);
+        hexStateRing.setFitWidth(GameInfo.hexsize);
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                System.out.println("mouse click detected! " + hex.x + " " + hex.y);
+                if(owner != null)
+                    System.out.println("Hex belongs to player " + GameInfo.getPlayerId(owner.faction.id));
+
                 if (isClicked) {
                     Board.unClickAll();
-                    unclicked();
+                    setHexRingToUnclicked();
                     isClicked = false;
                 } else {
-                    if (isSelected) {
-                        move();
-                    }
-                    Board.unClickAll();
-                    if (obj == null) return;
-                    Board.selectNearby(hex.x, hex.y);
-                    clicked();
-                    isClicked = true;
 
-                    hex.controller.setUnitPortraitAndDesc(obj);
+                    moveObjIfDestSelected();
+                    Board.unClickAll();
+                    if (obj != null) {
+
+                        if(GameInfo.getPlayerId(owner.faction.id) == GameInfo.currentPlayerCounter)
+                            Board.highlightNearby(hex.x, hex.y);
+                        setHexRingToClicked();
+                        isClicked = true;
+
+                        hex.controller.setUnitPortraitAndDesc(obj);
+                    }
 
                 }
+
+
 
             }
         });
     }
 
-    void clicked() {
-        ring.setImage(rings.clicked);
+    void setHexRingToClicked() {
+        hexStateRing.setImage(hexStateRings.clicked);
     }
 
-    void highlighted() {
-        ring.setImage(rings.highlighted);
-        isSelected = true;
+    void setHexRingToHighlighted() {
+        hexStateRing.setImage(hexStateRings.highlighted);
+        isHighlighted = true;
     }
 
-    void unclicked() {
-        ring.setImage(rings.unclicked);
+    void setHexRingToUnclicked() {
+        hexStateRing.setImage(hexStateRings.unclicked);
         isClicked = false;
-        this.isSelected = false;
+        this.isHighlighted = false;
     }
 
-    void setBases(HexImages _bases) {
-        bases = _bases;
+    void setHexColorBases(HexImages _bases) {
+        hexColorBases = _bases;
     }
 
-    void setRing(Image _ring) {
-        ring.setImage(_ring);
+    void setHexStateRing(Image _ring) {
+        hexStateRing.setImage(_ring);
     }
 
-    void setRings(HexImages _rings) {
-        rings = _rings;
+    void setHexStateRings(HexImages _rings) {
+        hexStateRings = _rings;
     }
 
-    void setBase(Image _base) {
-        base.setImage(_base);
+    void setHexColorBase(Image _base) {
+        hexColorBase.setImage(_base);
     }
 
     void addMapObject(MapObject x) {
@@ -101,11 +107,13 @@ class MapTile extends StackPane {
 
     void setOwner(Player _owner) {
         owner = _owner;
-        setBase(owner.faction.color);
+        setHexColorBase(owner.faction.color);
     }
 
-    void move() {
-        Board.unitMove(this);
+    void moveObjIfDestSelected() {
+        if (isHighlighted) {
+            Board.unitMove(this);
+        }
     }
 
 }
@@ -182,42 +190,43 @@ class Player {
 class Board {
     static int width;
     static int height;
-    static MapTile selected = null;
+    static MapTile selectedTile = null;
 
     static ArrayList<Vector<MapTile>> mapTiles = new ArrayList<>();
 
     static void unClickAll() {
         for (int i = 0; i < mapTiles.size(); i++) {
             for (int j = 0; j < mapTiles.get(i).size(); j++) {
-                mapTiles.get(i).get(j).unclicked();
+                mapTiles.get(i).get(j).setHexRingToUnclicked();
             }
         }
-        selected = null;
+        selectedTile = null;
     }
 
-    static void selectNearby(int x, int y) {
-        selected = mapTiles.get(x).get(y);
+    static void highlightNearby(int x, int y) {
+        selectedTile = mapTiles.get(x).get(y);
         // The lookup tables are in a {x,y} format
         int[][] ODD_COLUMN_LOOKUP_TABLE = {{1, 1}, {1, 0}, {0, -1}, {-1, 0}, {-1, 1}, {0, 1}};
         int[][] EVEN_COLUMN_LOOKUP_TABLE = {{1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {0, 1}};
-        if (!selected.obj.getClass().equals(Unit.class)) return;
-        if (x % 2 == 0) { //Selecting neighbouring mapTiles from an even column
+        if (!selectedTile.obj.getClass().equals(Unit.class))
+            return;
+        if (x % 2 == 0) { //Highlighting neighbouring mapTiles. Even column version.
             for (int i = 0; i < EVEN_COLUMN_LOOKUP_TABLE.length; i++) {
                 int x_offset = EVEN_COLUMN_LOOKUP_TABLE[i][0];
                 int y_offset = EVEN_COLUMN_LOOKUP_TABLE[i][1];
                 if ((x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT)) {
-                    mapTiles.get(x + x_offset).get(y + y_offset).highlighted();
+                    mapTiles.get(x + x_offset).get(y + y_offset).setHexRingToHighlighted();
                 }
             }
-        } else        //Selecting neighbouring mapTiles from an odd column
+        } else        //Highlighting neighbouring mapTiles. Odd column version
         {
             for (int i = 0; i < ODD_COLUMN_LOOKUP_TABLE.length; i++) {
                 int x_offset = ODD_COLUMN_LOOKUP_TABLE[i][0];
                 int y_offset = ODD_COLUMN_LOOKUP_TABLE[i][1];
                 if ((x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
                         (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT)) {
-                    mapTiles.get(x + x_offset).get(y + y_offset).highlighted();
+                    mapTiles.get(x + x_offset).get(y + y_offset).setHexRingToHighlighted();
                 }
             }
         }
@@ -225,12 +234,12 @@ class Board {
 
     @FXML
     static void unitMove(MapTile moveHere) {
-        if (moveHere.obj == null && selected != null && selected.obj.getClass().equals(Unit.class)) {
-            moveHere.obj = selected.obj;
+        if (moveHere.obj == null && selectedTile != null && selectedTile.obj.getClass().equals(Unit.class)) {
+            moveHere.obj = selectedTile.obj;
             moveHere.getChildren().add(moveHere.obj);
-            moveHere.setOwner(selected.getOwner());
-            selected.getChildren().remove(selected.obj);
-            selected.obj = null;
+            moveHere.setOwner(selectedTile.getOwner());
+            selectedTile.getChildren().remove(selectedTile.obj);
+            selectedTile.obj = null;
         }
     }
 

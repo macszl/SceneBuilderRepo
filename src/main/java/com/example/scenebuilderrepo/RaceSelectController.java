@@ -65,27 +65,27 @@ public class RaceSelectController implements Initializable {
             if(im1==3) im1=0;
             if(im1==-1) im1=2;
             imgp1.setImage(imgs.get(im1));
-            if(im1==0) GameInfo.p1=crystal;
-            if(im1==1) GameInfo.p1=tree;
-            if(im1==2) GameInfo.p1=sky;
+            if(im1==0) GameInfo.playerFactions[0]=crystal;
+            if(im1==1) GameInfo.playerFactions[0]=tree;
+            if(im1==2) GameInfo.playerFactions[0]=sky;
         }
         if(p==2)
         {
             if(im2==3) im2=0;
             if(im2==-1) im2=2;
             imgp2.setImage(imgs.get(im2));
-            if(im2==0) GameInfo.p2=crystal;
-            if(im2==1) GameInfo.p2=tree;
-            if(im2==2) GameInfo.p2=sky;
+            if(im2==0) GameInfo.playerFactions[1]=crystal;
+            if(im2==1) GameInfo.playerFactions[1]=tree;
+            if(im2==2) GameInfo.playerFactions[1]=sky;
         }
         if(p==3)
         {
             if(im3==3) im3=0;
             if(im3==-1) im3=2;
             imgp3.setImage(imgs.get(im3));
-            if(im3==0) GameInfo.p3=crystal;
-            if(im3==1) GameInfo.p3=tree;
-            if(im3==2) GameInfo.p3=sky;
+            if(im3==0) GameInfo.playerFactions[2]=crystal;
+            if(im3==1) GameInfo.playerFactions[2]=tree;
+            if(im3==2) GameInfo.playerFactions[2]=sky;
         }
         checkSelect();
     }
@@ -155,9 +155,9 @@ public class RaceSelectController implements Initializable {
         imgp1.setImage(imgs.get(0));
         imgp2.setImage(imgs.get(0));
         imgp3.setImage(imgs.get(0));
-        GameInfo.p1=crystal;
-        GameInfo.p2=crystal;
-        GameInfo.p3=crystal;
+        GameInfo.playerFactions[0]=crystal;
+        GameInfo.playerFactions[1]=crystal;
+        GameInfo.playerFactions[2]=crystal;
 
     }
 }
