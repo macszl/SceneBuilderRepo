@@ -8,12 +8,19 @@ public class GameInfo {
     static int hexsize = 80;
     static int x = 1400;
     static int y = 900;
-    static int players;
+    static int playerAmount;
     static int turn = 0;
+    static int currentPlayerCounter;
+    static Faction[] playerFactions = new Faction[3];
 
-    static Faction p1;
-    static Faction p2;
-    static Faction p3;
+    public static int getPlayerId(FactionEnum _fac)
+    {
+        for (int i = 0; i < playerFactions.length; i++) {
+            if(playerFactions[i].id == _fac)
+                return i;
+        }
+        return -1;
+    }
 }
 
 enum FactionEnum {

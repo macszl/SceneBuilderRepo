@@ -88,14 +88,14 @@
         </Menu>
       </menus>
     </MenuBar>
-      <SplitPane dividerPositions="0.825" VBox.vgrow="ALWAYS">
+      <SplitPane dividerPositions="0.825" prefHeight="875.0" prefWidth="1600.0" VBox.vgrow="SOMETIMES">
         <items>
           <AnchorPane fx:id="mapAnchor" prefWidth="670.0" />
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <GridPane layoutX="60.0" layoutY="320.0">
+                        <GridPane layoutX="60.0" layoutY="296.0">
                           <columnConstraints>
                             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="195.0" />
                           </columnConstraints>
@@ -110,7 +110,7 @@
                               <Label fx:id="unitStatsDEF" text="DEF" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <ImageView fx:id="unitPortrait" fitHeight="275.0" fitWidth="275.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="unitPortrait" fitHeight="275.0" fitWidth="275.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="unitStatsDesc" layoutX="60.0" layoutY="275.0" text="Statystyki jednostek">
                            <font>
                               <Font size="15.0" />
@@ -118,7 +118,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="210.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
                         <GridPane layoutY="300.0">
                           <columnConstraints>
@@ -136,7 +136,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="turnEndButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="Zakończ turę" GridPane.rowIndex="2" />
+                              <Button fx:id="turnEndButton" mnemonicParsing="false" onAction="#endTurn" prefHeight="24.0" prefWidth="200.0" text="Zakończ turę" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <Label fx:id="factionGold" layoutX="60.0" layoutY="150.0" text="Ilość złota:          " />

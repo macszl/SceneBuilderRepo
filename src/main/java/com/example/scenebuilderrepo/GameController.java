@@ -3,6 +3,7 @@ package com.example.scenebuilderrepo;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,6 +34,9 @@ public class GameController implements Initializable {
     private AnchorPane mapAnchor;
     @FXML
     private ImageView unitPortrait;
+
+    private double mouseAnchorX;
+    private double mouseAnchorY;
 
 
     Image Neutral = new Image(new File("hexagon.png").toURI().toString());
@@ -72,7 +76,7 @@ public class GameController implements Initializable {
 
         getP1GameInfo();
         getP2GameInfo();
-        if(GameInfo.players==3) {
+        if(GameInfo.playerAmount ==3) {
             getP3GameInfo();
         }
 
@@ -130,21 +134,21 @@ public class GameController implements Initializable {
     }
 
     private void getP3GameInfo() {
-        if (GameInfo.p3.id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.p3;
-        else if (GameInfo.p3.id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.p3;
-        else if (GameInfo.p3.id == FactionEnum.SKYMEN) skymenFaction = GameInfo.p3;
+        if (GameInfo.playerFactions[2].id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.playerFactions[2];
+        else if (GameInfo.playerFactions[2].id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.playerFactions[2];
+        else if (GameInfo.playerFactions[2].id == FactionEnum.SKYMEN) skymenFaction = GameInfo.playerFactions[2];
     }
 
     private void getP2GameInfo() {
-        if(GameInfo.p2.id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.p2;
-        else if(GameInfo.p2.id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.p2;
-        else if(GameInfo.p2.id == FactionEnum.SKYMEN) skymenFaction =GameInfo.p2;
+        if(GameInfo.playerFactions[1].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[1];
+        else if(GameInfo.playerFactions[1].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[1];
+        else if(GameInfo.playerFactions[1].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[1];
     }
 
     private void getP1GameInfo() {
-        if(GameInfo.p1.id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.p1;
-        else if(GameInfo.p1.id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.p1;
-        else if(GameInfo.p1.id == FactionEnum.SKYMEN) skymenFaction =GameInfo.p1;
+        if(GameInfo.playerFactions[0].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[0];
+        else if(GameInfo.playerFactions[0].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[0];
+        else if(GameInfo.playerFactions[0].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[0];
     }
 
     private void setTerrainFactionSky(Image im, Faction tempsky, int i, int j, Hexagon hex, MapTile container) {
@@ -155,7 +159,7 @@ public class GameController implements Initializable {
         if (j == 0 && i == MapConstants.MAP_LENGTH / 2) {
             hex.setImage(im);
             container.setOwner(tempsky.pl);
-            container.setBase(tempsky.color);
+            container.setHexColorBase(tempsky.color);
             HQ hq = new HQ(tempsky,new Image(new File("flying_meteor.png").toURI().toString()));
             hq.setFitHeight(GameInfo.hexsize);
             hq.setFitWidth(GameInfo.hexsize);
@@ -163,7 +167,7 @@ public class GameController implements Initializable {
         }
         if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
             container.setOwner(tempsky.pl);
-            container.setBase(tempsky.color);
+            container.setHexColorBase(tempsky.color);
             Unit unit = new Unit(tempsky,new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
             unit.setFitHeight(GameInfo.hexsize);
             unit.setFitWidth(GameInfo.hexsize);
@@ -177,7 +181,7 @@ public class GameController implements Initializable {
 
         if (j == MapConstants.MAP_HEIGHT - 2 && i == MapConstants.MAP_LENGTH - 1) {
             container.setOwner(temptree.pl);
-            container.setBase(temptree.color);
+            container.setHexColorBase(temptree.color);
             Unit unit = new Unit(temptree,new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
             unit.setFitHeight(GameInfo.hexsize);
             unit.setFitWidth(GameInfo.hexsize);
@@ -187,7 +191,7 @@ public class GameController implements Initializable {
         if (j == MapConstants.MAP_HEIGHT - 1 && i == MapConstants.MAP_LENGTH - 1) {
             hex.setImage(im);
             container.setOwner(temptree.pl);
-            container.setBase(temptree.color);
+            container.setHexColorBase(temptree.color);
             HQ hq = new HQ(temptree,new Image(new File("tree_meteor.png").toURI().toString()));
             hq.setFitHeight(GameInfo.hexsize);
             hq.setFitWidth(GameInfo.hexsize);
@@ -203,7 +207,7 @@ public class GameController implements Initializable {
         if (j == 9 && i == 0) {
 
             container.setOwner(tempcrystal.pl);
-            container.setBase(tempcrystal.color);
+            container.setHexColorBase(tempcrystal.color);
             Unit unit = new Unit(tempcrystal,new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()));
             unit.setFitHeight(GameInfo.hexsize);
             unit.setFitWidth(GameInfo.hexsize);
@@ -214,7 +218,7 @@ public class GameController implements Initializable {
         if (j == 10 && i == 0) {
             hex.setImage(im);
             container.setOwner(tempcrystal.pl);
-            container.setBase(tempcrystal.color);
+            container.setHexColorBase(tempcrystal.color);
             HQ hq = new HQ(tempcrystal,new Image(new File("crystal_meteor.png").toURI().toString()));
             hq.setFitHeight(GameInfo.hexsize);
             hq.setFitWidth(GameInfo.hexsize);
@@ -304,13 +308,50 @@ public class GameController implements Initializable {
     }
     public void setBoard(Group board)
     {
+        makeDraggable(board);
         mapAnchor.getChildren().add(board);
     }
 
     public void setPlayersGameInfo()
     {
-        GameInfo.p1.pl= new Player(GameInfo.p1);
-        GameInfo.p2.pl= new Player(GameInfo.p2);
-        GameInfo.p3.pl= new Player(GameInfo.p3);
+        GameInfo.playerFactions[0].pl= new Player(GameInfo.playerFactions[0]);
+        GameInfo.playerFactions[1].pl= new Player(GameInfo.playerFactions[1]);
+        GameInfo.playerFactions[2].pl= new Player(GameInfo.playerFactions[2]);
+    }
+
+    public void makeDraggable(Node node){
+
+        node.setOnMousePressed(mouseEvent -> {
+            mouseAnchorX = mouseEvent.getX();
+            mouseAnchorY = mouseEvent.getY();
+        });
+
+        node.setOnMouseDragged(mouseEvent -> {
+            if(mouseEvent.getSceneY() - mouseAnchorY<0&&GameInfo.y==900) {
+                node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+            }
+            else if(mouseEvent.getSceneY() - mouseAnchorY<125&&GameInfo.y==1080){
+                node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+            }
+            if(mouseEvent.getSceneX() - mouseAnchorX>0)
+            {
+                node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
+            }
+            
+        });
+    }
+
+    public void endTurn()
+    {
+        System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
+        if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
+        {
+            GameInfo.currentPlayerCounter += 1;
+        }
+        else {
+            GameInfo.turn += 1;
+            GameInfo.currentPlayerCounter = 0;
+        }
+        System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
     }
 }
