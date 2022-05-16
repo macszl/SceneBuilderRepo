@@ -1,21 +1,27 @@
 package com.example.scenebuilderrepo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
+    @FXML
+    private SplitPane BigVBox;
     @FXML
     private Label factionGold;
     @FXML
@@ -341,8 +347,31 @@ public class GameController implements Initializable {
         });
     }
 
-    public void endTurn()
-    {
+    VBox vbox;
+    int paused=0;
+    int done=0;
+    ImageView cover=new ImageView(new Image(new File("Cover.png").toURI().toString()));
+    public void endTurn() throws IOException, InterruptedException {
+
+        if(done==0) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("attackwindows.fxml"));
+            fxmlLoader.load();
+            AttackController atk = fxmlLoader.getController();
+            vbox = atk.getAttackBox();
+            done=1;
+        }
+        if(paused==0) {
+           // BigVBox.
+           // mapAnchor.getChildren().add(vbox);
+            paused=1;
+        }
+        else {
+           // BigVBox.getChildren().remove(cover);
+           // mapAnchor.getChildren().remove(vbox);
+            paused=0;
+        }
+
+        /*
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
         if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
         {
@@ -353,5 +382,7 @@ public class GameController implements Initializable {
             GameInfo.currentPlayerCounter = 0;
         }
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
+        */
+
     }
 }
