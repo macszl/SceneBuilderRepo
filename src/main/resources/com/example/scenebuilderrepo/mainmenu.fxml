@@ -89,22 +89,22 @@
                         <Image url="@../../../../../../BUTTON.png" />
                      </image>
                   </ImageView>
-                  <Label id="exitLabel" text="Exit" textFill="WHITE" GridPane.rowIndex="4">
+                  <Label id="exitLabel" text="Wyjście" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Label id="optionsLabel" text="Options" textFill="WHITE" GridPane.rowIndex="3">
+                  <Label id="optionsLabel" text="Opcje" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Label id="loadGameLabel" text="Load Game" textFill="WHITE" GridPane.rowIndex="2">
+                  <Label id="loadGameLabel" text="Wczytaj grę" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Label id="newGameLabel" text="New Game" textFill="WHITE" GridPane.rowIndex="1">
+                  <Label id="newGameLabel" text="Nowa gra" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font size="36.0" />
                      </font>
