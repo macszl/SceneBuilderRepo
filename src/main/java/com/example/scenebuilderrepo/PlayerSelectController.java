@@ -48,6 +48,7 @@ public class PlayerSelectController implements Initializable {
 
     Image buttonImage = new Image(new File("BUTTON.png").toURI().toString());
     Image clickbuttonImage = new Image(new File("BUTTONCLICK.png").toURI().toString());
+    Image greybuttonImage = new Image(new File("BUTTONGREY.png").toURI().toString());
     Image bg = new Image(new File("playerSelectBG.png").toURI().toString());
 
     boolean loaded=false;
@@ -63,6 +64,13 @@ public class PlayerSelectController implements Initializable {
             controller = fxmlLoader.getController();
             controller.controller=this;
         }
+        controller.imgp1.setImage(controller.imgs.get(0));
+        controller.imgp2.setImage(controller.imgs.get(1));
+        controller.imgp3.setImage(controller.imgs.get(2));
+        controller.rightArrowImage1.setImage(controller.arrowImage);
+        controller.rightArrowImage2.setImage(controller.arrowImage);
+        controller.leftArrowImage1.setImage(controller.arrowImage);
+        controller.leftArrowImage2.setImage(controller.arrowImage);
         controller.enableP3();
     }
 
@@ -77,6 +85,14 @@ public class PlayerSelectController implements Initializable {
             controller = fxmlLoader.getController();
             controller.controller=this;
         }
+        controller.imgp1.setImage(controller.imgs.get(0));
+        controller.imgp2.setImage(controller.imgs.get(1));
+        controller.rightArrowImage1.setImage(controller.arrowImage);
+        controller.rightArrowImage2.setImage(controller.arrowImage);
+        controller.rightArrowImage3.setImage(controller.arrowImage);
+        controller.leftArrowImage1.setImage(controller.arrowImage);
+        controller.leftArrowImage2.setImage(controller.arrowImage);
+        controller.leftArrowImage3.setImage(controller.arrowImage);
         controller.disableP3();
     }
 
@@ -91,18 +107,31 @@ public class PlayerSelectController implements Initializable {
 
     void enableCnt()
     {
+        buttonImage3.setImage(buttonImage);
         cont.setDisable(false);
     }
     void disableCnt()
     {
+        buttonImage3.setImage(greybuttonImage);
         cont.setDisable(true);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("raceselect.fxml"));
+        AnchorPane pane = null;
+        try {
+            pane = (AnchorPane) fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        raceSelect.getChildren().clear();
+        raceSelect.getChildren().add(pane);
+        controller = fxmlLoader.getController();
+        controller.controller=this;
         cont.setDisable(true);
         backgroundImage.setImage(bg);
         buttonImage1.setImage(buttonImage);
         buttonImage2.setImage(buttonImage);
-        buttonImage3.setImage(buttonImage);
+        buttonImage3.setImage(greybuttonImage);
     }
 }
