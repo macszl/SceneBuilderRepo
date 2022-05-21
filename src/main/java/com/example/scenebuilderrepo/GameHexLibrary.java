@@ -38,7 +38,8 @@ class MapTile extends StackPane {
             public void handle(MouseEvent mouseEvent) {
                 if(owner != null) {
                     System.out.println("Hex belongs to player " + GameInfo.getPlayerId(owner.faction.id));
-                    System.out.println("Unit AP: " + obj.action_points_cur + "/" + obj.action_points_max);
+                    if(obj != null)
+                        System.out.println("Unit AP: " + obj.action_points_cur + "/" + obj.action_points_max);
                 }
 
                 if (isClicked) {
@@ -255,29 +256,37 @@ class Board {
         else if(destinationTile.obj.getClass().equals(Unit.class) && destinationTile.getOwner() != selectedTile.getOwner() )
         {
             destinationTile.hex.controller.doAttack();
-            battleCalc(destinationTile.obj);
+            battleCalc(destinationTile);
         }
     }
 
-    static void battleCalc(MapObject obj)
+    static void battleCalc(MapTile destinationTile)
     {
         int attackerHPbefore = selectedTile.obj.hp_current;
-        int attackerHPafter = attackerHPbefore - obj.def;
-        int defenderHPbefore = obj.hp_current;
+        int attackerHPafter = attackerHPbefore - destinationTile.obj.def;
+        int defenderHPbefore = destinationTile.obj.hp_current;
         int defenderHPafter = defenderHPbefore - selectedTile.obj.atk;
 
         if(attackerHPafter < 0)
         {
-            //usuniecie atakujacego
+            selectedTile.obj.setImage(null);
+            selectedTile.obj.portriat = null;
+            selectedTile.obj = null;
+            GameInfo.removeUnit(selectedTile);
+            return;
         }
 
         selectedTile.obj.hp_current = attackerHPafter;
         if(defenderHPafter < 0)
         {
-            //usuniecie broniacego
+            destinationTile.obj.setImage(null);
+            destinationTile.obj.portriat = null;
+            destinationTile.obj = null;
+            GameInfo.removeUnit(destinationTile);
+            return;
         }
 
-        obj.hp_current = defenderHPafter;
+        destinationTile.obj.hp_current = defenderHPafter;
     }
     void addMapTile(MapTile tile, int x) {
         mapTiles.get(x).add(tile);
@@ -341,12 +350,13 @@ class Board {
 
     static void removeHQ(int i, int j)
     {
-
+        //TODO
+        //Do implementacji wyrzucenie gracza z gry i kolejki jezeli zostanie zniszczone jego HQ
     }
 
     static void removeUnit( int i, int j)
     {
-
+        //Usuniecie jednostki z listy jednostek
     }
 
 }
