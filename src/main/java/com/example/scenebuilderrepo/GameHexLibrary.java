@@ -255,9 +255,30 @@ class Board {
         else if(destinationTile.obj.getClass().equals(Unit.class) && destinationTile.getOwner() != selectedTile.getOwner() )
         {
             destinationTile.hex.controller.doAttack();
+            battleCalc(destinationTile.obj);
         }
     }
 
+    static void battleCalc(MapObject obj)
+    {
+        int attackerHPbefore = selectedTile.obj.hp_current;
+        int attackerHPafter = attackerHPbefore - obj.def;
+        int defenderHPbefore = obj.hp_current;
+        int defenderHPafter = defenderHPbefore - selectedTile.obj.atk;
+
+        if(attackerHPafter < 0)
+        {
+            //usuniecie atakujacego
+        }
+
+        selectedTile.obj.hp_current = attackerHPafter;
+        if(defenderHPafter < 0)
+        {
+            //usuniecie broniacego
+        }
+
+        obj.hp_current = defenderHPafter;
+    }
     void addMapTile(MapTile tile, int x) {
         mapTiles.get(x).add(tile);
     }
