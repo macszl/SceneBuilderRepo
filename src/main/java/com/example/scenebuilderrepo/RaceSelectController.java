@@ -41,46 +41,47 @@ public class RaceSelectController implements Initializable {
     private Button br3;
 
     @FXML
-    private ImageView imgp1;
+    public ImageView imgp1;
 
     @FXML
-    private ImageView imgp2;
+    public ImageView imgp2;
 
     @FXML
-    private ImageView imgp3;
+    public ImageView imgp3;
 
     @FXML
-    private ImageView rightArrowImage1;
+    public ImageView rightArrowImage1;
 
     @FXML
-    private ImageView rightArrowImage2;
+    public ImageView rightArrowImage2;
 
     @FXML
-    private ImageView rightArrowImage3;
+    public ImageView rightArrowImage3;
 
     @FXML
-    private ImageView leftArrowImage1;
+    public ImageView leftArrowImage1;
 
     @FXML
-    private ImageView leftArrowImage2;
+    public ImageView leftArrowImage2;
 
     @FXML
-    private ImageView leftArrowImage3;
+    public ImageView leftArrowImage3;
 
     @FXML
-    private ImageView backgroundImage;
+    public ImageView backgroundImage;
 
     PlayerSelectController controller;
 
-    Image arrowImage = new Image(new File("ARROW.png").toURI().toString());
-    Image clickarrowImage = new Image(new File("ARROWCLICK.png").toURI().toString());
-    Image bg = new Image(new File("raceSelectBG.png").toURI().toString());
+    public Image arrowImage = new Image(new File("ARROW.png").toURI().toString());
+    public Image clickarrowImage = new Image(new File("ARROWCLICK.png").toURI().toString());
+    public Image greyarrowImage = new Image(new File("ARROWGREY.png").toURI().toString());
+    public Image bg = new Image(new File("raceSelectBG.png").toURI().toString());
 
     Vector<Image> imgs=new Vector<>();
 
     int im1=0;
-    int im2=0;
-    int im3=0;
+    int im2=1;
+    int im3=2;
 
 
     void setImg(int p)
@@ -117,7 +118,9 @@ public class RaceSelectController implements Initializable {
 
     void checkSelect()
     {
-        if(im1!=im2&&im1!=im3&&im3!=im2) controller.enableCnt();
+        if(im1!=im2&&im1!=im3&&im3!=im2) {
+            controller.enableCnt();
+        }
         else controller.disableCnt();
     }
     @FXML
@@ -130,7 +133,6 @@ public class RaceSelectController implements Initializable {
     void bl2p(ActionEvent event) {
         im2++;
         setImg(2);
-
     }
 
     @FXML
@@ -161,6 +163,8 @@ public class RaceSelectController implements Initializable {
         br3.setDisable(true);
         bl3.setDisable(true);
         imgp3.setImage(null);
+        leftArrowImage3.setImage(greyarrowImage);
+        rightArrowImage3.setImage(greyarrowImage);
         im3=4;
         checkSelect();
     }
@@ -168,7 +172,9 @@ public class RaceSelectController implements Initializable {
     {
         br3.setDisable(false);
         bl3.setDisable(false);
-        im3=0;
+        leftArrowImage3.setImage(arrowImage);
+        rightArrowImage3.setImage(arrowImage);
+        im3=2;
         checkSelect();
     }
 
@@ -177,18 +183,15 @@ public class RaceSelectController implements Initializable {
         imgs.add(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
         imgs.add(new Image(new File("FOREST_HQ.png").toURI().toString()));
         imgs.add(new Image(new File("FLYING_HQ.png").toURI().toString()));
-        imgp1.setImage(imgs.get(0));
-        imgp2.setImage(imgs.get(0));
-        imgp3.setImage(imgs.get(0));
-        leftArrowImage1.setImage(arrowImage);
-        leftArrowImage2.setImage(arrowImage);
-        leftArrowImage3.setImage(arrowImage);
-        rightArrowImage1.setImage(arrowImage);
-        rightArrowImage2.setImage(arrowImage);
-        rightArrowImage3.setImage(arrowImage);
-        backgroundImage.setImage(bg);
         GameInfo.playerFactions[0]=crystal;
-        GameInfo.playerFactions[1]=crystal;
-        GameInfo.playerFactions[2]=crystal;
+        GameInfo.playerFactions[1]=tree;
+        GameInfo.playerFactions[2]=sky;
+        leftArrowImage1.setImage(greyarrowImage);
+        leftArrowImage2.setImage(greyarrowImage);
+        leftArrowImage3.setImage(greyarrowImage);
+        rightArrowImage1.setImage(greyarrowImage);
+        rightArrowImage2.setImage(greyarrowImage);
+        rightArrowImage3.setImage(greyarrowImage);
+        backgroundImage.setImage(bg);
     }
 }
