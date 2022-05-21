@@ -36,8 +36,10 @@ class MapTile extends StackPane {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(owner != null)
+                if(owner != null) {
                     System.out.println("Hex belongs to player " + GameInfo.getPlayerId(owner.faction.id));
+                    System.out.println("Unit AP: " + obj.action_points_cur + "/" + obj.action_points_max);
+                }
 
                 if (isClicked) {
                     Board.unClickAll();
@@ -49,7 +51,7 @@ class MapTile extends StackPane {
                     Board.unClickAll();
                     if (obj != null) {
 
-                        if(GameInfo.getPlayerId(owner.faction.id) == GameInfo.currentPlayerCounter)
+                        if(GameInfo.getPlayerId(owner.faction.id) == GameInfo.currentPlayerCounter && obj.action_points_cur != 0)
                             Board.highlightNearby(hex.x, hex.y);
                         setHexRingToClicked();
                         isClicked = true;
@@ -142,6 +144,8 @@ class MapObject extends ImageView {
     int atk;
     int hp_current;
     int hp_max;
+    int action_points_cur;
+    int action_points_max;
 }
 
 class Unit extends MapObject {
@@ -158,6 +162,8 @@ class Unit extends MapObject {
         atk = 8;
         hp_current = 20;
         hp_max = 20;
+        action_points_cur = 1;
+        action_points_max = 1;
     }
 }
 
@@ -174,6 +180,8 @@ class HQ extends MapObject {
         atk = 0;
         hp_current = 95;
         hp_max = 100;
+        action_points_cur = 0;
+        action_points_max = 0;
     }
 }
 
@@ -233,17 +241,20 @@ class Board {
     }
 
     @FXML
-    static void unitMove(MapTile moveHere) {
-        if (moveHere.obj == null && selectedTile != null && selectedTile.obj.getClass().equals(Unit.class)) {
-            moveHere.obj = selectedTile.obj;
-            moveHere.getChildren().add(moveHere.obj);
-            moveHere.setOwner(selectedTile.getOwner());
+    static void unitMove(MapTile destinationTile) {
+        if (destinationTile.obj == null && selectedTile.obj.getClass().equals(Unit.class)) {
+            //assigning the obj from the previous mapTile to the destination tile
+            destinationTile.obj = selectedTile.obj;
+            destinationTile.obj.action_points_cur -= 1;
+            destinationTile.getChildren().add(destinationTile.obj);
+            destinationTile.setOwner(selectedTile.getOwner());
+            //removing the obj from the previous mapTile
             selectedTile.getChildren().remove(selectedTile.obj);
             selectedTile.obj = null;
         }
-        else if(moveHere.obj.getClass().equals(Unit.class)&&moveHere.getOwner()!=selectedTile.getOwner())
+        else if(destinationTile.obj.getClass().equals(Unit.class) && destinationTile.getOwner() != selectedTile.getOwner() )
         {
-            moveHere.hex.controller.doAttack();
+            destinationTile.hex.controller.doAttack();
         }
     }
 
@@ -254,6 +265,67 @@ class Board {
     void addColumn() {
         Vector<MapTile> hexColumn = new Vector<>();
         mapTiles.add(hexColumn);
+    }
+
+    static void addUnit( Faction faction, int i, int j)
+    {
+        if(faction == null)
+            return;
+
+        mapTiles.get(i).get(j).setOwner(faction.pl);
+        mapTiles.get(i).get(j).setHexColorBase(faction.color);
+        Unit unit;
+        if( faction.id == FactionEnum.SKYMEN)
+        {
+            unit = new Unit(faction,new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
+        }
+        else if(faction.id == FactionEnum.CRYSTALMEN)
+        {
+            unit =  new Unit(faction,new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()));
+        }
+        else
+        {
+            unit = new Unit(faction ,new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
+        }
+        unit.setFitWidth(GameInfo.hexsize);
+        unit.setFitHeight(GameInfo.hexsize);
+        mapTiles.get(i).get(j).addMapObject(unit);
+        GameInfo.addUnit(faction.id, unit);
+    }
+
+    static void addHQ( Faction faction, int i, int j)
+    {
+        if(faction == null)
+            return;
+
+        mapTiles.get(i).get(j).setOwner(faction.pl);
+        mapTiles.get(i).get(j).setHexColorBase(faction.color);
+        HQ hq;
+        if( faction.id == FactionEnum.SKYMEN)
+        {
+            hq = new HQ(faction,new Image(new File("flying_meteor.png").toURI().toString()));
+        }
+        else if(faction.id == FactionEnum.CRYSTALMEN) {
+            hq = new HQ(faction,new Image(new File("crystal_meteor.png").toURI().toString()));
+        }
+        else
+        {
+            hq = new HQ(faction,new Image(new File("forest_meteor.png").toURI().toString()));
+        }
+        hq.setFitWidth(GameInfo.hexsize);
+        hq.setFitHeight(GameInfo.hexsize);
+        mapTiles.get(i).get(j).addMapObject(hq);
+        GameInfo.addHQ(faction.id, hq);
+    }
+
+    static void removeHQ(int i, int j)
+    {
+
+    }
+
+    static void removeUnit( int i, int j)
+    {
+
     }
 
 }

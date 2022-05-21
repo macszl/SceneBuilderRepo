@@ -118,9 +118,6 @@ public class GameController implements Initializable {
                 setTerrainBase(  hex, i, j);
                 setTerrainRivers(hex, i, j);
                 setTerrainCities(hex, i, j);
-                setTerrainFactionCrystal(im, crystalmenFaction, i, j, hex, container);
-                setTerrainFactionTree(im, treemenFaction, i, j, hex, container);
-                setTerrainFactionSky(im, skymenFaction, i, j, hex, container);
 
                 setContainerLayoutAttributes(i, j, container);
 
@@ -128,6 +125,13 @@ public class GameController implements Initializable {
                 group.getChildren().add(container);
             }
         }
+
+        Board.addHQ(crystalmenFaction, 0, 10);
+        Board.addHQ(skymenFaction, MapConstants.MAP_LENGTH / 2, 0);
+        Board.addHQ(treemenFaction ,MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 1);
+        Board.addUnit(crystalmenFaction, 0, 9);
+        Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
+        Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
         setBoard(group);
         factionGold.setText("Ilosc zlota "+5);
     }
@@ -169,82 +173,6 @@ public class GameController implements Initializable {
         if(GameInfo.playerFactions[0].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[0];
         else if(GameInfo.playerFactions[0].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[0];
         else if(GameInfo.playerFactions[0].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[0];
-    }
-
-    private void setTerrainFactionSky(Image im, Faction tempsky, int i, int j, Hexagon hex, MapTile container) {
-
-        if(tempsky == null)
-            return;
-
-        if (j == 0 && i == MapConstants.MAP_LENGTH / 2) {
-            hex.setImage(im);
-            container.setOwner(tempsky.pl);
-            container.setHexColorBase(tempsky.color);
-            HQ hq = new HQ(tempsky,new Image(new File("flying_meteor.png").toURI().toString()));
-            hq.setFitHeight(GameInfo.hexsize);
-            hq.setFitWidth(GameInfo.hexsize);
-            container.addMapObject(hq);
-        }
-        if (j == 0 && i == (MapConstants.MAP_LENGTH / 2) + 1) {
-            container.setOwner(tempsky.pl);
-            container.setHexColorBase(tempsky.color);
-            Unit unit = new Unit(tempsky,new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
-            unit.setFitHeight(GameInfo.hexsize);
-            unit.setFitWidth(GameInfo.hexsize);
-            container.addMapObject(unit);
-        }
-    }
-
-    private void setTerrainFactionTree(Image im, Faction temptree, int i, int j, Hexagon hex, MapTile container) {
-        if(temptree == null)
-            return;
-
-        if (j == MapConstants.MAP_HEIGHT - 2 && i == MapConstants.MAP_LENGTH - 1) {
-            container.setOwner(temptree.pl);
-            container.setHexColorBase(temptree.color);
-            Unit unit = new Unit(temptree,new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()));
-            unit.setFitHeight(GameInfo.hexsize);
-            unit.setFitWidth(GameInfo.hexsize);
-            container.addMapObject(unit);
-
-        }
-        if (j == MapConstants.MAP_HEIGHT - 1 && i == MapConstants.MAP_LENGTH - 1) {
-            hex.setImage(im);
-            container.setOwner(temptree.pl);
-            container.setHexColorBase(temptree.color);
-            HQ hq = new HQ(temptree,new Image(new File("tree_meteor.png").toURI().toString()));
-            hq.setFitHeight(GameInfo.hexsize);
-            hq.setFitWidth(GameInfo.hexsize);
-            container.addMapObject(hq);
-
-        }
-    }
-
-    private void setTerrainFactionCrystal(Image im, Faction tempcrystal, int i, int j, Hexagon hex, MapTile container) {
-        if(tempcrystal == null)
-            return;
-
-        if (j == 9 && i == 0) {
-
-            container.setOwner(tempcrystal.pl);
-            container.setHexColorBase(tempcrystal.color);
-            Unit unit = new Unit(tempcrystal,new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()));
-            unit.setFitHeight(GameInfo.hexsize);
-            unit.setFitWidth(GameInfo.hexsize);
-            container.addMapObject(unit);
-
-
-        }
-        if (j == 10 && i == 0) {
-            hex.setImage(im);
-            container.setOwner(tempcrystal.pl);
-            container.setHexColorBase(tempcrystal.color);
-            HQ hq = new HQ(tempcrystal,new Image(new File("crystal_meteor.png").toURI().toString()));
-            hq.setFitHeight(GameInfo.hexsize);
-            hq.setFitWidth(GameInfo.hexsize);
-            container.addMapObject(hq);
-
-        }
     }
 
     void setTerrainBase(Hexagon hex, int i, int j)
@@ -367,6 +295,7 @@ public class GameController implements Initializable {
     public void endTurn() throws IOException, InterruptedException {
 
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
+        GameInfo.regenerateAP();
         if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
         {
             GameInfo.currentPlayerCounter += 1;
@@ -375,6 +304,7 @@ public class GameController implements Initializable {
             GameInfo.turn += 1;
             GameInfo.currentPlayerCounter = 0;
         }
+        Board.unClickAll();
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
 
