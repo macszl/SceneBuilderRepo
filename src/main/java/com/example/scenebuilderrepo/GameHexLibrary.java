@@ -273,8 +273,14 @@ class Board {
         {
             selectedTile.obj.setImage(null);
             selectedTile.obj.portriat = null;
+            if( selectedTile.obj.getClass() == Unit.class) {
+                GameInfo.removeUnit(selectedTile);
+            }
+            else {
+                removeHQ(selectedTile.hex.x, selectedTile.hex.y);
+                GameInfo.removeHQ(selectedTile);
+            }
             selectedTile.obj = null;
-            GameInfo.removeUnit(selectedTile);
             return;
         }
 
@@ -283,8 +289,14 @@ class Board {
         {
             destinationTile.obj.setImage(null);
             destinationTile.obj.portriat = null;
-            GameInfo.removeUnit(destinationTile);
-            destinationTile.obj = null;
+            if( destinationTile.obj.getClass() == Unit.class) {
+                GameInfo.removeUnit(destinationTile);
+            }
+            else {
+                removeHQ(destinationTile.hex.x, destinationTile.hex.y);
+                GameInfo.removeHQ(destinationTile);
+            }
+            selectedTile.obj = null;
             return;
         }
 
