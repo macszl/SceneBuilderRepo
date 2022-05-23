@@ -160,7 +160,7 @@ class Unit extends MapObject {
         this.portriat = _portriat;
 
         def = 3;
-        atk = 8;
+        atk = 18;
         hp_current = 20;
         hp_max = 20;
         action_points_cur = 1;
@@ -253,7 +253,9 @@ class Board {
             selectedTile.getChildren().remove(selectedTile.obj);
             selectedTile.obj = null;
         }
-        else if(destinationTile.obj.getClass().equals(Unit.class) && destinationTile.getOwner() != selectedTile.getOwner() )
+        else if(destinationTile.obj.getClass().equals(Unit.class)  ||
+                destinationTile.obj.getClass().equals(HQ.class  )  &&
+                destinationTile.getOwner() != selectedTile.getOwner() )
         {
             destinationTile.hex.controller.doAttack();
             battleCalc(destinationTile);
@@ -281,8 +283,8 @@ class Board {
         {
             destinationTile.obj.setImage(null);
             destinationTile.obj.portriat = null;
-            destinationTile.obj = null;
             GameInfo.removeUnit(destinationTile);
+            destinationTile.obj = null;
             return;
         }
 
@@ -352,11 +354,19 @@ class Board {
     {
         //TODO
         //Do implementacji wyrzucenie gracza z gry i kolejki jezeli zostanie zniszczone jego HQ
-    }
+        FactionEnum fac = mapTiles.get(i).get(j).obj.faction.id;
+        for(int k = 0; k < mapTiles.size(); k++)
+        {
+            for(int l = 0; l < mapTiles.get(k).size(); l++)
+            {
+                if( mapTiles.get(k).get(l).obj.faction.id == fac) {
 
-    static void removeUnit( int i, int j)
-    {
-        //Usuniecie jednostki z listy jednostek
+                    mapTiles.get(k).get(l).setHexColorBase(null);
+                }
+            }
+        }
+        GameInfo.removeHQ(mapTiles.get(i).get(j));
+
     }
 
 }

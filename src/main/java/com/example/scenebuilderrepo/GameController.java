@@ -129,7 +129,17 @@ public class GameController implements Initializable {
         Board.addHQ(crystalmenFaction, 0, 10);
         Board.addHQ(skymenFaction, MapConstants.MAP_LENGTH / 2, 0);
         Board.addHQ(treemenFaction ,MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 1);
-        Board.addUnit(crystalmenFaction, 0, 9);
+        Board.addUnit(skymenFaction, 0, 9);
+        Board.addUnit(skymenFaction, 1, 9);
+        Board.addUnit(skymenFaction, 1, 10);
+
+        Board.addUnit(crystalmenFaction, 2, 2);
+        Board.addUnit(crystalmenFaction, 2, 3);
+        Board.addUnit(crystalmenFaction, 2, 4);
+        Board.addUnit(crystalmenFaction, 2, 5);
+        Board.addUnit(crystalmenFaction, 2, 6);
+        Board.addUnit(crystalmenFaction, 2, 7);
+
         Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
         Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
         setBoard(group);
@@ -158,21 +168,21 @@ public class GameController implements Initializable {
     }
 
     private void getP3GameInfo() {
-        if (GameInfo.playerFactions[2].id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.playerFactions[2];
-        else if (GameInfo.playerFactions[2].id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.playerFactions[2];
-        else if (GameInfo.playerFactions[2].id == FactionEnum.SKYMEN) skymenFaction = GameInfo.playerFactions[2];
+        if (GameInfo.playerFactions.get(2).id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.playerFactions.get(2);
+        else if (GameInfo.playerFactions.get(2).id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.playerFactions.get(2);
+        else if (GameInfo.playerFactions.get(2).id == FactionEnum.SKYMEN) skymenFaction = GameInfo.playerFactions.get(2);
     }
 
     private void getP2GameInfo() {
-        if(GameInfo.playerFactions[1].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[1];
-        else if(GameInfo.playerFactions[1].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[1];
-        else if(GameInfo.playerFactions[1].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[1];
+        if(GameInfo.playerFactions.get(1).id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions.get(1);
+        else if(GameInfo.playerFactions.get(1).id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions.get(1);
+        else if(GameInfo.playerFactions.get(1).id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions.get(1);
     }
 
     private void getP1GameInfo() {
-        if(GameInfo.playerFactions[0].id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions[0];
-        else if(GameInfo.playerFactions[0].id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions[0];
-        else if(GameInfo.playerFactions[0].id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions[0];
+        if(GameInfo.playerFactions.get(0).id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions.get(0);
+        else if(GameInfo.playerFactions.get(0).id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions.get(0);
+        else if(GameInfo.playerFactions.get(0).id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions.get(0);
     }
 
     void setTerrainBase(Hexagon hex, int i, int j)
@@ -262,9 +272,9 @@ public class GameController implements Initializable {
 
     public void setPlayersGameInfo()
     {
-        GameInfo.playerFactions[0].pl= new Player(GameInfo.playerFactions[0]);
-        GameInfo.playerFactions[1].pl= new Player(GameInfo.playerFactions[1]);
-        GameInfo.playerFactions[2].pl= new Player(GameInfo.playerFactions[2]);
+        GameInfo.playerFactions.get(0).pl= new Player(GameInfo.playerFactions.get(0));
+        GameInfo.playerFactions.get(1).pl= new Player(GameInfo.playerFactions.get(1));
+        GameInfo.playerFactions.get(2).pl= new Player(GameInfo.playerFactions.get(2));
     }
 
     public void makeDraggable(Node node){

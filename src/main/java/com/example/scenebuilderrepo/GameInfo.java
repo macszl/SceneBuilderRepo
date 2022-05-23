@@ -14,15 +14,14 @@ public class GameInfo {
     static int playerAmount;
     static int turn = 0;
     static int currentPlayerCounter;
-    static Faction[] playerFactions = new Faction[3];
+    static ArrayList<Faction> playerFactions = new ArrayList<>();
     static ArrayList<ArrayList<Unit>> playerUnits = getPlayerUnits();
     static ArrayList<HQ> playerHQs = new ArrayList<>(3);
 
-
     public static int getPlayerId(FactionEnum _fac)
     {
-        for (int i = 0; i < playerFactions.length; i++) {
-            if(playerFactions[i].id == _fac)
+        for (int i = 0; i < playerFactions.size(); i++) {
+            if(playerFactions.get(i).id == _fac)
                 return i;
         }
         return -1;
@@ -46,7 +45,6 @@ public class GameInfo {
 
     public static void addHQ(FactionEnum _fac, HQ hq)
     {
-        int i = getPlayerId(_fac);
         playerHQs.add(hq);
     }
 
@@ -62,7 +60,32 @@ public class GameInfo {
 
     public static void removeUnit(MapTile tile)
     {
-        //TODO DO IMPLEMENTACJI
+        int playerID = getPlayerId( tile.obj.faction.id);
+        for(int i = 0; i < playerUnits.get(playerID).size(); i++)
+        {
+            if( playerUnits.get(playerID).get(i).equals(tile.obj))
+            {
+                //usuniecie jednostki
+                playerUnits.get(playerID).remove(i);
+                break;
+            }
+        }
+    }
+
+    public static void removeHQ(MapTile tile)
+    {
+        for(int i = 0; i < playerHQs.size(); i++)
+        {
+            if(playerHQs.get(i).equals(tile.obj))
+            {
+                int playerID = getPlayerId(tile.obj.faction.id);
+                playerHQs.remove(i);
+                playerUnits.remove(i);
+                playerFactions.remove(i);
+                playerAmount--;
+                break;
+            }
+        }
     }
 }
 
