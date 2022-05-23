@@ -143,7 +143,11 @@ public class GameController implements Initializable {
         Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
         Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
         setBoard(group);
-        factionGold.setText("Ilosc zlota "+5);
+    }
+
+    private void setFactionGold(float x)
+    {
+        factionGold.setText("Ilosc zlota "+Math.round(x));
     }
 
     private void setContainerLayoutAttributes(int i, int j, MapTile container) {
@@ -254,6 +258,7 @@ public class GameController implements Initializable {
         {
             hex.setImage(ponden);
         }
+        setFactionGold(5);
     }
 
     @FXML
@@ -306,6 +311,8 @@ public class GameController implements Initializable {
 
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
         GameInfo.regenerateAP();
+        Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+        currentPlayer.gold+=1+(currentPlayer.ownedHexes*0.2);
         if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
         {
             GameInfo.currentPlayerCounter += 1;
@@ -314,6 +321,8 @@ public class GameController implements Initializable {
             GameInfo.turn += 1;
             GameInfo.currentPlayerCounter = 0;
         }
+        currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+        setFactionGold(currentPlayer.gold);
         Board.unClickAll();
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 

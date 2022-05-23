@@ -38,6 +38,7 @@ class MapTile extends StackPane {
             public void handle(MouseEvent mouseEvent) {
                 if(owner != null) {
                     System.out.println("Hex belongs to player " + GameInfo.getPlayerId(owner.faction.id));
+                    System.out.println("Hexes owned " + owner.ownedHexes);
                     if(obj != null)
                         System.out.println("Unit AP: " + obj.action_points_cur + "/" + obj.action_points_max);
                 }
@@ -59,11 +60,7 @@ class MapTile extends StackPane {
 
                         hex.controller.setUnitPortraitAndDesc(obj);
                     }
-
                 }
-
-
-
             }
         });
     }
@@ -109,7 +106,9 @@ class MapTile extends StackPane {
     }
 
     void setOwner(Player _owner) {
+        if(owner!=null) owner.ownedHexes--;
         owner = _owner;
+        owner.ownedHexes++;
         setHexColorBase(owner.faction.color);
     }
 
@@ -187,7 +186,8 @@ class HQ extends MapObject {
 }
 
 class Player {
-    int gold = 5;
+    public int ownedHexes=0;
+    float gold = 5;
     Faction faction;
 
 
