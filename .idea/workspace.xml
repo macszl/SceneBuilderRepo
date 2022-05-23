@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="hq dies and disappears now after an attack">
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Bugged version - &#10;In theory it should delete the HQ and other units.&#10;In practice, it does random stuff.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +121,7 @@
       <workItem from="1653068896211" duration="64000" />
       <workItem from="1653068982219" duration="135000" />
       <workItem from="1653069164051" duration="3432000" />
-      <workItem from="1653293878451" duration="4845000" />
+      <workItem from="1653293878451" duration="5876000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -248,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653298659388</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Bugged version - &#10;In theory it should delete the HQ and other units.&#10;In practice, it does random stuff.">
+      <created>1653300398750</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1653300398750</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +298,8 @@
     <MESSAGE value="Attacking units actually impacts their HP now" />
     <MESSAGE value="Added unit death" />
     <MESSAGE value="hq dies and disappears now after an attack" />
-    <option name="LAST_COMMIT_MESSAGE" value="hq dies and disappears now after an attack" />
+    <MESSAGE value="Bugged version - &#10;In theory it should delete the HQ and other units.&#10;In practice, it does random stuff." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugged version - &#10;In theory it should delete the HQ and other units.&#10;In practice, it does random stuff." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -302,13 +311,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java</url>
           <line>62</line>
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java</url>
+          <line>295</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java</url>
+          <line>374</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

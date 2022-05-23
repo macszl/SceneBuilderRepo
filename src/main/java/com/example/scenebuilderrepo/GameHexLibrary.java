@@ -269,7 +269,7 @@ class Board {
         int defenderHPbefore = destinationTile.obj.hp_current;
         int defenderHPafter = defenderHPbefore - selectedTile.obj.atk;
 
-        if(attackerHPafter < 0)
+        if(attackerHPafter <= 0)
         {
             selectedTile.obj.setImage(null);
             selectedTile.obj.portriat = null;
@@ -285,7 +285,7 @@ class Board {
         }
 
         selectedTile.obj.hp_current = attackerHPafter;
-        if(defenderHPafter < 0)
+        if(defenderHPafter <= 0)
         {
             destinationTile.obj.setImage(null);
             destinationTile.obj.portriat = null;
@@ -296,7 +296,7 @@ class Board {
                 removeHQ(destinationTile.hex.x, destinationTile.hex.y);
                 GameInfo.removeHQ(destinationTile);
             }
-            selectedTile.obj = null;
+            destinationTile.obj = null;
             return;
         }
 
@@ -366,12 +366,13 @@ class Board {
     {
         //TODO
         //Do implementacji wyrzucenie gracza z gry i kolejki jezeli zostanie zniszczone jego HQ
-        FactionEnum fac = mapTiles.get(i).get(j).obj.faction.id;
+        FactionEnum factionEnum = mapTiles.get(i).get(j).obj.faction.id;
+        Faction faction = mapTiles.get(i).get(j).obj.faction;
         for(int k = 0; k < mapTiles.size(); k++)
         {
             for(int l = 0; l < mapTiles.get(k).size(); l++)
             {
-                if( mapTiles.get(k).get(l).obj.faction.id == fac) {
+                if( mapTiles.get(k).get(l).hexColorBase.getImage() == faction.color) {
 
                     mapTiles.get(k).get(l).setHexColorBase(null);
                 }
