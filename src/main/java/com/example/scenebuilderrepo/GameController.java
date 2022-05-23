@@ -1,12 +1,14 @@
 package com.example.scenebuilderrepo;
 
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +23,10 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
+
+
+    @FXML
+    private CheckMenuItem skipAtkButton;
     @FXML
     private StackPane coverPane;
     @FXML
@@ -149,7 +155,11 @@ public class GameController implements Initializable {
     {
         factionGold.setText("Ilosc zlota "+Math.round(x));
     }
-
+    @FXML
+    void animationToggle(ActionEvent event) {
+        if(skipAtkButton.isSelected()) GameInfo.skipAtk=true;
+        else GameInfo.skipAtk=false;
+    }
     private void setContainerLayoutAttributes(int i, int j, MapTile container) {
         if(i %2==0)
             container.setLayoutY((GameInfo.hexsize-5)* j);
@@ -331,10 +341,12 @@ public class GameController implements Initializable {
 
     public void doAttack()
     {
-        showAttack();
-        PauseTransition p = new PauseTransition(Duration.millis(1000));
-        p.setOnFinished(e -> hideAttack());
-        p.play();
+        if(!GameInfo.skipAtk) {
+            showAttack();
+            PauseTransition p = new PauseTransition(Duration.millis(1000));
+            p.setOnFinished(e -> hideAttack());
+            p.play();
+        }
 
     }
     @FXML

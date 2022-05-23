@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Vector;
 
 public class GameInfo {
+
+    static boolean skipAtk=false;
     static int hexsize = 80;
     static int x = 1400;
     static int y = 900;
