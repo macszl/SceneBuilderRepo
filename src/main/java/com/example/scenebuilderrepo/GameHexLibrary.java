@@ -341,7 +341,7 @@ class Board {
     {
         if(faction == null)
             return;
-
+        mapTiles.get(i).get(j).hex.setImage(new Image(new File("hexagon.png").toURI().toString()));
         mapTiles.get(i).get(j).setOwner(faction.pl);
         mapTiles.get(i).get(j).setHexColorBase(faction.color);
         HQ hq;
@@ -375,6 +375,14 @@ class Board {
                 if( mapTiles.get(k).get(l).hexColorBase.getImage() == faction.color) {
 
                     mapTiles.get(k).get(l).setHexColorBase(null);
+                }
+                if( mapTiles.get(k).get(l).obj != null)
+                {
+                    if(mapTiles.get(k).get(l).obj.faction == faction)
+                    {
+                        mapTiles.get(k).get(l).obj.setImage(null);
+                        mapTiles.get(k).get(l).obj.portriat = null;
+                    }
                 }
             }
         }

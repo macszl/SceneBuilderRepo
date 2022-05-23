@@ -83,6 +83,7 @@ public class GameInfo {
                 playerUnits.remove(i);
                 playerFactions.remove(i);
                 playerAmount--;
+                currentPlayerCounter--;
                 break;
             }
         }
