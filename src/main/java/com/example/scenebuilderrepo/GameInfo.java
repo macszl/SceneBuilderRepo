@@ -3,6 +3,9 @@ package com.example.scenebuilderrepo;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Vector;
 
 public class GameInfo {
     static int hexsize = 80;
@@ -11,15 +14,79 @@ public class GameInfo {
     static int playerAmount;
     static int turn = 0;
     static int currentPlayerCounter;
-    static Faction[] playerFactions = new Faction[3];
+    static ArrayList<Faction> playerFactions = new ArrayList<>();
+    static ArrayList<ArrayList<Unit>> playerUnits = getPlayerUnits();
+    static ArrayList<HQ> playerHQs = new ArrayList<>(3);
 
     public static int getPlayerId(FactionEnum _fac)
     {
-        for (int i = 0; i < playerFactions.length; i++) {
-            if(playerFactions[i].id == _fac)
+        for (int i = 0; i < playerFactions.size(); i++) {
+            if(playerFactions.get(i).id == _fac)
                 return i;
         }
         return -1;
+    }
+
+    public static void regenerateAP()
+    {
+        int size = playerUnits.get(currentPlayerCounter).size();
+        for (int i = 0; i < size; i++)
+        {
+            if(playerUnits.get(currentPlayerCounter).get(i).action_points_cur == 0)
+                playerUnits.get(currentPlayerCounter).get(i).action_points_cur = 1;
+        }
+    }
+
+    public static void addUnit(FactionEnum _fac, Unit unit)
+    {
+        int i = getPlayerId(_fac);
+        playerUnits.get(i).add(unit);
+    }
+
+    public static void addHQ(FactionEnum _fac, HQ hq)
+    {
+        playerHQs.add(hq);
+    }
+
+    public static ArrayList<ArrayList<Unit>> getPlayerUnits()
+    {
+        ArrayList<ArrayList<Unit>> unitList = new ArrayList<>();
+        for(int i = 0; i < 3; i++)
+        {
+            unitList.add(new ArrayList<>());
+        }
+        return unitList;
+    }
+
+    public static void removeUnit(MapTile tile)
+    {
+        int playerID = getPlayerId( tile.obj.faction.id);
+        for(int i = 0; i < playerUnits.get(playerID).size(); i++)
+        {
+            if( playerUnits.get(playerID).get(i).equals(tile.obj))
+            {
+                //usuniecie jednostki
+                playerUnits.get(playerID).remove(i);
+                break;
+            }
+        }
+    }
+
+    public static void removeHQ(MapTile tile)
+    {
+        for(int i = 0; i < playerHQs.size(); i++)
+        {
+            if(playerHQs.get(i).equals(tile.obj))
+            {
+                int playerID = getPlayerId(tile.obj.faction.id);
+                playerHQs.remove(i);
+                playerUnits.remove(i);
+                playerFactions.remove(i);
+                playerAmount--;
+                currentPlayerCounter--;
+                break;
+            }
+        }
     }
 }
 

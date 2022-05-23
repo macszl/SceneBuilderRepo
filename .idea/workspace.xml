@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="turn counter with printing out turns&#10;no other effect">
-      <change afterPath="$PROJECT_DIR$/ARROWGREY.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BUTTONGREY.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Almost done now.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/PlayerSelectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,15 +49,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="jdk.selected.JAVA_MODULE" value="17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -130,6 +122,7 @@
       <workItem from="1653068896211" duration="64000" />
       <workItem from="1653068982219" duration="135000" />
       <workItem from="1653069164051" duration="3432000" />
+      <workItem from="1653293878451" duration="6789000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -229,7 +222,49 @@
       <option name="project" value="LOCAL" />
       <updated>1652547414457</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Units can move only once in their turn now&#10;Extracted the unit creation to the Board class">
+      <created>1653133682263</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653133682263</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Attacking units actually impacts their HP now">
+      <created>1653136037011</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1653136037011</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added unit death">
+      <created>1653137661733</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1653137661733</updated>
+    </task>
+    <task id="LOCAL-00018" summary="hq dies and disappears now after an attack">
+      <created>1653298659388</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1653298659388</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Bugged version - &#10;In theory it should delete the HQ and other units.&#10;In practice, it does random stuff.">
+      <created>1653300398750</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1653300398750</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Almost done now.">
+      <created>1653304660833</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1653304660833</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,15 +302,36 @@
     <MESSAGE value="ekstraktcja metod kont." />
     <MESSAGE value="kontynuacja refactoringu" />
     <MESSAGE value="turn counter with printing out turns&#10;no other effect" />
-    <option name="LAST_COMMIT_MESSAGE" value="turn counter with printing out turns&#10;no other effect" />
+    <MESSAGE value="Units can move only once in their turn now&#10;Extracted the unit creation to the Board class" />
+    <MESSAGE value="Attacking units actually impacts their HP now" />
+    <MESSAGE value="Added unit death" />
+    <MESSAGE value="hq dies and disappears now after an attack" />
+    <MESSAGE value="Bugged version - &#10;In theory it should delete the HQ and other units.&#10;In practice, it does random stuff." />
+    <MESSAGE value="Almost done now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost done now." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
-          <line>383</line>
+          <line>323</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java</url>
+          <line>295</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java</url>
+          <line>374</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
