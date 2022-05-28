@@ -158,7 +158,15 @@ class Unit extends MapObject {
         this.faction = _faction;
         this.portriat = _portriat;
 
+        //TODO
+        //Make the def be more dependent on terrain, such as rivers
+        //TODO
+        //Display the defense, and the terrain defense buff in-game
         def = 3;
+        //TODO
+        //Make the attack be randomized, something like (60 % * ATK; 140% * ATK)
+        //TODO
+        //Display the lower and the upper bound of the Attack
         atk = 18;
         hp_current = 20;
         hp_max = 20;
