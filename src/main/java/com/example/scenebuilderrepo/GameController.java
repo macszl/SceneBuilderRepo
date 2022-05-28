@@ -1,12 +1,14 @@
 package com.example.scenebuilderrepo;
 
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +23,10 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
+
+
+    @FXML
+    private CheckMenuItem skipAtkButton;
     @FXML
     private StackPane coverPane;
     @FXML
@@ -143,9 +149,17 @@ public class GameController implements Initializable {
         Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
         Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
         setBoard(group);
-        factionGold.setText("Ilosc zlota "+5);
     }
 
+    private void setFactionGold(float x)
+    {
+        factionGold.setText("Ilosc zlota "+Math.round(x));
+    }
+    @FXML
+    void animationToggle(ActionEvent event) {
+        if(skipAtkButton.isSelected()) GameInfo.skipAtk=true;
+        else GameInfo.skipAtk=false;
+    }
     private void setContainerLayoutAttributes(int i, int j, MapTile container) {
         if(i %2==0)
             container.setLayoutY((GameInfo.hexsize-5)* j);
@@ -254,6 +268,7 @@ public class GameController implements Initializable {
         {
             hex.setImage(ponden);
         }
+        setFactionGold(5);
     }
 
     @FXML
@@ -306,6 +321,8 @@ public class GameController implements Initializable {
 
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
         GameInfo.regenerateAP();
+        Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+        currentPlayer.gold+=1+(currentPlayer.ownedHexes*0.2);
         if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
         {
             GameInfo.currentPlayerCounter += 1;
@@ -314,6 +331,8 @@ public class GameController implements Initializable {
             GameInfo.turn += 1;
             GameInfo.currentPlayerCounter = 0;
         }
+        currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+        setFactionGold(currentPlayer.gold);
         Board.unClickAll();
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
@@ -322,10 +341,12 @@ public class GameController implements Initializable {
 
     public void doAttack()
     {
-        showAttack();
-        PauseTransition p = new PauseTransition(Duration.millis(1000));
-        p.setOnFinished(e -> hideAttack());
-        p.play();
+        if(!GameInfo.skipAtk) {
+            showAttack();
+            PauseTransition p = new PauseTransition(Duration.millis(1000));
+            p.setOnFinished(e -> hideAttack());
+            p.play();
+        }
 
     }
     @FXML
