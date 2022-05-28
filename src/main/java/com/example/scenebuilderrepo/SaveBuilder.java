@@ -48,12 +48,20 @@ public class SaveBuilder
             Element turn = document.createElement("turn");
             turn.appendChild(document.createTextNode(Integer.toString(GameInfo.turn)));
             gameInfo.appendChild(turn);
-
             //current player
             Element currentPlayer = document.createElement("currentPlayer");
             currentPlayer.appendChild(document.createTextNode(Integer.toString(GameInfo.currentPlayerCounter)));
             gameInfo.appendChild(currentPlayer);
 
+            Element factionList = document.createElement("factionList");
+            gameInfo.appendChild(factionList);
+
+
+            Element unitList = document.createElement("unitList");
+            gameInfo.appendChild(unitList);
+
+            Element HQlist = document.createElement("HQList");
+            gameInfo.appendChild(HQlist);
 
 
             //board information
