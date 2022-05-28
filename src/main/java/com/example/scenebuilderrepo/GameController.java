@@ -153,9 +153,10 @@ public class GameController implements Initializable {
         setBoard(group);
     }
 
-    private void setFactionGold(float x)
+    @FXML
+    public void setFactionGold(Player x)
     {
-        factionGold.setText("Ilosc zlota "+Math.round(x));
+        factionGold.setText("Ilosc zlota "+Math.round(x.gold)+"(+"+x.income+")");
     }
     @FXML
     void animationToggle(ActionEvent event) {
@@ -270,7 +271,7 @@ public class GameController implements Initializable {
         {
             hex.setImage(ponden);
         }
-        setFactionGold(5);
+        //setFactionGold();
     }
 
     @FXML
@@ -324,9 +325,9 @@ public class GameController implements Initializable {
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
         GameInfo.regenerateAP();
         Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
-        //TODO
-        //Need to display that value in-game
-        currentPlayer.gold+=1+(currentPlayer.ownedHexes*0.2);
+        currentPlayer.setIncome();
+        currentPlayer.gold+=currentPlayer.income;
+
         if( GameInfo.currentPlayerCounter < GameInfo.playerAmount - 1)
         {
             GameInfo.currentPlayerCounter += 1;
@@ -336,7 +337,7 @@ public class GameController implements Initializable {
             GameInfo.currentPlayerCounter = 0;
         }
         currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
-        setFactionGold(currentPlayer.gold);
+        setFactionGold(currentPlayer);
         Board.unClickAll();
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
