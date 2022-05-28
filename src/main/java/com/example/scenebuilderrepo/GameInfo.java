@@ -19,7 +19,6 @@ public class GameInfo {
     static ArrayList<Faction> playerFactions = new ArrayList<>();
     static ArrayList<ArrayList<Unit>> playerUnits = getPlayerUnits();
     static ArrayList<HQ> playerHQs = new ArrayList<>(3);
-
     public static int getPlayerId(FactionEnum _fac)
     {
         for (int i = 0; i < playerFactions.size(); i++) {

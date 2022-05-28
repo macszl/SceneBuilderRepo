@@ -147,9 +147,7 @@ public class GameController implements Initializable {
         Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2) - 1, 0);
         Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2), 1);
 
-//        Board.addUnit(crystalmenFaction,  1, 10);
-//        Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
-//        Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
+
         setBoard(group);
     }
 
@@ -341,7 +339,9 @@ public class GameController implements Initializable {
         Board.unClickAll();
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
-
+        //make end turn write and save to disk
+        SaveBuilder saveBuilder = new SaveBuilder("save.xml");
+        saveBuilder.saveGameToXML();
     }
 
     public void recruitUnit()
@@ -360,7 +360,7 @@ public class GameController implements Initializable {
             Faction currentFaction = GameInfo.playerFactions.get(idx);
             Board.addUnit(currentFaction, x, y);
             currentPlayer.gold -= 5;
-            setFactionGold(currentPlayer.gold);
+            setFactionGold(currentPlayer);
         }
     }
     public void doAttack()
