@@ -80,12 +80,23 @@ public class GameInfo {
         {
             if(playerHQs.get(i).equals(tile.obj))
             {
-                int playerID = getPlayerId(tile.obj.faction.id);
+                int factionID = getPlayerId(tile.obj.faction.id);
                 playerHQs.remove(i);
-                playerUnits.remove(i);
-                playerFactions.remove(i);
+                playerUnits.remove(factionID);
+                //
+                playerFactions.remove(factionID);
                 playerAmount--;
-                currentPlayerCounter--;
+                if(playerAmount == 1)
+                {
+                    //TODO
+                    //implementacja ekranu z wygrana
+
+                    //wygrana!
+                    //terminujemy gre i sie nie przejmujemy reszta.
+                }
+
+                if(currentPlayerCounter == playerAmount)
+                    currentPlayerCounter--;
                 break;
             }
         }
