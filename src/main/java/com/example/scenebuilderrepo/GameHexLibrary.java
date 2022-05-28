@@ -51,13 +51,20 @@ class MapTile extends StackPane {
 
                     moveObjIfDestSelected();
                     Board.unClickAll();
+                    //owner of the tile == current player
+                    if( owner != null && owner.faction.id ==
+                        GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).id)
+                    {
+                        setHexRingToClicked();
+                        Board.selectTile(hex.x, hex.y);
+                        isClicked = true;
+                    }
                     if (obj != null) {
 
                         if(GameInfo.getPlayerId(owner.faction.id) == GameInfo.currentPlayerCounter && obj.action_points_cur != 0)
-                            Board.highlightNearby(hex.x, hex.y);
-                        setHexRingToClicked();
+                            Board.selectTileAndHighlightNearby(hex.x, hex.y);
                         isClicked = true;
-
+                        setHexRingToClicked();
                         hex.controller.setUnitPortraitAndDesc(obj);
                     }
                 }
@@ -220,8 +227,12 @@ class Board {
         selectedTile = null;
     }
 
-    static void highlightNearby(int x, int y) {
+    static void selectTile(int x, int y)
+    {
         selectedTile = mapTiles.get(x).get(y);
+    }
+    static void selectTileAndHighlightNearby(int x, int y) {
+        selectTile(x, y);
         // The lookup tables are in a {x,y} format
         int[][] ODD_COLUMN_LOOKUP_TABLE = {{1, 1}, {1, 0}, {0, -1}, {-1, 0}, {-1, 1}, {0, 1}};
         int[][] EVEN_COLUMN_LOOKUP_TABLE = {{1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {0, 1}};
@@ -372,9 +383,6 @@ class Board {
 
     static void removeHQ(int i, int j)
     {
-        //TODO
-        //Do implementacji wyrzucenie gracza z gry i kolejki jezeli zostanie zniszczone jego HQ
-        FactionEnum factionEnum = mapTiles.get(i).get(j).obj.faction.id;
         Faction faction = mapTiles.get(i).get(j).obj.faction;
         for(int k = 0; k < mapTiles.size(); k++)
         {

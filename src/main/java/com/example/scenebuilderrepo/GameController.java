@@ -343,6 +343,25 @@ public class GameController implements Initializable {
 
     }
 
+    public void recruitUnit()
+    {
+        Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+
+        if( Board.selectedTile != null &&
+            Board.selectedTile.obj == null &&
+            currentPlayer.gold >= 5)
+
+        {
+            int x = Board.selectedTile.hex.x;
+            int y = Board.selectedTile.hex.y;
+
+            int idx = GameInfo.currentPlayerCounter;
+            Faction currentFaction = GameInfo.playerFactions.get(idx);
+            Board.addUnit(currentFaction, x, y);
+            currentPlayer.gold -= 5;
+            setFactionGold(currentPlayer.gold);
+        }
+    }
     public void doAttack()
     {
         if(!GameInfo.skipAtk) {

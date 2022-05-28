@@ -127,7 +127,7 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button fx:id="recruitmentButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="Rekrutacja" GridPane.rowIndex="1" />
+                                          <Button fx:id="recruitmentButton" mnemonicParsing="false" onAction="#recruitUnit" prefHeight="24.0" prefWidth="200.0" text="Rekrutacja" GridPane.rowIndex="1" />
                                           <Label text="Akcje">
                                              <font>
                                                 <Font size="15.0" />
