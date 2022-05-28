@@ -139,15 +139,17 @@ public class GameController implements Initializable {
         Board.addUnit(skymenFaction, 1, 9);
         Board.addUnit(skymenFaction, 1, 10);
 
-        Board.addUnit(crystalmenFaction, 2, 2);
-        Board.addUnit(crystalmenFaction, 2, 3);
-        Board.addUnit(crystalmenFaction, 2, 4);
-        Board.addUnit(crystalmenFaction, 2, 5);
-        Board.addUnit(crystalmenFaction, 2, 6);
-        Board.addUnit(crystalmenFaction, 2, 7);
+        Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
+        Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
+        Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
 
-        Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
-        Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
+        Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
+        Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2) - 1, 0);
+        Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2), 1);
+
+//        Board.addUnit(crystalmenFaction,  1, 10);
+//        Board.addUnit(skymenFaction,(MapConstants.MAP_LENGTH / 2) + 1, 0);
+//        Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
         setBoard(group);
     }
 
@@ -322,8 +324,10 @@ public class GameController implements Initializable {
         System.out.println("Before click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
         GameInfo.regenerateAP();
         Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+        //TODO
+        //Need to display that value in-game
         currentPlayer.gold+=1+(currentPlayer.ownedHexes*0.2);
-        if( GameInfo.currentPlayerCounter != GameInfo.playerAmount - 1)
+        if( GameInfo.currentPlayerCounter < GameInfo.playerAmount - 1)
         {
             GameInfo.currentPlayerCounter += 1;
         }
@@ -339,6 +343,25 @@ public class GameController implements Initializable {
 
     }
 
+    public void recruitUnit()
+    {
+        Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
+
+        if( Board.selectedTile != null &&
+            Board.selectedTile.obj == null &&
+            currentPlayer.gold >= 5)
+
+        {
+            int x = Board.selectedTile.hex.x;
+            int y = Board.selectedTile.hex.y;
+
+            int idx = GameInfo.currentPlayerCounter;
+            Faction currentFaction = GameInfo.playerFactions.get(idx);
+            Board.addUnit(currentFaction, x, y);
+            currentPlayer.gold -= 5;
+            setFactionGold(currentPlayer.gold);
+        }
+    }
     public void doAttack()
     {
         if(!GameInfo.skipAtk) {
