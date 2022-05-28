@@ -183,7 +183,7 @@ public class RaceSelectController implements Initializable {
         imgs.add(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
         imgs.add(new Image(new File("FOREST_HQ.png").toURI().toString()));
         imgs.add(new Image(new File("FLYING_HQ.png").toURI().toString()));
-        GameInfo.playerFactions.add( crystal);
+        GameInfo.playerFactions.add(crystal);
         GameInfo.playerFactions.add(tree);
         GameInfo.playerFactions.add(sky);
         leftArrowImage1.setImage(greyarrowImage);
@@ -193,5 +193,12 @@ public class RaceSelectController implements Initializable {
         rightArrowImage2.setImage(greyarrowImage);
         rightArrowImage3.setImage(greyarrowImage);
         backgroundImage.setImage(bg);
+        br3.setDisable(true);
+        bl3.setDisable(true);
+        br2.setDisable(true);
+        bl2.setDisable(true);
+        br1.setDisable(true);
+        bl1.setDisable(true);
+
     }
 }

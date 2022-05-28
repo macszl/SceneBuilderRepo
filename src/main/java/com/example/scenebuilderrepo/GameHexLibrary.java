@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Vector;
 
 class MapTile extends StackPane {
@@ -106,9 +107,15 @@ class MapTile extends StackPane {
     }
 
     void setOwner(Player _owner) {
-        if(owner!=null) owner.ownedHexes--;
+        if(owner!=null)
+        {
+            owner.ownedHexes--;
+            owner.setIncome();
+        }
         owner = _owner;
         owner.ownedHexes++;
+        owner.setIncome();
+        hex.controller.setFactionGold(owner);
         setHexColorBase(owner.faction.color);
     }
 
@@ -187,12 +194,18 @@ class HQ extends MapObject {
 
 class Player {
     public int ownedHexes=0;
+    float income = 1;
     float gold = 5;
     Faction faction;
 
 
     public Player(Faction _Faction) {
         faction = _Faction;
+    }
+
+    void setIncome()
+    {
+        income= (float) (1+(ownedHexes*0.2));
     }
 }
 
@@ -264,10 +277,13 @@ class Board {
 
     static void battleCalc(MapTile destinationTile)
     {
+        Random rand = new Random();
+        int max=2;
+        int min=-2;
         int attackerHPbefore = selectedTile.obj.hp_current;
-        int attackerHPafter = attackerHPbefore - destinationTile.obj.def;
+        int attackerHPafter = attackerHPbefore - destinationTile.obj.def+rand.nextInt((max - min) + 1) + min;
         int defenderHPbefore = destinationTile.obj.hp_current;
-        int defenderHPafter = defenderHPbefore - selectedTile.obj.atk;
+        int defenderHPafter = defenderHPbefore - selectedTile.obj.atk+rand.nextInt((max - min) + 1) + min;
 
         if(attackerHPafter <= 0)
         {
