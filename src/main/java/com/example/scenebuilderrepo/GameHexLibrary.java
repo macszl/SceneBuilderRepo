@@ -153,6 +153,7 @@ class Hexagon extends ImageView {
 class MapObject extends ImageView {
     Image portriat;
     Faction faction;
+    MapTile parent;
 
     int def;
     int atk;
@@ -418,6 +419,20 @@ class Board {
 
     }
 
+    static MapTile findMapTile(MapObject object)
+    {
+        for(int i = 0; i < mapTiles.size(); i++)
+        {
+            for(int j = 0; j < mapTiles.get(i).size(); j++)
+            {
+                if( object == mapTiles.get(i).get(j).obj)
+                {
+                    return mapTiles.get(i).get(j);
+                }
+            }
+        }
+        return null;
+    }
 }
 
 class Faction {
