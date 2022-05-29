@@ -4,11 +4,10 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Vector;
 
 public class GameInfo {
 
+    public static boolean gameLoadedFromXML = false;
     static boolean skipAtk=false;
     static int hexsize = 80;
     static int x = 1400;
