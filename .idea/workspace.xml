@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Almost done now.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/game.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Almost done now." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,7 +127,7 @@
       <workItem from="1653069164051" duration="3432000" />
       <workItem from="1653293878451" duration="6789000" />
       <workItem from="1653736644494" duration="2204000" />
-      <workItem from="1653829376398" duration="3596000" />
+      <workItem from="1653829376398" duration="3986000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>

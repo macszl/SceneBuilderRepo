@@ -389,7 +389,7 @@ class Board {
         }
         else
         {
-            hq = new HQ(faction,new Image(new File("forest_meteor.png").toURI().toString()));
+            hq = new HQ(faction,new Image(new File("tree_meteor.png").toURI().toString()));
         }
         hq.setFitWidth(GameInfo.hexsize);
         hq.setFitHeight(GameInfo.hexsize);
