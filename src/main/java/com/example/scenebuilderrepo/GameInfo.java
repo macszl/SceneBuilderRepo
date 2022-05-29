@@ -4,8 +4,6 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Vector;
 
 public class GameInfo {
 
@@ -105,9 +103,9 @@ public class GameInfo {
 
 enum FactionEnum {
     NO_FACTION,
-    FORESTMEN,
-    CRYSTALMEN,
-    SKYMEN
+    Drzewoludzie,
+    Kryształoludzie,
+    Ptakoludzie
 }
 
 class HexImages {
