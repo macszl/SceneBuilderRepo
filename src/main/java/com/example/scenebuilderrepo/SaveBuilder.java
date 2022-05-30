@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -103,11 +104,6 @@ public class SaveBuilder
                 y.appendChild(document.createTextNode(Integer.toString(y_loc)));
                 HQ.appendChild(y);
 
-                Element factionEnum = document.createElement("factionEnum");
-                factionEnum.appendChild(document.createTextNode(GameInfo.playerFactions.get(i).id.name()));
-                HQ.appendChild(factionEnum);
-
-
             }
 
             //board information
@@ -143,6 +139,95 @@ public class SaveBuilder
                     }
                     hex.appendChild(object);
 
+                    Element actionPointsMax = document.createElement("actionPointsMax");
+                    if( tile.obj != null)
+                    {
+                        actionPointsMax.appendChild(document.createTextNode(Integer.toString(tile.obj.action_points_max)));
+                    }
+                    else
+                    {
+                        actionPointsMax.appendChild(document.createTextNode(Integer.toString(0)));
+                    }
+                    hex.appendChild(actionPointsMax);
+
+                    Element actionPointsCurr = document.createElement("actionPointsCurr");
+                    if( tile.obj != null)
+                    {
+                        actionPointsCurr.appendChild(document.createTextNode(Integer.toString(tile.obj.action_points_cur)));
+                    }
+                    else
+                    {
+                        actionPointsCurr.appendChild(document.createTextNode(Integer.toString(0)));
+                    }
+                    hex.appendChild(actionPointsCurr);
+
+                    Element hpCurrent = document.createElement("hpCurrent");
+                    if( tile.obj != null)
+                    {
+                        hpCurrent.appendChild(document.createTextNode(Integer.toString(tile.obj.hp_current)));
+                    }
+                    else
+                    {
+                        hpCurrent.appendChild(document.createTextNode(Integer.toString(0)));
+                    }
+                    hex.appendChild(hpCurrent);
+
+                    Element hpMax = document.createElement("hpMax");
+                    if( tile.obj != null)
+                    {
+                        hpMax.appendChild(document.createTextNode(Integer.toString(tile.obj.hp_max)));
+                    }
+                    else
+                    {
+                        hpMax.appendChild(document.createTextNode(Integer.toString(0)));
+                    }
+                    hex.appendChild(hpMax);
+
+                    Element defense = document.createElement("defense");
+                    if( tile.obj != null)
+                    {
+                        defense.appendChild(document.createTextNode(Integer.toString(tile.obj.def)));
+                    }
+                    else
+                    {
+                        defense.appendChild(document.createTextNode(Integer.toString(0)));
+                    }
+                    hex.appendChild(defense);
+
+                    Element attack = document.createElement("attack");
+                    if( tile.obj != null)
+                    {
+                        attack.appendChild(document.createTextNode(Integer.toString(tile.obj.atk)));
+                    }
+                    else
+                    {
+                        attack.appendChild(document.createTextNode(Integer.toString(0)));
+                    }
+                    hex.appendChild(attack);
+
+                    Element tileOwner = document.createElement("tileOwner");
+                    if( tile.getOwner() == null)
+                    {
+                        tileOwner.appendChild(document.createTextNode("null"));
+                    }
+                    else
+                    {
+                        tileOwner.appendChild(document.createTextNode(tile.getOwner().faction.id.name()));
+                    }
+                    hex.appendChild(tileOwner);
+
+                    Element imagefilename = document.createElement("imagefilename");
+                    if( tile.hex.getImage() == null)
+                    {
+                        imagefilename.appendChild(document.createTextNode("hexagon.png"));
+                    }
+                    else
+                    {
+                        String filename = parseFilename(tile.hex.getImage().getUrl());
+                        imagefilename.appendChild(document.createTextNode(filename));
+                    }
+                    hex.appendChild(imagefilename);
+
 //                    Element owner = document.createElement("owner");
 
                 }
@@ -150,6 +235,9 @@ public class SaveBuilder
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
             DOMSource domSource = new DOMSource(document);
             StreamResult streamResult = new StreamResult(new File("save.xml"));
 
@@ -159,5 +247,20 @@ public class SaveBuilder
         {
             e.printStackTrace();
         }
+    }
+
+    public static String parseFilename( String filename)
+    {
+        int beginning = 0;
+        for(int i = filename.length() - 1;;i--)
+        {
+            if(filename.charAt(i) == '/')
+            {
+                beginning = i + 1;
+                break;
+            }
+        }
+
+        return filename.substring(beginning);
     }
 }

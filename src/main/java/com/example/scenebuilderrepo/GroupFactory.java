@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GroupFactory
@@ -32,6 +33,9 @@ public class GroupFactory
     HexImages rings = new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
     HexImages bases = new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
 
+    Faction neutral=new Faction(FactionEnum.NO_FACTION,Neutral);
+    Player None= new Player(neutral);
+
     public GroupFactory() {}
 
     public Group getGroup(GameController controller)
@@ -40,12 +44,37 @@ public class GroupFactory
         Board board = new Board();
         if(GameInfo.gameLoadedFromXML)
         {
+            SaveReader reader = new SaveReader();
+            ArrayList<FactionEnum> loadedFactionList = reader.getFactionList();
+            ArrayList<HexStruct> loadedHexStructList = reader.getHexList();
+
+            Image Purple = new Image(new File("hexagon_purple.png").toURI().toString());
+            Image Brown = new Image(new File("hexagon_brown.png").toURI().toString());
+            Image Blue = new Image(new File("hexagon_blue.png").toURI().toString());
+
+            GameInfo.playerFactions.clear();
+            for(int i = 0; i < loadedFactionList.size(); i++)
+            {
+                Faction faction;
+                if(loadedFactionList.get(i) == FactionEnum.SKYMEN)
+                {
+                    faction = new Faction(loadedFactionList.get(i), Blue);
+                }
+                else if (loadedFactionList.get(i) == FactionEnum.CRYSTALMEN)
+                {
+                    faction = new Faction(loadedFactionList.get(i), Purple);
+                }
+                else {
+                    faction = new Faction(loadedFactionList.get(i), Brown);
+                }
+                GameInfo.playerFactions.add(faction);
+            }
+
+
+
             return group;
         }
         else {
-
-            Faction neutral=new Faction(FactionEnum.NO_FACTION,Neutral);
-            Player None= new Player(neutral);
 
             setPlayersGameInfo();
 
