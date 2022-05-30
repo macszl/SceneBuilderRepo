@@ -166,9 +166,9 @@ class Unit extends MapObject {
 
 
     public Unit(Faction _faction, Image _portriat) {
-        if (_faction.id == FactionEnum.CRYSTALMEN) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
-        if (_faction.id == FactionEnum.FORESTMEN) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));
-        if (_faction.id == FactionEnum.SKYMEN) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
+        if (_faction.id == FactionEnum.Kryształoludzie) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
+        if (_faction.id == FactionEnum.Drzewoludzie) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));
+        if (_faction.id == FactionEnum.Ptakoludzie) setImage(new Image(new File("FLYING_UNIT.png").toURI().toString()));
         this.faction = _faction;
         this.portriat = _portriat;
 
@@ -192,9 +192,9 @@ class Unit extends MapObject {
 class HQ extends MapObject {
 
     public HQ(Faction _faction, Image _portriat) {
-        if (_faction.id == FactionEnum.CRYSTALMEN) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
-        if (_faction.id == FactionEnum.FORESTMEN) setImage(new Image(new File("FOREST_HQ.png").toURI().toString()));
-        if (_faction.id == FactionEnum.SKYMEN) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
+        if (_faction.id == FactionEnum.Kryształoludzie) setImage(new Image(new File("CRYSTAL_HQ.png").toURI().toString()));
+        if (_faction.id == FactionEnum.Drzewoludzie) setImage(new Image(new File("FOREST_HQ.png").toURI().toString()));
+        if (_faction.id == FactionEnum.Ptakoludzie) setImage(new Image(new File("FLYING_HQ.png").toURI().toString()));
         this.faction = _faction;
         this.portriat = _portriat;
 
@@ -354,11 +354,11 @@ class Board {
         mapTiles.get(i).get(j).setOwner(faction.pl);
         mapTiles.get(i).get(j).setHexColorBase(faction.color);
         Unit unit;
-        if( faction.id == FactionEnum.SKYMEN)
+        if( faction.id == FactionEnum.Ptakoludzie)
         {
             unit = new Unit(faction,new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()));
         }
-        else if(faction.id == FactionEnum.CRYSTALMEN)
+        else if(faction.id == FactionEnum.Kryształoludzie)
         {
             unit =  new Unit(faction,new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()));
         }
@@ -380,16 +380,16 @@ class Board {
         mapTiles.get(i).get(j).setOwner(faction.pl);
         mapTiles.get(i).get(j).setHexColorBase(faction.color);
         HQ hq;
-        if( faction.id == FactionEnum.SKYMEN)
+        if( faction.id == FactionEnum.Ptakoludzie)
         {
             hq = new HQ(faction,new Image(new File("flying_meteor.png").toURI().toString()));
         }
-        else if(faction.id == FactionEnum.CRYSTALMEN) {
+        else if(faction.id == FactionEnum.Kryształoludzie) {
             hq = new HQ(faction,new Image(new File("crystal_meteor.png").toURI().toString()));
         }
         else
         {
-            hq = new HQ(faction,new Image(new File("forest_meteor.png").toURI().toString()));
+            hq = new HQ(faction,new Image(new File("tree_meteor.png").toURI().toString()));
         }
         hq.setFitWidth(GameInfo.hexsize);
         hq.setFitHeight(GameInfo.hexsize);
