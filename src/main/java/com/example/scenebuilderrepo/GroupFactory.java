@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public
@@ -38,6 +39,7 @@ class GroupFactory
     Image riverfl_right = new Image(new File("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png").toURI()
                                             .toString());
 
+    HashMap<String, Image> imageHashMap;
     Faction crystalmenFaction = null;
     Faction treemenFaction    = null;
     Faction skymenFaction     = null;
@@ -53,6 +55,18 @@ class GroupFactory
     public
     GroupFactory()
     {
+        imageHashMap.put("BIGCITY_HEX.png", city);
+        imageHashMap.put("VILLAGE_HEX.png", village);
+        imageHashMap.put("FOREST_HEX.png", forest);
+        imageHashMap.put("FOREST2_HEX.png", forest2);
+        imageHashMap.put("MOUNTAIN_HEX.png", mountain);
+        imageHashMap.put("HILLS_HEX.png", hills);
+        imageHashMap.put("DESERT_HEX.png",desert);
+        imageHashMap.put("RADIOACTIVE_POND_HEX_WIATRACZEK.png", desertPond);
+        imageHashMap.put("POND_RIVEREND_UP_HEX.png", pondst);
+        imageHashMap.put("POND_RIVEREND_DOWN_HEX.png", ponden);
+        imageHashMap.put("RIVER_WITHFLOW_HEX.png", riverfl);
+        imageHashMap.put("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png", riverfl_right);
     }
 
     public
