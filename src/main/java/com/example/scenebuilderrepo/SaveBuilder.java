@@ -14,19 +14,39 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class SaveBuilder
+public
+class SaveBuilder
 {
     ArrayList<Vector<MapTile>> mapTiles = Board.getAllMapTiles();
-    String savenamePath;
+    String                     savenamePath;
 
-    public SaveBuilder(String _savenamePath)
+    public
+    SaveBuilder(String _savenamePath)
     {
         this.savenamePath = _savenamePath;
     }
 
-    public void saveGameToXML()
+    public static
+    String parseFilename(String filename)
     {
-        try {
+        int beginning = 0;
+        for (int i = filename.length() - 1; ; i--)
+        {
+            if ( filename.charAt(i) == '/' )
+            {
+                beginning = i + 1;
+                break;
+            }
+        }
+
+        return filename.substring(beginning);
+    }
+
+    public
+    void saveGameToXML()
+    {
+        try
+        {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -57,7 +77,8 @@ public class SaveBuilder
             Element factionList = document.createElement("factionList");
             gameInfo.appendChild(factionList);
 
-            for(int i = 0; i < GameInfo.playerFactions.size(); i++) {
+            for (int i = 0; i < GameInfo.playerFactions.size(); i++)
+            {
                 Element factionEnum = document.createElement("factionEnum");
                 factionEnum.appendChild(document.createTextNode(GameInfo.playerFactions.get(i).id.name()));
                 factionList.appendChild(factionEnum);
@@ -65,17 +86,22 @@ public class SaveBuilder
             Element unitList = document.createElement("unitList");
             gameInfo.appendChild(unitList);
 
-            for(int i = 0; i < GameInfo.playerUnits.size(); i++) {
+            for (int i = 0; i < GameInfo.playerUnits.size(); i++)
+            {
                 Element factionNumber = document.createElement(GameInfo.playerFactions.get(i).id.name());
                 unitList.appendChild(factionNumber);
-                for(int j = 0; j < GameInfo.playerUnits.get(i).size(); j++)
+                for (int j = 0;
+                     j < GameInfo.playerUnits.get(i)
+                             .size();
+                     j++)
                 {
                     Element unit = document.createElement("Unit");
                     factionNumber.appendChild(unit);
 
-                    MapTile unitTile = Board.findMapTile(GameInfo.playerUnits.get(i).get(j));
-                    int x_loc = unitTile.hex.x;
-                    int y_loc = unitTile.hex.y;
+                    MapTile unitTile = Board.findMapTile(GameInfo.playerUnits.get(i)
+                                                                 .get(j));
+                    int     x_loc    = unitTile.hex.x;
+                    int     y_loc    = unitTile.hex.y;
 
                     Element x = document.createElement("x");
                     x.appendChild(document.createTextNode(Integer.toString(x_loc)));
@@ -89,13 +115,14 @@ public class SaveBuilder
             Element HQlist = document.createElement("HQList");
             gameInfo.appendChild(HQlist);
 
-            for(int i = 0; i < GameInfo.playerFactions.size(); i++) {
+            for (int i = 0; i < GameInfo.playerFactions.size(); i++)
+            {
                 Element HQ = document.createElement("HQ");
                 HQlist.appendChild(HQ);
 
                 MapTile HQTile = Board.findMapTile(GameInfo.playerHQs.get(i));
-                int x_loc = HQTile.hex.x;
-                int y_loc = HQTile.hex.y;
+                int     x_loc  = HQTile.hex.x;
+                int     y_loc  = HQTile.hex.y;
 
                 Element x = document.createElement("x");
                 x.appendChild(document.createTextNode(Integer.toString(x_loc)));
@@ -110,9 +137,15 @@ public class SaveBuilder
             Element board = document.createElement("board");
             root.appendChild(board);
 
-            for (int i = 0; i < mapTiles.size(); i++) {
-                for (int j = 0; j < mapTiles.get(i).size(); j++) {
-                    MapTile tile = mapTiles.get(i).get(j);
+            for (int i = 0; i < mapTiles.size(); i++)
+            {
+                for (int j = 0;
+                     j < mapTiles.get(i)
+                             .size();
+                     j++)
+                {
+                    MapTile tile = mapTiles.get(i)
+                            .get(j);
 
                     Element hex = document.createElement("hex");
                     board.appendChild(hex);
@@ -125,11 +158,11 @@ public class SaveBuilder
                     hex.appendChild(y);
 
                     Element object = document.createElement("obj");
-                    if(tile.obj == null)
+                    if ( tile.obj == null )
                     {
                         object.appendChild(document.createTextNode("null"));
                     }
-                    else if (tile.obj.getClass() == HQ.class)
+                    else if ( tile.obj.getClass() == HQ.class )
                     {
                         object.appendChild(document.createTextNode("HQ"));
                     }
@@ -140,7 +173,7 @@ public class SaveBuilder
                     hex.appendChild(object);
 
                     Element actionPointsMax = document.createElement("actionPointsMax");
-                    if( tile.obj != null)
+                    if ( tile.obj != null )
                     {
                         actionPointsMax.appendChild(document.createTextNode(Integer.toString(tile.obj.action_points_max)));
                     }
@@ -151,7 +184,7 @@ public class SaveBuilder
                     hex.appendChild(actionPointsMax);
 
                     Element actionPointsCurr = document.createElement("actionPointsCurr");
-                    if( tile.obj != null)
+                    if ( tile.obj != null )
                     {
                         actionPointsCurr.appendChild(document.createTextNode(Integer.toString(tile.obj.action_points_cur)));
                     }
@@ -162,7 +195,7 @@ public class SaveBuilder
                     hex.appendChild(actionPointsCurr);
 
                     Element hpCurrent = document.createElement("hpCurrent");
-                    if( tile.obj != null)
+                    if ( tile.obj != null )
                     {
                         hpCurrent.appendChild(document.createTextNode(Integer.toString(tile.obj.hp_current)));
                     }
@@ -173,7 +206,7 @@ public class SaveBuilder
                     hex.appendChild(hpCurrent);
 
                     Element hpMax = document.createElement("hpMax");
-                    if( tile.obj != null)
+                    if ( tile.obj != null )
                     {
                         hpMax.appendChild(document.createTextNode(Integer.toString(tile.obj.hp_max)));
                     }
@@ -184,7 +217,7 @@ public class SaveBuilder
                     hex.appendChild(hpMax);
 
                     Element defense = document.createElement("defense");
-                    if( tile.obj != null)
+                    if ( tile.obj != null )
                     {
                         defense.appendChild(document.createTextNode(Integer.toString(tile.obj.def)));
                     }
@@ -195,7 +228,7 @@ public class SaveBuilder
                     hex.appendChild(defense);
 
                     Element attack = document.createElement("attack");
-                    if( tile.obj != null)
+                    if ( tile.obj != null )
                     {
                         attack.appendChild(document.createTextNode(Integer.toString(tile.obj.atk)));
                     }
@@ -206,7 +239,7 @@ public class SaveBuilder
                     hex.appendChild(attack);
 
                     Element tileOwner = document.createElement("tileOwner");
-                    if( tile.getOwner() == null)
+                    if ( tile.getOwner() == null )
                     {
                         tileOwner.appendChild(document.createTextNode("null"));
                     }
@@ -217,13 +250,14 @@ public class SaveBuilder
                     hex.appendChild(tileOwner);
 
                     Element imagefilename = document.createElement("imagefilename");
-                    if( tile.hex.getImage() == null)
+                    if ( tile.hex.getImage() == null )
                     {
                         imagefilename.appendChild(document.createTextNode("hexagon.png"));
                     }
                     else
                     {
-                        String filename = parseFilename(tile.hex.getImage().getUrl());
+                        String filename = parseFilename(tile.hex.getImage()
+                                                                .getUrl());
                         imagefilename.appendChild(document.createTextNode(filename));
                     }
                     hex.appendChild(imagefilename);
@@ -234,33 +268,17 @@ public class SaveBuilder
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
+            Transformer        transformer        = transformerFactory.newTransformer();
 
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
-            DOMSource domSource = new DOMSource(document);
+            DOMSource    domSource    = new DOMSource(document);
             StreamResult streamResult = new StreamResult(new File("save.xml"));
 
             transformer.transform(domSource, streamResult);
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
-    }
-
-    public static String parseFilename( String filename)
-    {
-        int beginning = 0;
-        for(int i = filename.length() - 1;;i--)
-        {
-            if(filename.charAt(i) == '/')
-            {
-                beginning = i + 1;
-                break;
-            }
-        }
-
-        return filename.substring(beginning);
     }
 }
