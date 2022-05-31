@@ -20,95 +20,117 @@ public
 class MenuController implements Initializable
 {
 
-    Image buttonImage      = new Image(new File("BUTTON.png").toURI()
-                                               .toString());
-    Image clickbuttonImage = new Image(new File("BUTTONCLICK.png").toURI()
-                                               .toString());
-    Image logo             = new Image(new File("LOGO.png").toURI()
-                                               .toString());
-    Image bg               = new Image(new File("mainbg.png").toURI()
-                                               .toString());
-    @FXML
-    private Button exitButton;
-    @FXML
-    private Button optionsButton;
-    @FXML
-    private Button loadGameButton;
-    @FXML
-    private Button newGameButton;
-    @FXML
-    private ImageView newGameButtonImage;
-    @FXML
-    private ImageView loadGameButtonImage;
-    @FXML
-    private ImageView optionsButtonImage;
-    @FXML
-    private ImageView exitButtonImage;
-    @FXML
-    private ImageView logoImage;
-    @FXML
-    private ImageView menuBackgroundImage;
-    private Scene optionsScene;
-    private Stage stage;
+	Image buttonImage = new Image(new File("BUTTON.png")
+										  .toURI()
+										  .toString());
+	Image clickbuttonImage = new Image(new File("BUTTONCLICK.png")
+											   .toURI()
+											   .toString());
+	Image logo = new Image(new File("LOGO.png")
+								   .toURI()
+								   .toString());
+	Image bg = new Image(new File("mainbg.png")
+								 .toURI()
+								 .toString());
+	@FXML
+	private Button exitButton;
+	@FXML
+	private Button optionsButton;
+	@FXML
+	private Button loadGameButton;
+	@FXML
+	private Button newGameButton;
+	@FXML
+	private ImageView newGameButtonImage;
+	@FXML
+	private ImageView loadGameButtonImage;
+	@FXML
+	private ImageView optionsButtonImage;
+	@FXML
+	private ImageView exitButtonImage;
+	@FXML
+	private ImageView logoImage;
+	@FXML
+	private ImageView menuBackgroundImage;
+	private Scene optionsScene;
+	private Stage stage;
 
-    Stage getStage()
-    {
-        return stage;
-    }
+	Stage getStage ()
+	{
+		return stage;
+	}
 
-    public
-    void exitScene()
-    {
-        stage = (Stage) newGameButton.getScene()
-                .getWindow();
-        stage.close();
-    }
+	public
+	void exitScene ()
+	{
+		stage = (Stage) newGameButton
+				.getScene()
+				.getWindow();
+		stage.close();
+	}
 
-    @FXML
-    void switchToOptions(ActionEvent event) throws IOException
-    {
-        optionsButtonImage.setImage(clickbuttonImage);
-        stage = (Stage) ((Node) event.getSource()).getScene()
-                .getWindow();
-        if ( optionsScene == null )
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("options.fxml"));
-            optionsScene = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
-        }
-        stage.setScene(optionsScene);
-        stage.show();
-    }
+	@FXML
+	void switchToOptions (ActionEvent event) throws IOException
+	{
+		optionsButtonImage.setImage(clickbuttonImage);
+		stage = (Stage) ((Node) event.getSource())
+				.getScene()
+				.getWindow();
+		if ( optionsScene == null )
+		{
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("options.fxml"));
+			optionsScene = new Scene(fxmlLoader.load(),
+									 GameInfo.x,
+									 GameInfo.y);
+		}
+		stage.setScene(optionsScene);
+		stage.show();
+	}
 
 
-    public
-    void switchToLoadedGame(ActionEvent event)
-    {
-        loadGameButtonImage.setImage(clickbuttonImage);
-        stage = (Stage) ((Node) event.getSource()).getScene()
-                .getWindow();
-    }
+	public
+	void switchToLoadedGame (ActionEvent event) throws IOException
+	{
+		GameInfo.gameLoadedFromXML = true;
 
-    public
-    void switchToNewGame(ActionEvent event) throws IOException
-    {
-        newGameButtonImage.setImage(clickbuttonImage);
-        stage = (Stage) ((Node) event.getSource()).getScene()
-                .getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("playerselect.fxml"));
-        Scene      scene      = new Scene(fxmlLoader.load(), GameInfo.x, GameInfo.y);
-        stage.setScene(scene);
-        stage.show();
-    }
+		loadGameButtonImage.setImage(clickbuttonImage);
+		stage = (Stage) ((Node) event.getSource())
+				.getScene()
+				.getWindow();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game.fxml"));
+		Scene scene = new Scene(fxmlLoader.load(),
+								GameInfo.x,
+								GameInfo.y);
+		stage.setScene(scene);
+		stage.show();
+	}
 
-    @Override
-    public
-    void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        newGameButtonImage.setImage(buttonImage);
-        loadGameButtonImage.setImage(buttonImage);
-        optionsButtonImage.setImage(buttonImage);
-        exitButtonImage.setImage(buttonImage);
-        logoImage.setImage(logo);
-        menuBackgroundImage.setImage(bg);
-    }
+	public
+	void switchToNewGame (ActionEvent event) throws IOException
+	{
+		GameInfo.gameLoadedFromXML = false;
+
+		newGameButtonImage.setImage(clickbuttonImage);
+		stage = (Stage) ((Node) event.getSource())
+				.getScene()
+				.getWindow();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("playerselect.fxml"));
+		Scene scene = new Scene(fxmlLoader.load(),
+								GameInfo.x,
+								GameInfo.y);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	@Override
+	public
+	void initialize (URL url, ResourceBundle resourceBundle)
+	{
+		newGameButtonImage.setImage(buttonImage);
+		loadGameButtonImage.setImage(buttonImage);
+		optionsButtonImage.setImage(buttonImage);
+		exitButtonImage.setImage(buttonImage);
+		logoImage.setImage(logo);
+		menuBackgroundImage.setImage(bg);
+	}
 }

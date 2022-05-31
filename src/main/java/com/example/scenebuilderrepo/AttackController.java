@@ -7,13 +7,13 @@ public
 class AttackController
 {
 
-    @FXML
-    private AnchorPane attackPane;
+	@FXML
+	private AnchorPane attackPane;
 
-    AnchorPane getattackPane()
-    {
-        return attackPane;
-    }
+	AnchorPane getattackPane ()
+	{
+		return attackPane;
+	}
 
 }
 

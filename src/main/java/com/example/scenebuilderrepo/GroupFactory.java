@@ -11,372 +11,416 @@ import java.util.Random;
 public
 class GroupFactory
 {
-    Image Neutral = new Image(new File("hexagon.png").toURI()
-                                      .toString());
+	Image Neutral = new Image(new File("hexagon.png")
+									  .toURI()
+									  .toString());
 
-    Image city          = new Image(new File("BIGCITY_HEX.png").toURI()
-                                            .toString());
-    Image village       = new Image(new File("VILLAGE_HEX.png").toURI()
-                                            .toString());
-    Image forest        = new Image(new File("FOREST_HEX.png").toURI()
-                                            .toString());
-    Image forest2       = new Image(new File("FOREST2_HEX.png").toURI()
-                                            .toString());
-    Image mountain      = new Image(new File("MOUNTAIN_HEX.png").toURI()
-                                            .toString());
-    Image hills         = new Image(new File("HILLS_HEX.png").toURI()
-                                            .toString());
-    Image desert        = new Image(new File("DESERT_HEX.png").toURI()
-                                            .toString());
-    Image desertPond    = new Image(new File("RADIOACTIVE_POND_HEX_WIATRACZEK.png").toURI()
-                                            .toString());
-    Image pondst        = new Image(new File("POND_RIVEREND_UP_HEX.png").toURI()
-                                            .toString());
-    Image ponden        = new Image(new File("POND_RIVEREND_DOWN_HEX.png").toURI()
-                                            .toString());
-    Image riverfl       = new Image(new File("RIVER_WITHFLOW_HEX.png").toURI()
-                                            .toString());
-    Image riverfl_right = new Image(new File("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png").toURI()
-                                            .toString());
+	Image city = new Image(new File("BIGCITY_HEX.png")
+								   .toURI()
+								   .toString());
+	Image village = new Image(new File("VILLAGE_HEX.png")
+									  .toURI()
+									  .toString());
+	Image forest = new Image(new File("FOREST_HEX.png")
+									 .toURI()
+									 .toString());
+	Image forest2 = new Image(new File("FOREST2_HEX.png")
+									  .toURI()
+									  .toString());
+	Image mountain = new Image(new File("MOUNTAIN_HEX.png")
+									   .toURI()
+									   .toString());
+	Image hills = new Image(new File("HILLS_HEX.png")
+									.toURI()
+									.toString());
+	Image desert = new Image(new File("DESERT_HEX.png")
+									 .toURI()
+									 .toString());
+	Image desertPond = new Image(new File("RADIOACTIVE_POND_HEX_WIATRACZEK.png")
+										 .toURI()
+										 .toString());
+	Image pondst = new Image(new File("POND_RIVEREND_UP_HEX.png")
+									 .toURI()
+									 .toString());
+	Image ponden = new Image(new File("POND_RIVEREND_DOWN_HEX.png")
+									 .toURI()
+									 .toString());
+	Image riverfl = new Image(new File("RIVER_WITHFLOW_HEX.png")
+									  .toURI()
+									  .toString());
+	Image riverfl_right = new Image(new File("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png")
+											.toURI()
+											.toString());
 
-    HashMap<String, Image> imageHashMap;
-    Faction crystalmenFaction = null;
-    Faction treemenFaction    = null;
-    Faction skymenFaction     = null;
+	HashMap<String, Image> imageHashMap;
+	Faction crystalmenFaction = null;
+	Faction treemenFaction = null;
+	Faction skymenFaction = null;
 
-    Image im;
+	Image im;
 
-    HexImages rings = new HexImages("hexagon1.png", "hexagon2.png", "hexagon3.png");
-    HexImages bases = new HexImages("hexagon_blue.png", "hexagon_brown.png", "hexagon_purple.png");
+	HexImages rings = new HexImages("hexagon1.png",
+									"hexagon2.png",
+									"hexagon3.png");
+	HexImages bases = new HexImages("hexagon_blue.png",
+									"hexagon_brown.png",
+									"hexagon_purple.png");
 
-    Faction neutral = new Faction(FactionEnum.NO_FACTION, Neutral);
-    Player  None    = new Player(neutral);
+	Faction neutral = new Faction(FactionEnum.NO_FACTION,
+								  Neutral);
+	Player None = new Player(neutral);
 
-    public
-    GroupFactory()
-    {
-        imageHashMap = new HashMap<>();
-        imageHashMap.put("BIGCITY_HEX.png", city);
-        imageHashMap.put("VILLAGE_HEX.png", village);
-        imageHashMap.put("FOREST_HEX.png", forest);
-        imageHashMap.put("FOREST2_HEX.png", forest2);
-        imageHashMap.put("MOUNTAIN_HEX.png", mountain);
-        imageHashMap.put("HILLS_HEX.png", hills);
-        imageHashMap.put("DESERT_HEX.png",desert);
-        imageHashMap.put("RADIOACTIVE_POND_HEX_WIATRACZEK.png", desertPond);
-        imageHashMap.put("POND_RIVEREND_UP_HEX.png", pondst);
-        imageHashMap.put("POND_RIVEREND_DOWN_HEX.png", ponden);
-        imageHashMap.put("RIVER_WITHFLOW_HEX.png", riverfl);
-        imageHashMap.put("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png", riverfl_right);
-    }
+	public
+	GroupFactory ()
+	{
+		imageHashMap = new HashMap<>();
+		imageHashMap.put("BIGCITY_HEX.png",
+						 city);
+		imageHashMap.put("VILLAGE_HEX.png",
+						 village);
+		imageHashMap.put("FOREST_HEX.png",
+						 forest);
+		imageHashMap.put("FOREST2_HEX.png",
+						 forest2);
+		imageHashMap.put("MOUNTAIN_HEX.png",
+						 mountain);
+		imageHashMap.put("HILLS_HEX.png",
+						 hills);
+		imageHashMap.put("DESERT_HEX.png",
+						 desert);
+		imageHashMap.put("RADIOACTIVE_POND_HEX_WIATRACZEK.png",
+						 desertPond);
+		imageHashMap.put("POND_RIVEREND_UP_HEX.png",
+						 pondst);
+		imageHashMap.put("POND_RIVEREND_DOWN_HEX.png",
+						 ponden);
+		imageHashMap.put("RIVER_WITHFLOW_HEX.png",
+						 riverfl);
+		imageHashMap.put("RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png",
+						 riverfl_right);
+	}
 
-    public
-    Group getGroup(GameController controller)
-    {
-        Group group = new Group();
-        Board board = new Board();
-        if ( GameInfo.gameLoadedFromXML )
-        {
-            SaveReader             reader              = new SaveReader();
-            ArrayList<FactionEnum> loadedFactionList   = reader.getFactionList();
-            ArrayList<HexStruct>   loadedHexStructList = reader.getHexList();
+	public
+	Group getGroup (GameController controller)
+	{
+		Group group = new Group();
+		Board board = new Board();
+		if ( GameInfo.gameLoadedFromXML )
+		{
+			SaveReader reader = new SaveReader();
+			ArrayList<FactionEnum> loadedFactionList = reader.getFactionList();
+			ArrayList<HexStruct> loadedHexStructList = reader.getHexList();
+			ArrayList<FactionInfoStruct> loadedPlayerInfo = reader.getPlayerInformation();
+			Image Purple = new Image(new File("hexagon_purple.png")
+											 .toURI()
+											 .toString());
+			Image Brown = new Image(new File("hexagon_brown.png")
+											.toURI()
+											.toString());
+			Image Blue = new Image(new File("hexagon_blue.png")
+										   .toURI()
+										   .toString());
 
-            Image Purple = new Image(new File("hexagon_purple.png").toURI()
-                                             .toString());
-            Image Brown  = new Image(new File("hexagon_brown.png").toURI()
-                                             .toString());
-            Image Blue   = new Image(new File("hexagon_blue.png").toURI()
-                                             .toString());
+			GameInfo.playerFactions.clear();
+			for (int i = 0; i < loadedFactionList.size(); i++)
+			{
+				Faction faction;
+				if ( loadedFactionList.get(i) == FactionEnum.SKYMEN )
+				{
+					faction = new Faction(loadedFactionList.get(i), Blue);
+				}
+				else if ( loadedFactionList.get(i) == FactionEnum.CRYSTALMEN )
+				{
+					faction = new Faction(loadedFactionList.get(i), Purple);
+				}
+				else
+				{
+					faction = new Faction(loadedFactionList.get(i), Brown);
+				}
+				GameInfo.playerFactions.add(faction);
 
-            GameInfo.playerFactions.clear();
-            for (int i = 0; i < loadedFactionList.size(); i++)
-            {
-                Faction faction;
-                if ( loadedFactionList.get(i) == FactionEnum.SKYMEN )
-                {
-                    faction = new Faction(loadedFactionList.get(i), Blue);
-                }
-                else if ( loadedFactionList.get(i) == FactionEnum.CRYSTALMEN )
-                {
-                    faction = new Faction(loadedFactionList.get(i), Purple);
-                }
-                else
-                {
-                    faction = new Faction(loadedFactionList.get(i), Brown);
-                }
-                GameInfo.playerFactions.add(faction);
-            }
+				Player player = new Player(faction);
+				player.income = loadedPlayerInfo.get(i).income;
+				player.gold = loadedPlayerInfo.get(i).gold;
+				player.ownedHexes = loadedPlayerInfo.get(i).ownedHexes;
+				GameInfo.playerFactions.get(i).pl = player;
+			}
 
-            for(int i = 0; i < loadedHexStructList.size(); i++)
-            {
-                if(i % 11 == 0)
-                    board.addColumn();
+			for (int i = 0; i < loadedHexStructList.size(); i++)
+			{
+				if ( i % 11 == 0 )
+				{
+					board.addColumn();
+				}
 
-                Hexagon hex;
+				Hexagon hex;
 
-                int x = loadedHexStructList.get(i).x;
-                int y = loadedHexStructList.get(i).y;
+				int x = loadedHexStructList.get(i).x;
+				int y = loadedHexStructList.get(i).y;
 
-                hex = new Hexagon(x, y, None, controller);
-                im  = new Image(new File("hexagon.png").toURI()
-                                        .toString());
-                MapTile container = new MapTile(rings, bases);
+				hex = new Hexagon(x, y, None, controller);
+				im = new Image(new File("hexagon.png").toURI().toString());
+				MapTile container = new MapTile(rings, bases);
 
-                setHexAttributes(im, x, hex);
+				setHexAttributes(im, x, hex);
 
-                hex.setImage( imageHashMap.get(loadedHexStructList.get(i).imageFilename));
+				hex.setImage(imageHashMap.get(loadedHexStructList.get(i).imageFilename));
 
-                addHexToContainer(hex, container);
+				addHexToContainer(hex, container);
 
-                setContainerLayoutAttributes(x, y, container);
+				setContainerLayoutAttributes(x, y, container);
 
-                board.addMapTile(container, x);
-                group.getChildren()
-                        .add(container);
-            }
-            return group;
-        }
-        else
-        {
+				board.addMapTile(container, x);
+				group.getChildren().add(container);
 
-            setPlayersGameInfo();
+				FactionEnum fac = loadedHexStructList.get(i).faction;
+				if ( loadedHexStructList.get(i).obj.actionPointMax == 1 )
+				{
+					Board.addUnit(GameInfo.playerFactions.get(GameInfo.getPlayerId(fac)), x, y);
+				}
+				else if ( loadedHexStructList.get(i).obj.actionPointMax == 0 &&
+						  loadedHexStructList.get(i).obj.hpMax != 0 )
+				{
+					Board.addHQ(GameInfo.playerFactions.get(GameInfo.getPlayerId(fac)), x, y);
+				}
 
-            getP1GameInfo();
-            getP2GameInfo();
-            if ( GameInfo.playerAmount == 3 )
-            {
-                getP3GameInfo();
-            }
+			}
+			return group;
+		}
+		else
+		{
 
-            for (int i = 0; i < MapConstants.MAP_LENGTH; i++)
-            {
-                board.addColumn();
-                for (int j = 0; j < MapConstants.MAP_HEIGHT; j++)
-                {
-                    Hexagon hex;
+			setPlayersGameInfo();
 
-                    hex = new Hexagon(i, j, None, controller);
-                    im  = new Image(new File("hexagon.png").toURI()
-                                            .toString());
-                    MapTile container = new MapTile(rings, bases);
+			getP1GameInfo();
+			getP2GameInfo();
+			if ( GameInfo.playerAmount == 3 )
+			{
+				getP3GameInfo();
+			}
 
-                    setHexAttributes(im, i, hex);
+			for (int i = 0; i < MapConstants.MAP_LENGTH; i++)
+			{
+				board.addColumn();
+				for (int j = 0; j < MapConstants.MAP_HEIGHT; j++)
+				{
+					Hexagon hex;
 
-                    addHexToContainer(hex, container);
+					hex = new Hexagon(i, j, None, controller);
+					im = new Image(new File("hexagon.png")
+										   .toURI()
+										   .toString());
+					MapTile container = new MapTile(rings,
+													bases);
 
-                    setTerrainBase(hex, i, j);
-                    setTerrainRivers(hex, i, j);
-                    setTerrainCities(hex, i, j);
+					setHexAttributes(im, i, hex);
 
-                    setContainerLayoutAttributes(i, j, container);
+					addHexToContainer(hex, container);
 
-                    board.addMapTile(container, i);
-                    group.getChildren()
-                            .add(container);
-                }
-            }
+					setTerrainBase(hex, i, j);
+					setTerrainRivers(hex, i, j);
+					setTerrainCities(hex, i, j);
 
-            Board.addHQ(crystalmenFaction, 0, 10);
-            Board.addHQ(skymenFaction, MapConstants.MAP_LENGTH / 2, 0);
-            Board.addHQ(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 1);
-            Board.addUnit(skymenFaction, 0, 9);
-            Board.addUnit(skymenFaction, 1, 9);
-            Board.addUnit(skymenFaction, 1, 10);
+					setContainerLayoutAttributes(i, j, container);
 
-            Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
-            Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
-            Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
+					board.addMapTile(container, i);
+					group.getChildren().add(container);
+				}
+			}
 
-            Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
-            Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) - 1, 0);
-            Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2), 1);
+			Board.addHQ(crystalmenFaction, 0, 10);
+			Board.addHQ(skymenFaction, MapConstants.MAP_LENGTH / 2, 0);
+			Board.addHQ(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 1);
+			Board.addUnit(skymenFaction, 0, 9);
+			Board.addUnit(skymenFaction, 1, 9);
+			Board.addUnit(skymenFaction, 1, 10);
 
-            return group;
-        }
-    }
+			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
+			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
+			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
 
-    private
-    void getP3GameInfo()
-    {
-        if ( GameInfo.playerFactions.get(2).id == FactionEnum.CRYSTALMEN )
-        {
-            crystalmenFaction =
-                    GameInfo.playerFactions.get(2);
-        }
-        else if ( GameInfo.playerFactions.get(2).id == FactionEnum.FORESTMEN )
-        {
-            treemenFaction =
-                    GameInfo.playerFactions.get(2);
-        }
-        else if ( GameInfo.playerFactions.get(2).id == FactionEnum.SKYMEN )
-        {
-            skymenFaction =
-                    GameInfo.playerFactions.get(2);
-        }
-    }
+			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
+			Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2) - 1, 0);
+			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2), 1);
 
-    private
-    void getP2GameInfo()
-    {
-        if ( GameInfo.playerFactions.get(1).id == FactionEnum.CRYSTALMEN )
-        {
-            crystalmenFaction =
-                    GameInfo.playerFactions.get(1);
-        }
-        else if ( GameInfo.playerFactions.get(1).id == FactionEnum.FORESTMEN )
-        {
-            treemenFaction =
-                    GameInfo.playerFactions.get(1);
-        }
-        else if ( GameInfo.playerFactions.get(1).id == FactionEnum.SKYMEN )
-        {
-            skymenFaction =
-                    GameInfo.playerFactions.get(1);
-        }
-    }
+			return group;
+		}
+	}
 
-    private
-    void getP1GameInfo()
-    {
-        if ( GameInfo.playerFactions.get(0).id == FactionEnum.CRYSTALMEN )
-        {
-            crystalmenFaction =
-                    GameInfo.playerFactions.get(0);
-        }
-        else if ( GameInfo.playerFactions.get(0).id == FactionEnum.FORESTMEN )
-        {
-            treemenFaction =
-                    GameInfo.playerFactions.get(0);
-        }
-        else if ( GameInfo.playerFactions.get(0).id == FactionEnum.SKYMEN )
-        {
-            skymenFaction =
-                    GameInfo.playerFactions.get(0);
-        }
-    }
+	private
+	void getP3GameInfo ()
+	{
+		if ( GameInfo.playerFactions.get(2).id == FactionEnum.CRYSTALMEN )
+		{
+			crystalmenFaction = GameInfo.playerFactions.get(2);
+		}
+		else if ( GameInfo.playerFactions.get(2).id == FactionEnum.FORESTMEN )
+		{
+			treemenFaction = GameInfo.playerFactions.get(2);
+		}
+		else if ( GameInfo.playerFactions.get(2).id == FactionEnum.SKYMEN )
+		{
+			skymenFaction = GameInfo.playerFactions.get(2);
+		}
+	}
 
-    private
-    void setContainerLayoutAttributes(int i, int j, MapTile container)
-    {
-        if ( i % 2 == 0 )
-        {
-            container.setLayoutY((GameInfo.hexsize - 5) * j);
-        }
-        else
-        {
-            container.setLayoutY((GameInfo.hexsize - 5) * j + ((GameInfo.hexsize - 5) / 2));
-        }
+	private
+	void getP2GameInfo ()
+	{
+		if ( GameInfo.playerFactions.get(1).id == FactionEnum.CRYSTALMEN )
+		{
+			crystalmenFaction = GameInfo.playerFactions.get(1);
+		}
+		else if ( GameInfo.playerFactions.get(1).id == FactionEnum.FORESTMEN )
+		{
+			treemenFaction = GameInfo.playerFactions.get(1);
+		}
+		else if ( GameInfo.playerFactions.get(1).id == FactionEnum.SKYMEN )
+		{
+			skymenFaction = GameInfo.playerFactions.get(1);
+		}
+	}
 
-        container.setLayoutX((GameInfo.hexsize - 10) * i);
-    }
+	private
+	void getP1GameInfo ()
+	{
+		if ( GameInfo.playerFactions.get(0).id == FactionEnum.CRYSTALMEN )
+		{
+			crystalmenFaction = GameInfo.playerFactions.get(0);
+		}
+		else if ( GameInfo.playerFactions.get(0).id == FactionEnum.FORESTMEN )
+		{
+			treemenFaction = GameInfo.playerFactions.get(0);
+		}
+		else if ( GameInfo.playerFactions.get(0).id == FactionEnum.SKYMEN )
+		{
+			skymenFaction = GameInfo.playerFactions.get(0);
+		}
+	}
 
-    private
-    void addHexToContainer(Hexagon hex, MapTile container)
-    {
-        container.getChildren()
-                .add(hex);
-        container.hex = hex;
-    }
+	private
+	void setContainerLayoutAttributes (int i, int j, MapTile container)
+	{
+		if ( i % 2 == 0 )
+		{
+			container.setLayoutY((GameInfo.hexsize - 5) * j);
+		}
+		else
+		{
+			container.setLayoutY((GameInfo.hexsize - 5) * j + ((GameInfo.hexsize - 5) / 2));
+		}
 
-    private
-    void setHexAttributes(Image im, int i, Hexagon hex)
-    {
-        hex.setImage(im);
-        hex.setFitHeight(GameInfo.hexsize);
-        hex.setFitWidth(GameInfo.hexsize);
-        hex.setX(GameInfo.hexsize * i);
-    }
+		container.setLayoutX((GameInfo.hexsize - 10) * i);
+	}
 
-    void setTerrainBase(Hexagon hex, int i, int j)
-    {
-        //terrain
-        if ( ((j > 3) && (i > 5)) && !(j == 4 && i == 6) )
-        {
-            Random random    = new Random();
-            int    randomNum = random.nextInt(2);
-            if ( randomNum == 1 )
-            {
-                hex.setImage(forest);
-            }
-            else
-            {
-                hex.setImage(forest2);
-            }
-        }
-        else if ( j > 4 )
-        {
-            Random random    = new Random();
-            int    randomNum = random.nextInt(2);
-            if ( randomNum == 1 )
-            {
-                hex.setImage(hills);
-            }
-            else
-            {
-                hex.setImage(mountain);
-            }
-        }
-        else
-        {
-            Random random    = new Random();
-            int    randomNum = random.nextInt(7);
-            if ( randomNum < 5 )
-            {
-                hex.setImage(desert);
-            }
-            else
-            {
-                hex.setImage(desertPond);
-            }
-        }
-    }
+	private
+	void addHexToContainer (Hexagon hex, MapTile container)
+	{
+		container
+				.getChildren()
+				.add(hex);
+		container.hex = hex;
+	}
 
-    void setTerrainCities(Hexagon hex, int i, int j)
-    {
-        if ( (j < 3 && (i > 2 && i < 8)) && !(j == 2 && i == 7) && !(j == 2 && i == 3) )
-        {
-            hex.setImage(city);
-        }
-    }
+	private
+	void setHexAttributes (Image im, int i, Hexagon hex)
+	{
+		hex.setImage(im);
+		hex.setFitHeight(GameInfo.hexsize);
+		hex.setFitWidth(GameInfo.hexsize);
+		hex.setX(GameInfo.hexsize * i);
+	}
 
-    void setTerrainRivers(Hexagon hex, int i, int j)
-    {
-        if ( j == 8 && i == 10 )
-        {
-            hex.setImage(pondst);
-        }
-        if ( (i == 9 && j == 8) || (i == 8 && j == 9) || (i == 7 && j == 9) )
-        {
-            hex.setImage(riverfl);
-        }
-        if ( j == 10 && i == 6 )
-        {
-            hex.setImage(ponden);
-        }
+	void setTerrainBase (Hexagon hex, int i, int j)
+	{
+		//terrain
+		if ( ((j > 3) && (i > 5)) && !(j == 4 && i == 6) )
+		{
+			Random random = new Random();
+			int randomNum = random.nextInt(2);
+			if ( randomNum == 1 )
+			{
+				hex.setImage(forest);
+			}
+			else
+			{
+				hex.setImage(forest2);
+			}
+		}
+		else if ( j > 4 )
+		{
+			Random random = new Random();
+			int randomNum = random.nextInt(2);
+			if ( randomNum == 1 )
+			{
+				hex.setImage(hills);
+			}
+			else
+			{
+				hex.setImage(mountain);
+			}
+		}
+		else
+		{
+			Random random = new Random();
+			int randomNum = random.nextInt(7);
+			if ( randomNum < 5 )
+			{
+				hex.setImage(desert);
+			}
+			else
+			{
+				hex.setImage(desertPond);
+			}
+		}
+	}
 
-        if ( (i == 5 && j == 5) || (i == 6 && j == 5) || (i == 7 && j == 4) ||
-             (i == 8 && j == 4) || (i == 9 && j == 3) || (i == 10 && j == 3) )
-        {
-            hex.setImage(riverfl);
-        }
-        if ( (i == 0 && j == 6) || (i == 1 && j == 6) || (i == 2 && j == 7) ||
-             (i == 3 && j == 7) || (i == 4 && j == 8) )
-        {
-            hex.setImage(riverfl_right);
-        }
-        if ( i == 4 && j == 6 )
-        {
-            hex.setImage(ponden);
-        }
-        //setFactionGold();
-    }
+	void setTerrainCities (Hexagon hex, int i, int j)
+	{
+		if ( (j < 3 && (i > 2 && i < 8)) && !(j == 2 && i == 7) && !(j == 2 && i == 3) )
+		{
+			hex.setImage(city);
+		}
+	}
 
-    public
-    void setPlayersGameInfo()
-    {
-        GameInfo.playerFactions.get(0).pl = new Player(GameInfo.playerFactions.get(0));
-        GameInfo.playerFactions.get(1).pl = new Player(GameInfo.playerFactions.get(1));
-        GameInfo.playerFactions.get(2).pl = new Player(GameInfo.playerFactions.get(2));
-    }
+	void setTerrainRivers (Hexagon hex, int i, int j)
+	{
+		if ( j == 8 && i == 10 )
+		{
+			hex.setImage(pondst);
+		}
+		if ( (i == 9 && j == 8) || (i == 8 && j == 9) || (i == 7 && j == 9) )
+		{
+			hex.setImage(riverfl);
+		}
+		if ( j == 10 && i == 6 )
+		{
+			hex.setImage(ponden);
+		}
+
+		if ( (i == 5 && j == 5) || (i == 6 && j == 5) || (i == 7 && j == 4) ||
+			 (i == 8 && j == 4) || (i == 9 && j == 3) || (i == 10 && j == 3) )
+		{
+			hex.setImage(riverfl);
+		}
+		if ( (i == 0 && j == 6) || (i == 1 && j == 6) || (i == 2 && j == 7) ||
+			 (i == 3 && j == 7) || (i == 4 && j == 8) )
+		{
+			hex.setImage(riverfl_right);
+		}
+		if ( i == 4 && j == 6 )
+		{
+			hex.setImage(ponden);
+		}
+		//setFactionGold();
+	}
+
+	public
+	void setPlayersGameInfo ()
+	{
+		GameInfo.playerFactions.get(0).pl = new Player(GameInfo.playerFactions.get(0));
+		GameInfo.playerFactions.get(1).pl = new Player(GameInfo.playerFactions.get(1));
+		GameInfo.playerFactions.get(2).pl = new Player(GameInfo.playerFactions.get(2));
+	}
 
 }
