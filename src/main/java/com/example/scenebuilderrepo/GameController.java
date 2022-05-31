@@ -72,6 +72,8 @@ public class GameController implements Initializable {
     Faction skymenFaction = null;
 
     AnchorPane atkPane;
+    ImageView attacked;
+    ImageView attacker;
     ImageView cover=new ImageView(new Image(new File("Cover.png").toURI().toString()));
 
     @Override
@@ -84,6 +86,9 @@ public class GameController implements Initializable {
         }
         AttackController atk = fxmlLoader.getController();
         atkPane = atk.getattackPane();
+        attacker=atk.getAttacker();
+        attacked=atk.getAttacked();
+
 
         Group group = new Group();
         Board board = new Board();
@@ -92,8 +97,6 @@ public class GameController implements Initializable {
         HexImages rings = new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
         HexImages bases = new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
 
-        unitPortrait.setFitWidth(unitPortrait.getFitWidth());
-        unitPortrait.setFitHeight(unitPortrait.getFitHeight());
 
         Faction neutral=new Faction(FactionEnum.NO_FACTION,Neutral);
         Player None= new Player(neutral);
@@ -160,8 +163,7 @@ public class GameController implements Initializable {
     }
     @FXML
     void animationToggle(ActionEvent event) {
-        if(skipAtkButton.isSelected()) GameInfo.skipAtk=true;
-        else GameInfo.skipAtk=false;
+        GameInfo.skipAtk= skipAtkButton.isSelected();
     }
     private void setContainerLayoutAttributes(int i, int j, MapTile container) {
         if(i %2==0)
@@ -360,12 +362,13 @@ public class GameController implements Initializable {
             Faction currentFaction = GameInfo.playerFactions.get(idx);
             Board.addUnit(currentFaction, x, y);
             currentPlayer.gold -= 5;
-            setFactionGold(currentPlayer.gold);
+            setFactionGold(currentPlayer);
         }
     }
-    public void doAttack()
+    public void doAttack(MapTile selectedTile, MapTile destinationTile)
     {
         if(!GameInfo.skipAtk) {
+            setAttack(selectedTile,destinationTile);
             showAttack();
             PauseTransition p = new PauseTransition(Duration.millis(1000));
             p.setOnFinished(e -> hideAttack());
@@ -383,8 +386,15 @@ public class GameController implements Initializable {
     public void showAttack()  {
         cover.setFitWidth(coverPane.getWidth());
         cover.setFitHeight(coverPane.getHeight());
+
         coverPane.getChildren().add(cover) ;
         coverPane.getChildren().add(atkPane);
 
+
+    }
+    void setAttack(MapTile selectedTile, MapTile destinationTile)
+    {
+        attacker.setImage(selectedTile.obj.attacker);
+        attacked.setImage(destinationTile.obj.portriat);
     }
 }
