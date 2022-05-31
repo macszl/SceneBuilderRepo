@@ -154,7 +154,7 @@ class SaveBuilder
 					if ( tile.obj != null )
 					{
 						actionPointsMax.appendChild(
-								document.createTextNode(Integer.toString(tile.obj.action_points_max)));
+								document.createTextNode(Integer.toString(tile.obj.getAction_points_max())));
 					}
 					else
 					{
@@ -166,7 +166,7 @@ class SaveBuilder
 					if ( tile.obj != null )
 					{
 						actionPointsCurr.appendChild(
-								document.createTextNode(Integer.toString(tile.obj.action_points_cur)));
+								document.createTextNode(Integer.toString(tile.obj.getAction_points_cur())));
 					}
 					else
 					{
@@ -177,7 +177,7 @@ class SaveBuilder
 					Element hpCurrent = document.createElement("hpCurrent");
 					if ( tile.obj != null )
 					{
-						hpCurrent.appendChild(document.createTextNode(Integer.toString(tile.obj.hp_current)));
+						hpCurrent.appendChild(document.createTextNode(Integer.toString(tile.obj.getHp_current())));
 					}
 					else
 					{
@@ -188,7 +188,7 @@ class SaveBuilder
 					Element hpMax = document.createElement("hpMax");
 					if ( tile.obj != null )
 					{
-						hpMax.appendChild(document.createTextNode(Integer.toString(tile.obj.hp_max)));
+						hpMax.appendChild(document.createTextNode(Integer.toString(tile.obj.getHp_max())));
 					}
 					else
 					{

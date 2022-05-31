@@ -52,7 +52,7 @@ class MapTile extends StackPane
 					System.out.println("Hexes owned " + owner.ownedHexes);
 					if ( obj != null )
 					{
-						System.out.println("Unit AP: " + obj.action_points_cur + "/" + obj.action_points_max);
+						System.out.println("Unit AP: " + obj.getAction_points_cur() + "/" + obj.getAction_points_max());
 					}
 				}
 
@@ -80,7 +80,7 @@ class MapTile extends StackPane
 					{
 
 						if ( GameInfo.getPlayerId(owner.faction.id) == GameInfo.currentPlayerCounter &&
-							 obj.action_points_cur != 0 )
+							 obj.getAction_points_cur() != 0 )
 						{
 							Board.selectTileAndHighlightNearby(hex.x,
 															   hex.y);
@@ -146,6 +146,9 @@ class MapTile extends StackPane
 	public
 	void setOwner (Player _owner)
 	{
+		if(_owner == null)
+			return;
+
 		if ( owner != null )
 		{
 			owner.ownedHexes--;
@@ -194,10 +197,58 @@ class MapObject extends ImageView
 
 	int def;
 	int atk;
-	int hp_current;
-	int hp_max;
-	int action_points_cur;
-	int action_points_max;
+	private int hp_current;
+	private int hp_max;
+	private int action_points_cur;
+	private int action_points_max;
+
+	public
+	int getHp_current ()
+	{
+		return hp_current;
+	}
+
+	public
+	void setHp_current (int hp_current)
+	{
+		this.hp_current = hp_current;
+	}
+
+	public
+	int getHp_max ()
+	{
+		return hp_max;
+	}
+
+	public
+	void setHp_max (int hp_max)
+	{
+		this.hp_max = hp_max;
+	}
+
+	public
+	int getAction_points_cur ()
+	{
+		return action_points_cur;
+	}
+
+	public
+	void setAction_points_cur (int action_points_cur)
+	{
+		this.action_points_cur = action_points_cur;
+	}
+
+	public
+	int getAction_points_max ()
+	{
+		return action_points_max;
+	}
+
+	public
+	void setAction_points_max (int action_points_max)
+	{
+		this.action_points_max = action_points_max;
+	}
 }
 
 class Unit extends MapObject
@@ -229,10 +280,10 @@ class Unit extends MapObject
 		this.portriat = _portriat;
 
 		atk = 18;
-		hp_current = 20;
-		hp_max = 20;
-		action_points_cur = 1;
-		action_points_max = 1;
+		setHp_current(20);
+		setHp_max(20);
+		setAction_points_cur(1);
+		setAction_points_max(1);
 	}
 }
 
@@ -265,10 +316,10 @@ class HQ extends MapObject
 
 		def = 4;
 		atk = 0;
-		hp_current = 95;
-		hp_max = 100;
-		action_points_cur = 0;
-		action_points_max = 0;
+		setHp_current(95);
+		setHp_max(100);
+		setAction_points_cur(0);
+		setAction_points_max(0);
 	}
 }
 
@@ -393,7 +444,7 @@ class Board
 		{
 			//assigning the obj from the previous mapTile to the destination tile
 			destinationTile.obj = selectedTile.obj;
-			destinationTile.obj.action_points_cur -= 1;
+			destinationTile.obj.setAction_points_cur(destinationTile.obj.getAction_points_cur() - 1);
 			destinationTile
 					.getChildren()
 					.add(destinationTile.obj);
@@ -423,9 +474,9 @@ class Board
 		Random rand = new Random();
 		int max = 2;
 		int min = -2;
-		int attackerHPbefore = selectedTile.obj.hp_current;
+		int attackerHPbefore = selectedTile.obj.getHp_current();
 		int attackerHPafter = attackerHPbefore - destinationTile.obj.def + rand.nextInt((max - min) + 1) + min;
-		int defenderHPbefore = destinationTile.obj.hp_current;
+		int defenderHPbefore = destinationTile.obj.getHp_current();
 		int defenderHPafter = defenderHPbefore - selectedTile.obj.atk + rand.nextInt((max - min) + 1) + min;
 
 		if ( attackerHPafter <= 0 )
@@ -446,7 +497,7 @@ class Board
 			return;
 		}
 
-		selectedTile.obj.hp_current = attackerHPafter;
+		selectedTile.obj.setHp_current(attackerHPafter);
 		if ( defenderHPafter <= 0 )
 		{
 			destinationTile.obj.setImage(null);
@@ -465,7 +516,7 @@ class Board
 			return;
 		}
 
-		destinationTile.obj.hp_current = defenderHPafter;
+		destinationTile.obj.setHp_current(defenderHPafter);
 	}
 
 	static

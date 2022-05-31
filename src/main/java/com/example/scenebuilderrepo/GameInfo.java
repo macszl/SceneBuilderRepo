@@ -52,11 +52,11 @@ class GameInfo
 		{
 			if ( playerUnits
 						 .get(currentPlayerCounter)
-						 .get(i).action_points_cur == 0 )
+						 .get(i).getAction_points_cur() == 0 )
 			{
 				playerUnits
 						.get(currentPlayerCounter)
-						.get(i).action_points_cur = 1;
+						.get(i).setAction_points_cur(1);
 			}
 		}
 	}

@@ -60,6 +60,21 @@ class SaveReader
 	}
 
 	public
+	int getTurn()
+	{
+		NodeList nturn = doc.getElementsByTagName("turn");
+		int turn = Integer.parseInt(nturn.item(0).getTextContent());
+		return turn;
+	}
+
+	public
+	int getCurrentPlayer()
+	{
+		NodeList ncurrentPlayer = doc.getElementsByTagName("currentPlayer");
+		int currentPlayer = Integer.parseInt(ncurrentPlayer.item(0).getTextContent());
+		return currentPlayer;
+	}
+	public
 	ArrayList<FactionInfoStruct> getPlayerInformation ()
 	{
 		ArrayList<FactionInfoStruct> list = new ArrayList<>();

@@ -111,6 +111,13 @@ class GroupFactory
 			ArrayList<FactionEnum> loadedFactionList = reader.getFactionList();
 			ArrayList<HexStruct> loadedHexStructList = reader.getHexList();
 			ArrayList<FactionInfoStruct> loadedPlayerInfo = reader.getPlayerInformation();
+			int unitCounter = 0;
+
+
+			GameInfo.playerAmount = loadedFactionList.size();
+			GameInfo.currentPlayerCounter = reader.getCurrentPlayer();
+			GameInfo.turn = reader.getTurn();
+
 			Image Purple = new Image(new File("hexagon_purple.png")
 											 .toURI()
 											 .toString());
@@ -122,6 +129,7 @@ class GroupFactory
 										   .toString());
 
 			GameInfo.playerFactions.clear();
+
 			for (int i = 0; i < loadedFactionList.size(); i++)
 			{
 				Faction faction;
@@ -176,12 +184,40 @@ class GroupFactory
 				FactionEnum fac = loadedHexStructList.get(i).faction;
 				if ( loadedHexStructList.get(i).obj.actionPointMax == 1 )
 				{
-					Board.addUnit(GameInfo.playerFactions.get(GameInfo.getPlayerId(fac)), x, y);
+					int fac_idx = GameInfo.getPlayerId(fac);
+					Board.addUnit(GameInfo.playerFactions.get(fac_idx), x, y);
+					int unit_idx = GameInfo.playerUnits.get(fac_idx).size() - 1;
+
+					int currentHP = loadedHexStructList.get(i).obj.hpCurrent;
+					int maxHP = loadedHexStructList.get(i).obj.hpMax;
+
+					int currentAP = loadedHexStructList.get(i).obj.actionPointCurr;
+					int maxAP = loadedHexStructList.get(i).obj.actionPointMax;
+
+					GameInfo.playerUnits.get(fac_idx).get(unit_idx).setAction_points_cur(currentAP);
+					GameInfo.playerUnits.get(fac_idx).get(unit_idx).setAction_points_max(maxAP);
+
+					GameInfo.playerUnits.get(fac_idx).get(unit_idx).setHp_current(currentHP);
+					GameInfo.playerUnits.get(fac_idx).get(unit_idx).setHp_max(maxHP);
 				}
 				else if ( loadedHexStructList.get(i).obj.actionPointMax == 0 &&
 						  loadedHexStructList.get(i).obj.hpMax != 0 )
 				{
-					Board.addHQ(GameInfo.playerFactions.get(GameInfo.getPlayerId(fac)), x, y);
+					int fac_idx = GameInfo.getPlayerId(fac);
+					Board.addHQ(GameInfo.playerFactions.get(fac_idx), x, y);
+					int hq_idx = GameInfo.playerHQs.size() - 1;
+					int currentHP = loadedHexStructList.get(i).obj.hpCurrent;
+					int maxHP = loadedHexStructList.get(i).obj.hpMax;
+
+					GameInfo.playerHQs.get(hq_idx).setHp_current(currentHP);
+					GameInfo.playerHQs.get(hq_idx).setHp_max(maxHP);
+				}
+
+				if(fac != null)
+				{
+					container.setOwner(GameInfo.playerFactions
+											   .get(GameInfo.getPlayerId(fac))
+											   .pl);
 				}
 
 			}

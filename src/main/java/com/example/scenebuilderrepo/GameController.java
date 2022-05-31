@@ -101,7 +101,7 @@ class GameController implements Initializable
 		unitPortrait.setImage(unit.portriat);
 		unitStatsATK.setText("ATK " + unit.atk);
 		unitStatsDEF.setText("DEF " + unit.def);
-		unitStatsHP.setText("HP " + unit.hp_current + "/" + unit.hp_max);
+		unitStatsHP.setText("HP " + unit.getHp_current() + "/" + unit.getHp_max());
 	}
 
 	public
