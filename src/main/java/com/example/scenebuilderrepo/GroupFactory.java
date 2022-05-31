@@ -55,6 +55,7 @@ class GroupFactory
     public
     GroupFactory()
     {
+        imageHashMap = new HashMap<>();
         imageHashMap.put("BIGCITY_HEX.png", city);
         imageHashMap.put("VILLAGE_HEX.png", village);
         imageHashMap.put("FOREST_HEX.png", forest);
@@ -106,7 +107,33 @@ class GroupFactory
                 GameInfo.playerFactions.add(faction);
             }
 
+            for(int i = 0; i < loadedHexStructList.size(); i++)
+            {
+                if(i % 11 == 0)
+                    board.addColumn();
 
+                Hexagon hex;
+
+                int x = loadedHexStructList.get(i).x;
+                int y = loadedHexStructList.get(i).y;
+
+                hex = new Hexagon(x, y, None, controller);
+                im  = new Image(new File("hexagon.png").toURI()
+                                        .toString());
+                MapTile container = new MapTile(rings, bases);
+
+                setHexAttributes(im, x, hex);
+
+                hex.setImage( imageHashMap.get(loadedHexStructList.get(i).imageFilename));
+
+                addHexToContainer(hex, container);
+
+                setContainerLayoutAttributes(x, y, container);
+
+                board.addMapTile(container, x);
+                group.getChildren()
+                        .add(container);
+            }
             return group;
         }
         else
