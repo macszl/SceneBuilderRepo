@@ -167,6 +167,7 @@ class MapObject extends ImageView {
 class Unit extends MapObject {
 
 
+
     public Unit(Faction _faction, Image _portriat, Image _attacker,Image _attackAnimation) {
         if (_faction.id == FactionEnum.CRYSTALMEN) setImage(new Image(new File("CRYSTAL_UNIT.png").toURI().toString()));
         if (_faction.id == FactionEnum.FORESTMEN) setImage(new Image(new File("FOREST_UNIT.png").toURI().toString()));

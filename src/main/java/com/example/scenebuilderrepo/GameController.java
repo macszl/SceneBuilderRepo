@@ -15,6 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -348,6 +350,27 @@ public class GameController implements Initializable {
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
 
+    }
+
+
+    private void setTurnDisplay(Player currentPlayer) {
+        turnCounter.setText("Tura "+(GameInfo.turn+1)+": ");
+        Color c;
+        if(currentPlayer.faction.id==FactionEnum.SKYMEN) {
+            c = Color.web("rgb(72,192,255)");
+            turnIndicator.setText("  Ptakoludzie");
+        }
+        else if (currentPlayer.faction.id==FactionEnum.FORESTMEN)
+        {
+            c = Color.web("rgb(130,102,81)");
+            turnIndicator.setText("  Drzewoludzie");
+        }
+        else
+        {
+            c = Color.web("rgb(161,112,192)");
+            turnIndicator.setText("  Kryształoludzie");
+        }
+        turnIndicator.setFill(c);
     }
 
     public void recruitUnit()
