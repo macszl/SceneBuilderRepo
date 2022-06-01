@@ -17,6 +17,8 @@ public class AttackController {
 
     @FXML
     private ImageView attacker;
+    @FXML
+    private ImageView animation;
 
     AnchorPane getattackPane()
     {
@@ -25,6 +27,8 @@ public class AttackController {
 
     ImageView getAttacked(){return attacked;}
     ImageView getAttacker(){return attacker;}
+
+    ImageView getAnimation(){return animation;}
 
 }
 

@@ -1,5 +1,6 @@
 package com.example.scenebuilderrepo;
 
+import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,6 +75,8 @@ public class GameController implements Initializable {
     AnchorPane atkPane;
     ImageView attacked;
     ImageView attacker;
+
+    ImageView attackAnimation;
     ImageView cover=new ImageView(new Image(new File("Cover.png").toURI().toString()));
 
     @Override
@@ -88,6 +91,7 @@ public class GameController implements Initializable {
         atkPane = atk.getattackPane();
         attacker=atk.getAttacker();
         attacked=atk.getAttacked();
+        attackAnimation=atk.getAnimation();
 
 
         Group group = new Group();
@@ -396,5 +400,9 @@ public class GameController implements Initializable {
     {
         attacker.setImage(selectedTile.obj.attacker);
         attacked.setImage(destinationTile.obj.portriat);
+        atkPane.getChildren().remove(attackAnimation);
+        atkPane.getChildren().add(attackAnimation);
+        attackAnimation.setImage(selectedTile.obj.attackAnimation);
+
     }
 }
