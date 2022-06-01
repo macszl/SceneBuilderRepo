@@ -1,5 +1,6 @@
 package com.example.scenebuilderrepo;
 
+import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,10 +50,6 @@ public class GameController implements Initializable {
     private AnchorPane mapAnchor;
     @FXML
     private ImageView unitPortrait;
-    @FXML
-    private Text turnIndicator;
-    @FXML
-    private Text turnCounter;
 
     private double mouseAnchorX;
     private double mouseAnchorY;
@@ -78,6 +75,10 @@ public class GameController implements Initializable {
     Faction skymenFaction = null;
 
     AnchorPane atkPane;
+    ImageView attacked;
+    ImageView attacker;
+
+    ImageView attackAnimation;
     ImageView cover=new ImageView(new Image(new File("Cover.png").toURI().toString()));
 
     @Override
@@ -90,6 +91,10 @@ public class GameController implements Initializable {
         }
         AttackController atk = fxmlLoader.getController();
         atkPane = atk.getattackPane();
+        attacker=atk.getAttacker();
+        attacked=atk.getAttacked();
+        attackAnimation=atk.getAnimation();
+
 
         Group group = new Group();
         Board board = new Board();
@@ -98,8 +103,6 @@ public class GameController implements Initializable {
         HexImages rings = new HexImages("hexagon1.png" , "hexagon2.png", "hexagon3.png");
         HexImages bases = new HexImages("hexagon_blue.png" , "hexagon_brown.png", "hexagon_purple.png");
 
-        unitPortrait.setFitWidth(unitPortrait.getFitWidth());
-        unitPortrait.setFitHeight(unitPortrait.getFitHeight());
 
         Faction neutral=new Faction(FactionEnum.NO_FACTION,Neutral);
         Player None= new Player(neutral);
@@ -166,8 +169,7 @@ public class GameController implements Initializable {
     }
     @FXML
     void animationToggle(ActionEvent event) {
-        if(skipAtkButton.isSelected()) GameInfo.skipAtk=true;
-        else GameInfo.skipAtk=false;
+        GameInfo.skipAtk= skipAtkButton.isSelected();
     }
     private void setContainerLayoutAttributes(int i, int j, MapTile container) {
         if(i %2==0)
@@ -277,7 +279,7 @@ public class GameController implements Initializable {
         {
             hex.setImage(ponden);
         }
-        setTurnDisplay(GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl);
+        //setFactionGold();
     }
 
     @FXML
@@ -343,13 +345,13 @@ public class GameController implements Initializable {
             GameInfo.currentPlayerCounter = 0;
         }
         currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
-        setTurnDisplay(currentPlayer);
         setFactionGold(currentPlayer);
         Board.unClickAll();
         System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
 
     }
+
 
     private void setTurnDisplay(Player currentPlayer) {
         turnCounter.setText("Tura "+(GameInfo.turn+1)+": ");
@@ -390,9 +392,10 @@ public class GameController implements Initializable {
             setFactionGold(currentPlayer);
         }
     }
-    public void doAttack()
+    public void doAttack(MapTile selectedTile, MapTile destinationTile)
     {
         if(!GameInfo.skipAtk) {
+            setAttack(selectedTile,destinationTile);
             showAttack();
             PauseTransition p = new PauseTransition(Duration.millis(1000));
             p.setOnFinished(e -> hideAttack());
@@ -410,8 +413,19 @@ public class GameController implements Initializable {
     public void showAttack()  {
         cover.setFitWidth(coverPane.getWidth());
         cover.setFitHeight(coverPane.getHeight());
+
         coverPane.getChildren().add(cover) ;
         coverPane.getChildren().add(atkPane);
+
+
+    }
+    void setAttack(MapTile selectedTile, MapTile destinationTile)
+    {
+        attacker.setImage(selectedTile.obj.attacker);
+        attacked.setImage(destinationTile.obj.portriat);
+        atkPane.getChildren().remove(attackAnimation);
+        atkPane.getChildren().add(attackAnimation);
+        attackAnimation.setImage(selectedTile.obj.attackAnimation);
 
     }
 }

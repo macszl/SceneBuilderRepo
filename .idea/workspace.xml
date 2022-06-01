@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Almost done now.">
+      <change afterPath="$PROJECT_DIR$/crystal_attack_animation.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flying_attack_animation.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tree_attack_animation.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRYSTAL_UNIT_PORTRAIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/CRYSTAL_UNIT_PORTRAIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FLYING_UNIT_PORTRAIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/FLYING_UNIT_PORTRAIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TREE_UNIT_PORTRAIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/TREE_UNIT_PORTRAIT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crystal_meteor.png" beforeDir="false" afterPath="$PROJECT_DIR$/crystal_meteor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flying_meteor.png" beforeDir="false" afterPath="$PROJECT_DIR$/flying_meteor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/AttackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/AttackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/RaceSelectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/atackwindows.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/attackwindows.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/attackwindows.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tree_meteor.png" beforeDir="false" afterPath="$PROJECT_DIR$/tree_meteor.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +42,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -58,10 +61,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/reksa11/IdeaProjects/kck/SceneBuilderRepo&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -132,8 +136,6 @@
       <workItem from="1653069164051" duration="3432000" />
       <workItem from="1653293878451" duration="6789000" />
       <workItem from="1653736644494" duration="2204000" />
-      <workItem from="1653829376398" duration="3986000" />
-      <workItem from="1654115672218" duration="334000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiam strukturę projektu">
       <created>1650748029413</created>
@@ -328,6 +330,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
           <line>229</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
+          <line>404</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
