@@ -60,6 +60,14 @@ class SaveReader
 	}
 
 	public
+	int getPlayerAmount()
+	{
+		NodeList ncurrentPlayer = doc.getElementsByTagName("playerAmount");
+		int playerAmount = Integer.parseInt(ncurrentPlayer.item(0).getTextContent());
+		return playerAmount;
+	}
+
+	public
 	int getTurn()
 	{
 		NodeList nturn = doc.getElementsByTagName("turn");

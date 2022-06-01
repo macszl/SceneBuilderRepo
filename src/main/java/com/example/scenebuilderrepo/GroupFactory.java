@@ -114,7 +114,7 @@ class GroupFactory
 			int unitCounter = 0;
 
 
-			GameInfo.playerAmount = loadedFactionList.size();
+			GameInfo.playerAmount = reader.getPlayerAmount();
 			GameInfo.currentPlayerCounter = reader.getCurrentPlayer();
 			GameInfo.turn = reader.getTurn();
 
@@ -130,7 +130,7 @@ class GroupFactory
 
 			GameInfo.playerFactions.clear();
 
-			for (int i = 0; i < loadedFactionList.size(); i++)
+			for (int i = 0; i < GameInfo.playerAmount; i++)
 			{
 				Faction faction;
 				if ( loadedFactionList.get(i) == FactionEnum.SKYMEN )
