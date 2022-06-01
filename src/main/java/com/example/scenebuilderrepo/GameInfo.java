@@ -103,9 +103,9 @@ public class GameInfo {
 
 enum FactionEnum {
     NO_FACTION,
-    Drzewoludzie,
-    Kryształoludzie,
-    Ptakoludzie
+    FORESTMEN,
+    CRYSTALMEN,
+    SKYMEN
 }
 
 class HexImages {

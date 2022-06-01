@@ -15,8 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -193,21 +191,21 @@ public class GameController implements Initializable {
     }
 
     private void getP3GameInfo() {
-        if (GameInfo.playerFactions.get(2).id == FactionEnum.Kryształoludzie) crystalmenFaction = GameInfo.playerFactions.get(2);
-        else if (GameInfo.playerFactions.get(2).id == FactionEnum.Drzewoludzie) treemenFaction = GameInfo.playerFactions.get(2);
-        else if (GameInfo.playerFactions.get(2).id == FactionEnum.Ptakoludzie) skymenFaction = GameInfo.playerFactions.get(2);
+        if (GameInfo.playerFactions.get(2).id == FactionEnum.CRYSTALMEN) crystalmenFaction = GameInfo.playerFactions.get(2);
+        else if (GameInfo.playerFactions.get(2).id == FactionEnum.FORESTMEN) treemenFaction = GameInfo.playerFactions.get(2);
+        else if (GameInfo.playerFactions.get(2).id == FactionEnum.SKYMEN) skymenFaction = GameInfo.playerFactions.get(2);
     }
 
     private void getP2GameInfo() {
-        if(GameInfo.playerFactions.get(1).id == FactionEnum.Kryształoludzie) crystalmenFaction =GameInfo.playerFactions.get(1);
-        else if(GameInfo.playerFactions.get(1).id == FactionEnum.Drzewoludzie) treemenFaction =GameInfo.playerFactions.get(1);
-        else if(GameInfo.playerFactions.get(1).id == FactionEnum.Ptakoludzie) skymenFaction =GameInfo.playerFactions.get(1);
+        if(GameInfo.playerFactions.get(1).id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions.get(1);
+        else if(GameInfo.playerFactions.get(1).id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions.get(1);
+        else if(GameInfo.playerFactions.get(1).id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions.get(1);
     }
 
     private void getP1GameInfo() {
-        if(GameInfo.playerFactions.get(0).id == FactionEnum.Kryształoludzie) crystalmenFaction =GameInfo.playerFactions.get(0);
-        else if(GameInfo.playerFactions.get(0).id == FactionEnum.Drzewoludzie) treemenFaction =GameInfo.playerFactions.get(0);
-        else if(GameInfo.playerFactions.get(0).id == FactionEnum.Ptakoludzie) skymenFaction =GameInfo.playerFactions.get(0);
+        if(GameInfo.playerFactions.get(0).id == FactionEnum.CRYSTALMEN) crystalmenFaction =GameInfo.playerFactions.get(0);
+        else if(GameInfo.playerFactions.get(0).id == FactionEnum.FORESTMEN) treemenFaction =GameInfo.playerFactions.get(0);
+        else if(GameInfo.playerFactions.get(0).id == FactionEnum.SKYMEN) skymenFaction =GameInfo.playerFactions.get(0);
     }
 
     void setTerrainBase(Hexagon hex, int i, int j)
@@ -355,18 +353,20 @@ public class GameController implements Initializable {
 
     private void setTurnDisplay(Player currentPlayer) {
         turnCounter.setText("Tura "+(GameInfo.turn+1)+": ");
-        turnIndicator.setText("  "+ currentPlayer.faction.id.toString());
         Color c;
-        if(currentPlayer.faction.id==FactionEnum.Ptakoludzie) {
-             c = Color.web("rgb(72,192,255)");
+        if(currentPlayer.faction.id==FactionEnum.SKYMEN) {
+            c = Color.web("rgb(72,192,255)");
+            turnIndicator.setText("  Ptakoludzie");
         }
-        else if (currentPlayer.faction.id==FactionEnum.Drzewoludzie)
+        else if (currentPlayer.faction.id==FactionEnum.FORESTMEN)
         {
             c = Color.web("rgb(130,102,81)");
+            turnIndicator.setText("  Drzewoludzie");
         }
         else
         {
             c = Color.web("rgb(161,112,192)");
+            turnIndicator.setText("  Kryształoludzie");
         }
         turnIndicator.setFill(c);
     }
