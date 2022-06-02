@@ -60,7 +60,7 @@ class SaveReader
 	}
 
 	public
-	int getPlayerAmount()
+	int getPlayerAmount ()
 	{
 		NodeList ncurrentPlayer = doc.getElementsByTagName("playerAmount");
 		int playerAmount = Integer.parseInt(ncurrentPlayer.item(0).getTextContent());
@@ -68,7 +68,7 @@ class SaveReader
 	}
 
 	public
-	int getTurn()
+	int getTurn ()
 	{
 		NodeList nturn = doc.getElementsByTagName("turn");
 		int turn = Integer.parseInt(nturn.item(0).getTextContent());
@@ -76,12 +76,13 @@ class SaveReader
 	}
 
 	public
-	int getCurrentPlayer()
+	int getCurrentPlayer ()
 	{
 		NodeList ncurrentPlayer = doc.getElementsByTagName("currentPlayer");
 		int currentPlayer = Integer.parseInt(ncurrentPlayer.item(0).getTextContent());
 		return currentPlayer;
 	}
+
 	public
 	ArrayList<FactionInfoStruct> getPlayerInformation ()
 	{

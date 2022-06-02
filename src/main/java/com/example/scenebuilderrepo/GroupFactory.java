@@ -213,7 +213,7 @@ class GroupFactory
 					GameInfo.playerHQs.get(hq_idx).setHp_max(maxHP);
 				}
 
-				if(fac != null)
+				if ( fac != null )
 				{
 					container.setOwner(GameInfo.playerFactions
 											   .get(GameInfo.getPlayerId(fac))
@@ -276,7 +276,7 @@ class GroupFactory
 			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
 
 			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
-			Board.addUnit(treemenFaction,(MapConstants.MAP_LENGTH / 2) - 1, 0);
+			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) - 1, 0);
 			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2), 1);
 
 			return group;

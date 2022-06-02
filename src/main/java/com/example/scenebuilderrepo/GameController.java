@@ -33,11 +33,10 @@ class GameController implements Initializable
 	ImageView cover = new ImageView(new Image(new File("Cover.png")
 													  .toURI()
 													  .toString()));
-                            
-  ImageView attacked;
-  ImageView attacker;
 
-  ImageView attackAnimation;
+	ImageView attacked;
+	ImageView attacker;
+	ImageView attackAnimation;
 	@FXML
 	private CheckMenuItem skipAtkButton;
 	@FXML
@@ -76,7 +75,10 @@ class GameController implements Initializable
 			throw new RuntimeException(e);
 		}
 		AttackController atk = fxmlLoader.getController();
+		attacker=atk.getAttacker();
+		attacked=atk.getAttacked();
 		atkPane = atk.getattackPane();
+		attackAnimation=atk.getAnimation();
 
 
 		GroupFactory groupFactory = new GroupFactory();
@@ -133,22 +135,22 @@ class GameController implements Initializable
 
 		node.setOnMouseDragged(mouseEvent ->
 							   {
-								   if ( mouseEvent.getY() - mouseAnchorY > 15
-										|| mouseEvent.getY() - mouseAnchorY < -15 )
+								   if( mouseEvent.getY() - mouseAnchorY > 15
+									   || mouseEvent.getY() - mouseAnchorY < -15 )
 								   {
-									   if ( mouseEvent.getSceneY() - mouseAnchorY < 0 && GameInfo.y == 900 )
+									   if( mouseEvent.getSceneY() - mouseAnchorY < 0 && GameInfo.y == 900 )
 									   {
 										   node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
 									   }
-									   else if ( mouseEvent.getSceneY() - mouseAnchorY < 125 && GameInfo.y == 1080 )
+									   else if( mouseEvent.getSceneY() - mouseAnchorY < 125 && GameInfo.y == 1080 )
 									   {
 										   node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
 									   }
 								   }
-								   if ( mouseEvent.getX() - mouseAnchorX > 15
-										|| mouseEvent.getX() - mouseAnchorX < -15 )
+								   if( mouseEvent.getX() - mouseAnchorX > 15
+									   || mouseEvent.getX() - mouseAnchorX < -15 )
 								   {
-									   if ( mouseEvent.getSceneX() - mouseAnchorX > 0 )
+									   if( mouseEvent.getSceneX() - mouseAnchorX > 0 )
 									   {
 										   node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
 									   }
@@ -168,7 +170,7 @@ class GameController implements Initializable
 		currentPlayer.setIncome();
 		currentPlayer.gold += currentPlayer.income;
 
-		if ( GameInfo.currentPlayerCounter < GameInfo.playerAmount - 1 )
+		if( GameInfo.currentPlayerCounter < GameInfo.playerAmount - 1 )
 		{
 			GameInfo.currentPlayerCounter += 1;
 		}
@@ -192,9 +194,9 @@ class GameController implements Initializable
 	{
 		Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
 
-		if ( Board.selectedTile != null &&
-			 Board.selectedTile.obj == null &&
-			 currentPlayer.gold >= 5 )
+		if( Board.selectedTile != null &&
+			Board.selectedTile.obj == null &&
+			currentPlayer.gold >= 5 )
 
 		{
 			int x = Board.selectedTile.hex.x;
@@ -211,10 +213,11 @@ class GameController implements Initializable
 	}
 
 	public
-	void doAttack ()
+	void doAttack (MapTile selectedTile, MapTile destinationTile)
 	{
-		if ( !GameInfo.skipAtk )
+		if( !GameInfo.skipAtk )
 		{
+			setAttack(selectedTile,destinationTile);
 			showAttack();
 			PauseTransition p = new PauseTransition(Duration.millis(1000));
 			p.setOnFinished(e -> hideAttack());
@@ -249,14 +252,14 @@ class GameController implements Initializable
 				.add(atkPane);
 
 	}
-  
-  void setAttack(MapTile selectedTile, MapTile destinationTile)
-    {
-        attacker.setImage(selectedTile.obj.attacker);
-        attacked.setImage(destinationTile.obj.portriat);
-        atkPane.getChildren().remove(attackAnimation);
-        atkPane.getChildren().add(attackAnimation);
-        attackAnimation.setImage(selectedTile.obj.attackAnimation);
 
-    }
+	void setAttack (MapTile selectedTile, MapTile destinationTile)
+	{
+		attacker.setImage(selectedTile.obj.attacker);
+		attacked.setImage(destinationTile.obj.portriat);
+		atkPane.getChildren().remove(attackAnimation);
+		atkPane.getChildren().add(attackAnimation);
+		attackAnimation.setImage(selectedTile.obj.attackAnimation);
+
+	}
 }

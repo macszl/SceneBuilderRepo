@@ -146,8 +146,10 @@ class MapTile extends StackPane
 	public
 	void setOwner (Player _owner)
 	{
-		if(_owner == null)
+		if ( _owner == null )
+		{
 			return;
+		}
 
 		if ( owner != null )
 		{
@@ -194,10 +196,8 @@ class MapObject extends ImageView
 	Image portriat;
 	Faction faction;
 	MapTile parent;
-  
-  Image portriat;
-  Image attacker;
-  Image attackAnimation;
+	Image attacker;
+	Image attackAnimation;
 
 	int def;
 	int atk;
@@ -260,7 +260,7 @@ class Unit extends MapObject
 
 
 	public
-	Unit (Faction _faction, Image _portriat)
+	Unit (Faction _faction, Image _portriat, Image _attacker, Image _attackAnimation)
 	{
 		if ( _faction.id == FactionEnum.CRYSTALMEN )
 		{
@@ -282,6 +282,8 @@ class Unit extends MapObject
 		}
 		this.faction = _faction;
 		this.portriat = _portriat;
+		this.attacker=_attacker;
+		this.attackAnimation=_attackAnimation;
 
 		atk = 18;
 		setHp_current(20);
@@ -468,7 +470,7 @@ class Board
 						  .equals(HQ.class) &&
 				  destinationTile.getOwner() != selectedTile.getOwner() )
 		{
-			destinationTile.hex.controller.doAttack();
+			destinationTile.hex.controller.doAttack(selectedTile,destinationTile);
 			battleCalc(destinationTile);
 		}
 	}
@@ -543,24 +545,21 @@ class Board
 		Unit unit;
 		if ( faction.id == FactionEnum.SKYMEN )
 		{
-			unit = new Unit(faction,
-							new Image(new File("FLYING_UNIT_PORTRAIT.png")
-											  .toURI()
-											  .toString()));
+			unit = new Unit(faction, new Image(new File("FLYING_UNIT_PORTRAIT.png").toURI().toString()),
+									 new Image(new File("attack_flying.png").toURI().toString()),
+									 new Image(new File("flying_attack_animation.gif").toURI().toString()));
 		}
 		else if ( faction.id == FactionEnum.CRYSTALMEN )
 		{
-			unit = new Unit(faction,
-							new Image(new File("CRYSTAL_UNIT_PORTRAIT.png")
-											  .toURI()
-											  .toString()));
+			unit = new Unit(faction, new Image(new File("CRYSTAL_UNIT_PORTRAIT.png").toURI().toString()),
+									 new Image(new File("attack_crystal.png").toURI().toString()),
+									 new Image(new File("crystal_attack_animation.gif").toURI().toString()));
 		}
 		else
 		{
-			unit = new Unit(faction,
-							new Image(new File("TREE_UNIT_PORTRAIT.png")
-											  .toURI()
-											  .toString()));
+			unit = new Unit(faction, new Image(new File("TREE_UNIT_PORTRAIT.png").toURI().toString()),
+							  		 new Image(new File("attack_tree.png").toURI().toString()),
+									 new Image(new File("tree_attack_animation.gif").toURI().toString()));
 		}
 		unit.setFitWidth(GameInfo.hexsize);
 		unit.setFitHeight(GameInfo.hexsize);
