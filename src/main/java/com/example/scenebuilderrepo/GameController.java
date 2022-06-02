@@ -59,6 +59,11 @@ class GameController implements Initializable
 	private AnchorPane mapAnchor;
 	@FXML
 	private ImageView unitPortrait;
+	@FXML
+	private Text turnIndicator;
+	@FXML
+	private Text turnCounter;
+
 	private double mouseAnchorX;
 	private double mouseAnchorY;
 
@@ -89,6 +94,7 @@ class GameController implements Initializable
 
 
 		setBoard(group);
+		setTurnDisplay(GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl);
 	}
 
 	@FXML
@@ -160,6 +166,26 @@ class GameController implements Initializable
 	}
 
 
+	private void setTurnDisplay(Player currentPlayer) {
+		turnCounter.setText("Tura "+(GameInfo.turn+1)+": ");
+		Color c;
+		if(currentPlayer.faction.id==FactionEnum.SKYMEN) {
+			c = Color.web("rgb(72,192,255)");
+			turnIndicator.setText("  Ptakoludzie");
+		}
+		else if (currentPlayer.faction.id==FactionEnum.FORESTMEN)
+		{
+			c = Color.web("rgb(130,102,81)");
+			turnIndicator.setText("  Drzewoludzie");
+		}
+		else
+		{
+			c = Color.web("rgb(161,112,192)");
+			turnIndicator.setText("  Kryształoludzie");
+		}
+		turnIndicator.setFill(c);
+	}
+
 	public
 	void endTurn () throws IOException, InterruptedException
 	{
@@ -169,7 +195,6 @@ class GameController implements Initializable
 		Player currentPlayer = GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl;
 		currentPlayer.setIncome();
 		currentPlayer.gold += currentPlayer.income;
-
 		if( GameInfo.currentPlayerCounter < GameInfo.playerAmount - 1 )
 		{
 			GameInfo.currentPlayerCounter += 1;
@@ -184,6 +209,7 @@ class GameController implements Initializable
 		Board.unClickAll();
 		System.out.println("After click: Turn " + GameInfo.turn + " player: " + GameInfo.currentPlayerCounter);
 
+		setTurnDisplay(GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl);
 		//make end turn write and save to disk
 		SaveBuilder saveBuilder = new SaveBuilder("save.xml");
 		saveBuilder.saveGameToXML();
