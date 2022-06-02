@@ -30,12 +30,8 @@ class MapTile extends StackPane
 		setHexStateRings(rings);
 		setHexColorBases(hexColorBases);
 		setHexStateRing(rings.unclicked);
-		this
-				.getChildren()
-				.add(hexStateRing);
-		this
-				.getChildren()
-				.add(hexColorBase);
+		this.getChildren().add(hexStateRing);
+		this.getChildren().add(hexColorBase);
 		hexColorBase.setFitHeight(GameInfo.hexsize);
 		hexColorBase.setFitWidth(GameInfo.hexsize);
 		hexStateRing.setFitHeight(GameInfo.hexsize);
@@ -369,17 +365,9 @@ class Board
 	{
 		for (int i = 0; i < mapTiles.size(); i++)
 		{
-			for (
-					int j = 0;
-					j < mapTiles
-							.get(i)
-							.size();
-					j++)
+			for (int j = 0; j < mapTiles.get(i).size(); j++)
 			{
-				mapTiles
-						.get(i)
-						.get(j)
-						.setHexRingToUnclicked();
+				mapTiles.get(i).get(j).setHexRingToUnclicked();
 			}
 		}
 		selectedTile = null;
@@ -388,9 +376,7 @@ class Board
 	static
 	void selectTile (int x, int y)
 	{
-		selectedTile = mapTiles
-				.get(x)
-				.get(y);
+		selectedTile = mapTiles.get(x).get(y);
 	}
 
 	static
@@ -401,9 +387,7 @@ class Board
 		// The lookup tables are in a {x,y} format
 		int[][] ODD_COLUMN_LOOKUP_TABLE = {{1, 1}, {1, 0}, {0, -1}, {-1, 0}, {-1, 1}, {0, 1}};
 		int[][] EVEN_COLUMN_LOOKUP_TABLE = {{1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {0, 1}};
-		if ( !selectedTile.obj
-				.getClass()
-				.equals(Unit.class) )
+		if ( !selectedTile.obj.getClass().equals(Unit.class) )
 		{
 			return;
 		}
@@ -416,10 +400,7 @@ class Board
 				if ( (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
 					 (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT) )
 				{
-					mapTiles
-							.get(x + x_offset)
-							.get(y + y_offset)
-							.setHexRingToHighlighted();
+					mapTiles.get(x + x_offset).get(y + y_offset).setHexRingToHighlighted();
 				}
 			}
 		}
@@ -432,10 +413,7 @@ class Board
 				if ( (x + x_offset >= 0 && x + x_offset < MapConstants.MAP_LENGTH) &&
 					 (y + y_offset >= 0 && y + y_offset < MapConstants.MAP_HEIGHT) )
 				{
-					mapTiles
-							.get(x + x_offset)
-							.get(y + y_offset)
-							.setHexRingToHighlighted();
+					mapTiles.get(x + x_offset).get(y + y_offset).setHexRingToHighlighted();
 				}
 			}
 		}
@@ -445,29 +423,19 @@ class Board
 	static
 	void unitMove (MapTile destinationTile)
 	{
-		if ( destinationTile.obj == null && selectedTile.obj
-				.getClass()
-				.equals(Unit.class) )
+		if ( destinationTile.obj == null && selectedTile.obj.getClass().equals(Unit.class) )
 		{
 			//assigning the obj from the previous mapTile to the destination tile
 			destinationTile.obj = selectedTile.obj;
 			destinationTile.obj.setAction_points_cur(destinationTile.obj.getAction_points_cur() - 1);
-			destinationTile
-					.getChildren()
-					.add(destinationTile.obj);
+			destinationTile.getChildren().add(destinationTile.obj);
 			destinationTile.setOwner(selectedTile.getOwner());
 			//removing the obj from the previous mapTile
-			selectedTile
-					.getChildren()
-					.remove(selectedTile.obj);
+			selectedTile.getChildren().remove(selectedTile.obj);
 			selectedTile.obj = null;
 		}
-		else if ( destinationTile.obj
-						  .getClass()
-						  .equals(Unit.class) ||
-				  destinationTile.obj
-						  .getClass()
-						  .equals(HQ.class) &&
+		else if ( destinationTile.obj.getClass().equals(Unit.class) ||
+				  destinationTile.obj.getClass().equals(HQ.class) &&
 				  destinationTile.getOwner() != selectedTile.getOwner() )
 		{
 			destinationTile.hex.controller.doAttack(selectedTile,destinationTile);
@@ -496,8 +464,7 @@ class Board
 			}
 			else
 			{
-				removeHQ(selectedTile.hex.x,
-						 selectedTile.hex.y);
+				removeHQ(selectedTile.hex.x, selectedTile.hex.y);
 				GameInfo.removeHQ(selectedTile);
 			}
 			selectedTile.obj = null;
@@ -534,14 +501,8 @@ class Board
 			return;
 		}
 
-		mapTiles
-				.get(i)
-				.get(j)
-				.setOwner(faction.pl);
-		mapTiles
-				.get(i)
-				.get(j)
-				.setHexColorBase(faction.color);
+		mapTiles.get(i).get(j).setOwner(faction.pl);
+		mapTiles.get(i).get(j).setHexColorBase(faction.color);
 		Unit unit;
 		if ( faction.id == FactionEnum.SKYMEN )
 		{
@@ -563,12 +524,8 @@ class Board
 		}
 		unit.setFitWidth(GameInfo.hexsize);
 		unit.setFitHeight(GameInfo.hexsize);
-		mapTiles
-				.get(i)
-				.get(j)
-				.addMapObject(unit);
-		GameInfo.addUnit(faction.id,
-						 unit);
+		mapTiles.get(i).get(j).addMapObject(unit);
+		GameInfo.addUnit(faction.id, unit);
 	}
 
 	static
@@ -578,97 +535,51 @@ class Board
 		{
 			return;
 		}
-		mapTiles
-				.get(i)
-				.get(j).hex.setImage(new Image(new File("hexagon.png")
-													   .toURI()
-													   .toString()));
-		mapTiles
-				.get(i)
-				.get(j)
-				.setOwner(faction.pl);
-		mapTiles
-				.get(i)
-				.get(j)
-				.setHexColorBase(faction.color);
+		mapTiles.get(i).get(j).hex.setImage(new Image(new File("hexagon.png").toURI().toString()));
+		mapTiles.get(i).get(j).setOwner(faction.pl);
+		mapTiles.get(i).get(j).setHexColorBase(faction.color);
 		HQ hq;
 		if ( faction.id == FactionEnum.SKYMEN )
 		{
-			hq = new HQ(faction,
-						new Image(new File("flying_meteor.png")
-										  .toURI()
-										  .toString()));
+			hq = new HQ(faction, new Image(new File("flying_meteor.png").toURI().toString()));
 		}
 		else if ( faction.id == FactionEnum.CRYSTALMEN )
 		{
-			hq = new HQ(faction,
-						new Image(new File("crystal_meteor.png")
-										  .toURI()
-										  .toString()));
+			hq = new HQ(faction, new Image(new File("crystal_meteor.png").toURI().toString()));
 		}
 		else
 		{
-			hq = new HQ(faction,
-						new Image(new File("forest_meteor.png")
-										  .toURI()
-										  .toString()));
+			hq = new HQ(faction, new Image(new File("tree_meteor.png").toURI().toString()));
 		}
 		hq.setFitWidth(GameInfo.hexsize);
 		hq.setFitHeight(GameInfo.hexsize);
-		mapTiles
-				.get(i)
-				.get(j)
-				.addMapObject(hq);
-		GameInfo.addHQ(faction.id,
-					   hq);
+		mapTiles.get(i).get(j).addMapObject(hq);
+		GameInfo.addHQ(faction.id, hq);
 	}
 
 	static
 	void removeHQ (int i, int j)
 	{
-		Faction faction = mapTiles
-				.get(i)
-				.get(j).obj.faction;
+		Faction faction = mapTiles.get(i).get(j).obj.faction;
 		for (int k = 0; k < mapTiles.size(); k++)
 		{
-			for (
-					int l = 0;
-					l < mapTiles
-							.get(k)
-							.size();
-					l++)
+			for (int l = 0; l < mapTiles.get(k).size(); l++)
 			{
-				if ( mapTiles
-							 .get(k)
-							 .get(l).hexColorBase.getImage() == faction.color )
+				if ( mapTiles.get(k).get(l).hexColorBase.getImage() == faction.color )
 				{
-
-					mapTiles
-							.get(k)
-							.get(l)
-							.setHexColorBase(null);
+					mapTiles.get(k).get(l).setHexColorBase(null);
 				}
-				if ( mapTiles
-							 .get(k)
-							 .get(l).obj != null )
+				if ( mapTiles.get(k).get(l).obj != null )
 				{
-					if ( mapTiles
-								 .get(k)
-								 .get(l).obj.faction == faction )
+					if ( mapTiles.get(k).get(l).obj.faction == faction )
 					{
-						mapTiles
-								.get(k)
-								.get(l).obj.setImage(null);
-						mapTiles
-								.get(k)
-								.get(l).obj.portriat = null;
+						mapTiles.get(k).get(l).obj.setImage(null);
+						mapTiles.get(k).get(l).obj.portriat = null;
 					}
 				}
 			}
 		}
-		GameInfo.removeHQ(mapTiles
-								  .get(i)
-								  .get(j));
+		GameInfo.removeHQ(mapTiles.get(i).get(j));
 
 	}
 
@@ -677,20 +588,11 @@ class Board
 	{
 		for (int i = 0; i < mapTiles.size(); i++)
 		{
-			for (
-					int j = 0;
-					j < mapTiles
-							.get(i)
-							.size();
-					j++)
+			for (int j = 0; j < mapTiles.get(i).size();j++)
 			{
-				if ( object == mapTiles
-						.get(i)
-						.get(j).obj )
+				if ( object == mapTiles.get(i).get(j).obj )
 				{
-					return mapTiles
-							.get(i)
-							.get(j);
+					return mapTiles.get(i).get(j);
 				}
 			}
 		}
@@ -699,9 +601,7 @@ class Board
 
 	void addMapTile (MapTile tile, int x)
 	{
-		mapTiles
-				.get(x)
-				.add(tile);
+		mapTiles.get(x).add(tile);
 	}
 
 	void addColumn ()
