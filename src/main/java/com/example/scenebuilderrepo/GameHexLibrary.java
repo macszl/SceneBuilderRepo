@@ -194,6 +194,10 @@ class MapObject extends ImageView
 	Image portriat;
 	Faction faction;
 	MapTile parent;
+  
+  Image portriat;
+  Image attacker;
+  Image attackAnimation;
 
 	int def;
 	int atk;
@@ -342,6 +346,7 @@ class Player
 		income = (float) (1 + (ownedHexes * 0.2));
 	}
 }
+
 
 class Board
 {
