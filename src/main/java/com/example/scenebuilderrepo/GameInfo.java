@@ -12,7 +12,36 @@ enum FactionEnum
 	CRYSTALMEN,
 	SKYMEN
 }
+enum TerrainEnum
+{
+	RADIOACTIVE(0),
+	MOUNTAIN(1),
+	HILL(2),
+	FOREST(3),
+	RUINS(4);
+	
+	private int id;
 
+	TerrainEnum(int i) {
+		this.id=i;
+	}
+
+	static public TerrainEnum getById(int i)
+	{
+		switch (i) {
+			case 0: return TerrainEnum.RADIOACTIVE;
+			case 1: return TerrainEnum.MOUNTAIN;
+			case 2: return TerrainEnum.HILL;
+			case 3: return TerrainEnum.FOREST;
+			case 4: return TerrainEnum.RUINS;
+		}
+		return null;
+	}
+
+	public int getID() {
+		return id;
+	}
+}
 public
 class GameInfo
 {

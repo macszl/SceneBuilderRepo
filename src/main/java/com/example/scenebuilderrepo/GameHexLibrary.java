@@ -83,11 +83,16 @@ class MapTile extends StackPane
 						}
 						isClicked = true;
 						setHexRingToClicked();
-						hex.controller.setUnitPortraitAndDesc(obj);
+						setPortrait();
 					}
 				}
 			}
 		});
+	}
+
+	void setPortrait()
+	{
+		hex.controller.setUnitPortraitAndDesc(this);
 	}
 
 	void setHexRingToClicked ()
@@ -167,6 +172,15 @@ class MapTile extends StackPane
 		}
 	}
 
+	public int getTerrainDef() {
+		if(hex.terrain==null) return 0;
+		return getOwner().faction.getTerrainDef(hex.terrain.getID());
+	}
+
+	public int getTerrainAtk() {
+		if(hex.terrain==null) return 0;
+		return getOwner().faction.getTerrainAtk(hex.terrain.getID());
+	}
 }
 
 class Hexagon extends ImageView
@@ -175,6 +189,7 @@ class Hexagon extends ImageView
 	int x;
 	int y;
 	GameController controller;
+	TerrainEnum terrain;
 
 
 	Hexagon (int x, int y, Player _onwer, GameController controller)
@@ -185,6 +200,9 @@ class Hexagon extends ImageView
 
 	}
 
+	public void setTerrain(TerrainEnum terrain) {
+		this.terrain = terrain;
+	}
 }
 
 class MapObject extends ImageView
@@ -434,8 +452,8 @@ class Board
 			selectedTile.getChildren().remove(selectedTile.obj);
 			selectedTile.obj = null;
 		}
-		else if ( destinationTile.obj.getClass().equals(Unit.class) ||
-				  destinationTile.obj.getClass().equals(HQ.class) &&
+		else if ( (destinationTile.obj.getClass().equals(Unit.class) ||
+				  destinationTile.obj.getClass().equals(HQ.class)) &&
 				  destinationTile.getOwner() != selectedTile.getOwner() )
 		{
 			destinationTile.hex.controller.doAttack(selectedTile,destinationTile);
@@ -450,9 +468,9 @@ class Board
 		int max = 2;
 		int min = -2;
 		int attackerHPbefore = selectedTile.obj.getHp_current();
-		int attackerHPafter = attackerHPbefore - destinationTile.obj.def + rand.nextInt((max - min) + 1) + min;
+		int attackerHPafter = attackerHPbefore - destinationTile.obj.def + rand.nextInt((max - min) + 1) - min - destinationTile.getTerrainDef();
 		int defenderHPbefore = destinationTile.obj.getHp_current();
-		int defenderHPafter = defenderHPbefore - selectedTile.obj.atk + rand.nextInt((max - min) + 1) + min;
+		int defenderHPafter = defenderHPbefore - selectedTile.obj.atk + rand.nextInt((max - min) + 1) + min - selectedTile.getTerrainAtk();
 
 		if ( attackerHPafter <= 0 )
 		{
@@ -619,10 +637,70 @@ class Faction
 
 	FactionEnum id;
 
+	TerrainEffects effects=new TerrainEffects();
+
 	public
 	Faction (FactionEnum _id, Image _color)
 	{
 		id = _id;
+		if(_id==FactionEnum.CRYSTALMEN)
+		{
+			effects.setAtk(1,1,1,1,1);
+			effects.setDef(1,1,1,1,1);
+		}
+		else if(_id==FactionEnum.FORESTMEN)
+		{
+			effects.setAtk(1,1,1,1,1);
+			effects.setDef(1,1,1,1,1);
+		}
+		else if(_id==FactionEnum.SKYMEN)
+		{
+			effects.setAtk(1,1,1,1,1);
+			effects.setDef(1,1,1,1,1);
+		}
 		color = _color;
 	}
+
+	public void setEffects(TerrainEffects effects) {
+		this.effects = effects;
+	}
+
+	public int getTerrainDef(int x) {
+		return effects.def.get(x);
+	}
+	public int getTerrainAtk(int x) {
+		return effects.atk.get(x);
+	}
+}
+
+class TerrainEffects
+{
+	Vector<Integer> atk = new Vector<Integer>();
+	Vector<Integer> def = new Vector<Integer>();
+	Vector<TerrainEnum> terrain = new Vector<TerrainEnum>();
+
+	public TerrainEffects()
+	{
+		for(int i=0;i<5;i++) {
+			terrain.add(TerrainEnum.getById(i));
+		}
+	}
+
+	public void setAtk(int x1,int x2,int x3, int x4, int x5)
+	{
+		atk.add(x1);
+		atk.add(x2);
+		atk.add(x3);
+		atk.add(x4);
+		atk.add(x5);
+	}
+	public void setDef(int x1,int x2,int x3, int x4, int x5)
+	{
+		def.add(x1);
+		def.add(x2);
+		def.add(x3);
+		def.add(x4);
+		def.add(x5);
+	}
+
 }

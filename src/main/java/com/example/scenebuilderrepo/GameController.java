@@ -112,12 +112,12 @@ class GameController implements Initializable
 
 	@FXML
 	public
-	void setUnitPortraitAndDesc (MapObject unit)
+	void setUnitPortraitAndDesc (MapTile unit)
 	{
-		unitPortrait.setImage(unit.portriat);
-		unitStatsATK.setText("ATK " + unit.atk);
-		unitStatsDEF.setText("DEF " + unit.def);
-		unitStatsHP.setText("HP " + unit.getHp_current() + "/" + unit.getHp_max());
+		unitPortrait.setImage(unit.obj.portriat);
+		unitStatsATK.setText("ATK " + unit.obj.atk+"(+"+unit.getTerrainAtk()+")");
+		unitStatsDEF.setText("DEF " + unit.obj.def+"(+"+unit.getTerrainDef()+")");
+		unitStatsHP.setText("HP " + unit.obj.getHp_current()+ "/" + unit.obj.getHp_max());
 	}
 
 	public
