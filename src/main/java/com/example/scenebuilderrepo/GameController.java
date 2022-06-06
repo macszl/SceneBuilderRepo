@@ -115,8 +115,17 @@ class GameController implements Initializable
 	void setUnitPortraitAndDesc (MapTile unit)
 	{
 		unitPortrait.setImage(unit.obj.portriat);
-		unitStatsATK.setText("ATK " + unit.obj.atk+"(+"+unit.getTerrainAtk()+")");
-		unitStatsDEF.setText("DEF " + unit.obj.def+"(+"+unit.getTerrainDef()+")");
+
+		if(unit.getTerrainAtk() >= 0)
+			unitStatsATK.setText("ATK " + unit.obj.atk+"(+"+unit.getTerrainAtk()+")");
+		else
+			unitStatsATK.setText("ATK " + unit.obj.atk+"("+unit.getTerrainAtk()+")");
+
+		if(unit.getTerrainDef() >= 0)
+			unitStatsDEF.setText("DEF " + unit.obj.def+"(+"+unit.getTerrainDef()+")");
+		else
+			unitStatsDEF.setText("DEF " + unit.obj.def+"("+unit.getTerrainDef()+")");
+
 		unitStatsHP.setText("HP " + unit.obj.getHp_current()+ "/" + unit.obj.getHp_max());
 	}
 

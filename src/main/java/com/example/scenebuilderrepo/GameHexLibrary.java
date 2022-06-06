@@ -299,7 +299,8 @@ class Unit extends MapObject
 		this.attacker=_attacker;
 		this.attackAnimation=_attackAnimation;
 
-		atk = 18;
+		atk = 7;
+		def = 6;
 		setHp_current(20);
 		setHp_max(20);
 		setAction_points_cur(1);
@@ -334,7 +335,7 @@ class HQ extends MapObject
 		this.faction = _faction;
 		this.portriat = _portriat;
 
-		def = 4;
+		def = 5;
 		atk = 0;
 		setHp_current(95);
 		setHp_max(100);
@@ -465,12 +466,21 @@ class Board
 	void battleCalc (MapTile destinationTile)
 	{
 		Random rand = new Random();
-		int max = 2;
-		int min = -2;
+		int max = 1;
+		int min = -1;
 		int attackerHPbefore = selectedTile.obj.getHp_current();
-		int attackerHPafter = attackerHPbefore - destinationTile.obj.def + rand.nextInt((max - min) + 1) - min - destinationTile.getTerrainDef();
+		int attackerHPafterBase = attackerHPbefore - destinationTile.obj.def;
+		int attackerHPafterTerrainBonus = destinationTile.getTerrainDef();
+		int attackerHPafterRand = rand.nextInt((max - min) + 1) + min;
+
+		int attackerHPafter = attackerHPafterBase - attackerHPafterTerrainBonus - attackerHPafterRand;
+
 		int defenderHPbefore = destinationTile.obj.getHp_current();
-		int defenderHPafter = defenderHPbefore - selectedTile.obj.atk + rand.nextInt((max - min) + 1) + min - selectedTile.getTerrainAtk();
+		int defenderHPafterBase = defenderHPbefore - selectedTile.obj.atk;
+		int defenderHPafterRand = rand.nextInt((max - min) + 1) + min;
+		int defenderHPafterTerrainBonus = selectedTile.getTerrainAtk();
+
+		int defenderHPafter = defenderHPafterBase - defenderHPafterTerrainBonus - defenderHPafterRand;
 
 		if ( attackerHPafter <= 0 )
 		{
@@ -645,18 +655,18 @@ class Faction
 		id = _id;
 		if(_id==FactionEnum.CRYSTALMEN)
 		{
-			effects.setAtk(1,1,1,1,1);
-			effects.setDef(1,1,1,1,1);
+			effects.setAtk(0,0,0,0,0);
+			effects.setDef(0,0,0,0,6);
 		}
 		else if(_id==FactionEnum.FORESTMEN)
 		{
-			effects.setAtk(1,1,1,1,1);
-			effects.setDef(1,1,1,1,1);
+			effects.setAtk(-2,0,0,2,0);
+			effects.setDef(-3,0,0,2,0);
 		}
 		else if(_id==FactionEnum.SKYMEN)
 		{
-			effects.setAtk(1,1,1,1,1);
-			effects.setDef(1,1,1,1,1);
+			effects.setAtk(-2,4,2,0,0);
+			effects.setDef(-3,4,2,0,0);
 		}
 		color = _color;
 	}
@@ -686,21 +696,21 @@ class TerrainEffects
 		}
 	}
 
-	public void setAtk(int x1,int x2,int x3, int x4, int x5)
+	public void setAtk(int radioactiveBonus,int mountainBonus,int hillBonus, int forestBonus, int ruinsBonus)
 	{
-		atk.add(x1);
-		atk.add(x2);
-		atk.add(x3);
-		atk.add(x4);
-		atk.add(x5);
+		atk.add(radioactiveBonus);
+		atk.add(mountainBonus);
+		atk.add(hillBonus);
+		atk.add(forestBonus);
+		atk.add(ruinsBonus);
 	}
-	public void setDef(int x1,int x2,int x3, int x4, int x5)
+	public void setDef(int radioactiveBonus,int mountainBonus,int hillBonus, int forestBonus, int ruinsBonus)
 	{
-		def.add(x1);
-		def.add(x2);
-		def.add(x3);
-		def.add(x4);
-		def.add(x5);
+		def.add(radioactiveBonus);
+		def.add(mountainBonus);
+		def.add(hillBonus);
+		def.add(forestBonus);
+		def.add(ruinsBonus);
 	}
 
 }

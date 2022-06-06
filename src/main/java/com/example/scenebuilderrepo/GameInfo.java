@@ -12,6 +12,8 @@ enum FactionEnum
 	CRYSTALMEN,
 	SKYMEN
 }
+
+
 enum TerrainEnum
 {
 	RADIOACTIVE(0),
