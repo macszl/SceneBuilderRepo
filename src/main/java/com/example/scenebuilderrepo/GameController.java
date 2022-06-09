@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public
 class GameController implements Initializable
@@ -34,9 +35,14 @@ class GameController implements Initializable
 													  .toURI()
 													  .toString()));
 
-	ImageView attacked;
-	ImageView attacker;
-	ImageView attackAnimation;
+	private ImageView attacked;
+	private ImageView attacker;
+	private ImageView attackAnimation;
+
+	private ImageView winnerPane;
+	private Text winnerText;
+	private Button quitButton;
+
 	@FXML
 	private CheckMenuItem skipAtkButton;
 	@FXML
@@ -85,6 +91,10 @@ class GameController implements Initializable
 		atkPane = atk.getattackPane();
 		attackAnimation=atk.getAnimation();
 
+		winnerPane=atk.getWinnerPane();
+		winnerText=atk.getWinnerText();
+		quitButton=atk.getQuitButton();
+
 
 		GroupFactory groupFactory = new GroupFactory();
 		Group group = groupFactory.getGroup(this);
@@ -95,6 +105,8 @@ class GameController implements Initializable
 
 		setBoard(group);
 		setTurnDisplay(GameInfo.playerFactions.get(GameInfo.currentPlayerCounter).pl);
+
+		GameInfo.gameController=this;
 	}
 
 	@FXML
@@ -213,6 +225,73 @@ class GameController implements Initializable
 		//make end turn write and save to disk
 		SaveBuilder saveBuilder = new SaveBuilder("save.xml");
 		saveBuilder.saveGameToXML();
+	}
+
+	@FXML
+	public void endGame() {
+		try {
+			Thread.sleep(100);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		PauseTransition p = new PauseTransition(Duration.millis(2000));
+		p.setOnFinished(e -> showEnd());
+		setEnd();
+		p.play();
+		showEnd();
+	}
+	@FXML
+	public void showEnd()
+	{
+		cover.setFitWidth(coverPane.getWidth());
+		cover.setFitHeight(coverPane.getHeight());
+		coverPane
+				.getChildren()
+				.remove(cover);
+		coverPane
+				.getChildren()
+				.remove(atkPane);
+		coverPane
+				.getChildren()
+				.add(cover);
+		coverPane
+				.getChildren()
+				.add(atkPane);
+	}
+
+	void setEnd ()
+	{
+		attacker.setImage(null);
+		attacked.setImage(null);
+		attackAnimation.setImage(null);
+		hideAttack();
+		winnerPane.setImage(GameInfo.playerHQs.get(0).portriat);
+		Color c;
+		winnerText.setWrappingWidth(500);
+		if(GameInfo.playerHQs.get(0).faction.id==FactionEnum.FORESTMEN)
+		{
+
+			c=Color.web("rgb(130,102,81)");
+
+			winnerText.setText("Wygrali Drzewoludzie");
+			winnerText.setWrappingWidth(500);
+		}
+		else if (GameInfo.playerHQs.get(0).faction.id==FactionEnum.SKYMEN)
+		{
+			c = Color.web("rgb(72,192,255)");
+			winnerText.setText("Wygrali Ptakoludzie");
+		}
+		else
+		{
+			c = Color.web("rgb(161,112,192)");
+			winnerText.setText("Wygrali Kryształoludzie");
+		}
+		winnerText.setFill(c);
+		quitButton.setVisible(true);
+		quitButton.setDisable(false);
+
 	}
 
 	public

@@ -28,6 +28,7 @@ class GameInfo
 	static ArrayList<Faction> playerFactions = new ArrayList<>();
 	static ArrayList<ArrayList<Unit>> playerUnits = getPlayerUnits();
 	static ArrayList<HQ> playerHQs = new ArrayList<>(3);
+	static GameController gameController;
 
 	public static
 	int getPlayerId (FactionEnum _fac)
@@ -129,6 +130,7 @@ class GameInfo
 				playerAmount--;
 				if ( playerAmount == 1 )
 				{
+					gameController.endGame();
 					//TODO
 					//implementacja ekranu z wygrana
 

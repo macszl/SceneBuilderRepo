@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Almost done now.">
-      <change afterPath="$PROJECT_DIR$/crystal_attack_animation.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flying_attack_animation.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tree_attack_animation.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRYSTAL_UNIT_PORTRAIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/CRYSTAL_UNIT_PORTRAIT.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FLYING_UNIT_PORTRAIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/FLYING_UNIT_PORTRAIT.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TREE_UNIT_PORTRAIT.png" beforeDir="false" afterPath="$PROJECT_DIR$/TREE_UNIT_PORTRAIT.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crystal_meteor.png" beforeDir="false" afterPath="$PROJECT_DIR$/crystal_meteor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flying_meteor.png" beforeDir="false" afterPath="$PROJECT_DIR$/flying_meteor.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/AttackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/AttackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameHexLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/atackwindows.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/attackwindows.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/scenebuilderrepo/attackwindows.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree_meteor.png" beforeDir="false" afterPath="$PROJECT_DIR$/tree_meteor.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +51,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/reksa11/IdeaProjects/kck/SceneBuilderRepo&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../warcaby" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -328,13 +316,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
-          <line>229</line>
+          <line>308</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java</url>
-          <line>404</line>
-          <option name="timeStamp" value="42" />
+          <line>232</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
