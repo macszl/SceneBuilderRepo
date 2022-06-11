@@ -264,20 +264,20 @@ class GroupFactory
 				}
 			}
 
-			Board.addHQ(crystalmenFaction, 0, 10);
-			Board.addHQ(skymenFaction, MapConstants.MAP_LENGTH / 2, 0);
+			Board.addHQ(skymenFaction, 0, 10);
+			Board.addHQ(crystalmenFaction, MapConstants.MAP_LENGTH / 2, 0);
 			Board.addHQ(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 1);
 			Board.addUnit(skymenFaction, 0, 9);
 			Board.addUnit(skymenFaction, 1, 9);
 			Board.addUnit(skymenFaction, 1, 10);
 
-			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
-			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
-			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
+			Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
+			Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
+			Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
 
-			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
-			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) - 1, 0);
-			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2), 1);
+			Board.addUnit(crystalmenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
+			Board.addUnit(crystalmenFaction, (MapConstants.MAP_LENGTH / 2) - 1, 0);
+			Board.addUnit(crystalmenFaction, (MapConstants.MAP_LENGTH / 2), 1);
 
 			return group;
 		}
@@ -382,6 +382,7 @@ class GroupFactory
 			{
 				hex.setImage(forest2);
 			}
+			hex.setTerrain(TerrainEnum.FOREST);
 		}
 		else if ( j > 4 )
 		{
@@ -390,10 +391,12 @@ class GroupFactory
 			if ( randomNum == 1 )
 			{
 				hex.setImage(hills);
+				hex.setTerrain(TerrainEnum.HILL);
 			}
 			else
 			{
 				hex.setImage(mountain);
+				hex.setTerrain(TerrainEnum.MOUNTAIN);
 			}
 		}
 		else
@@ -407,6 +410,7 @@ class GroupFactory
 			else
 			{
 				hex.setImage(desertPond);
+				hex.setTerrain(TerrainEnum.RADIOACTIVE);
 			}
 		}
 	}
@@ -416,6 +420,7 @@ class GroupFactory
 		if ( (j < 3 && (i > 2 && i < 8)) && !(j == 2 && i == 7) && !(j == 2 && i == 3) )
 		{
 			hex.setImage(city);
+			hex.setTerrain(TerrainEnum.RUINS);
 		}
 	}
 

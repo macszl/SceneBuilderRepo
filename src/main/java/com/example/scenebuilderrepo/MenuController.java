@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static javafx.application.Platform.exit;
+
 public
 class MenuController implements Initializable
 {
@@ -67,6 +69,7 @@ class MenuController implements Initializable
 				.getScene()
 				.getWindow();
 		stage.close();
+		exit();
 	}
 
 	@FXML

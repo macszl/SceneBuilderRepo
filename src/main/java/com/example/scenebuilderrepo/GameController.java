@@ -25,6 +25,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import java.awt.Desktop;
+
 public
 class GameController implements Initializable
 {
@@ -119,17 +121,26 @@ class GameController implements Initializable
 	@FXML
 	void animationToggle (ActionEvent event)
 	{
-		GameInfo.skipAtk = skipAtkButton.isSelected();
+		GameInfo.skipAtk = !skipAtkButton.isSelected();
 	}
 
 	@FXML
 	public
-	void setUnitPortraitAndDesc (MapObject unit)
+	void setUnitPortraitAndDesc (MapTile unit)
 	{
-		unitPortrait.setImage(unit.portriat);
-		unitStatsATK.setText("ATK " + unit.atk);
-		unitStatsDEF.setText("DEF " + unit.def);
-		unitStatsHP.setText("HP " + unit.getHp_current() + "/" + unit.getHp_max());
+		unitPortrait.setImage(unit.obj.portriat);
+
+		if(unit.getTerrainAtk() > 0)
+			unitStatsATK.setText("ATK " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1)+"(+"+unit.getTerrainAtk()+")");
+		else
+			unitStatsATK.setText("ATK " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1));
+
+		if(unit.getTerrainDef() > 0)
+			unitStatsDEF.setText("DEF " +(unit.obj.def-1)+"-"+(unit.obj.def+1)+"(+"+unit.getTerrainDef()+")");
+		else
+			unitStatsDEF.setText("DEF " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1));
+
+		unitStatsHP.setText("HP " + unit.obj.getHp_current()+ "/" + unit.obj.getHp_max());
 	}
 
 	public
@@ -367,4 +378,17 @@ class GameController implements Initializable
 		attackAnimation.setImage(selectedTile.obj.attackAnimation);
 
 	}
+	@FXML
+	void openDoc(ActionEvent event)
+	{
+		if (Desktop.isDesktopSupported()) {
+			try {
+				File doc = new File("Wojny meteorytów – User manual.pdf");
+				Desktop.getDesktop().open(doc);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
+
