@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="179ae3d8-e0ec-4eb5-a37a-1a12418d5e07" name="Changes" comment="Almost done now.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save.xml" beforeDir="false" afterPath="$PROJECT_DIR$/save.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GroupFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GroupFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/scenebuilderrepo/GameController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="endGame" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,8 +86,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.MainMenuApplication" />
+        <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.MainMenuApplication" />
         <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.MainMenuApplication" />

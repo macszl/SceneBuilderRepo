@@ -116,15 +116,15 @@ class GameController implements Initializable
 	{
 		unitPortrait.setImage(unit.obj.portriat);
 
-		if(unit.getTerrainAtk() >= 0)
-			unitStatsATK.setText("ATK " + unit.obj.atk+"(+"+unit.getTerrainAtk()+")");
+		if(unit.getTerrainAtk() > 0)
+			unitStatsATK.setText("ATK " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1)+"(+"+unit.getTerrainAtk()+")");
 		else
-			unitStatsATK.setText("ATK " + unit.obj.atk+"("+unit.getTerrainAtk()+")");
+			unitStatsATK.setText("ATK " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1));
 
-		if(unit.getTerrainDef() >= 0)
-			unitStatsDEF.setText("DEF " + unit.obj.def+"(+"+unit.getTerrainDef()+")");
+		if(unit.getTerrainDef() > 0)
+			unitStatsDEF.setText("DEF " +(unit.obj.def-1)+"-"+(unit.obj.def+1)+"(+"+unit.getTerrainDef()+")");
 		else
-			unitStatsDEF.setText("DEF " + unit.obj.def+"("+unit.getTerrainDef()+")");
+			unitStatsDEF.setText("DEF " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1));
 
 		unitStatsHP.setText("HP " + unit.obj.getHp_current()+ "/" + unit.obj.getHp_max());
 	}
