@@ -107,7 +107,7 @@ class GameController implements Initializable
 	@FXML
 	void animationToggle (ActionEvent event)
 	{
-		GameInfo.skipAtk = skipAtkButton.isSelected();
+		GameInfo.skipAtk = !skipAtkButton.isSelected();
 	}
 
 	@FXML
