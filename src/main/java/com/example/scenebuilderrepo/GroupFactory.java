@@ -264,20 +264,20 @@ class GroupFactory
 				}
 			}
 
-			Board.addHQ(crystalmenFaction, 0, 10);
-			Board.addHQ(skymenFaction, MapConstants.MAP_LENGTH / 2, 0);
+			Board.addHQ(skymenFaction, 0, 10);
+			Board.addHQ(crystalmenFaction, MapConstants.MAP_LENGTH / 2, 0);
 			Board.addHQ(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 1);
 			Board.addUnit(skymenFaction, 0, 9);
 			Board.addUnit(skymenFaction, 1, 9);
 			Board.addUnit(skymenFaction, 1, 10);
 
-			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
-			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
-			Board.addUnit(crystalmenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
+			Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 2);
+			Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 1, MapConstants.MAP_HEIGHT - 2);
+			Board.addUnit(treemenFaction, MapConstants.MAP_LENGTH - 2, MapConstants.MAP_HEIGHT - 1);
 
-			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
-			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2) - 1, 0);
-			Board.addUnit(treemenFaction, (MapConstants.MAP_LENGTH / 2), 1);
+			Board.addUnit(crystalmenFaction, (MapConstants.MAP_LENGTH / 2) + 1, 0);
+			Board.addUnit(crystalmenFaction, (MapConstants.MAP_LENGTH / 2) - 1, 0);
+			Board.addUnit(crystalmenFaction, (MapConstants.MAP_LENGTH / 2), 1);
 
 			return group;
 		}
