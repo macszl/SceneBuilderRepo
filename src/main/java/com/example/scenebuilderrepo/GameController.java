@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import java.awt.Desktop;
+
 public
 class GameController implements Initializable
 {
@@ -297,4 +299,17 @@ class GameController implements Initializable
 		attackAnimation.setImage(selectedTile.obj.attackAnimation);
 
 	}
+	@FXML
+	void openDoc(ActionEvent event)
+	{
+		if (Desktop.isDesktopSupported()) {
+			try {
+				File doc = new File("Wojny meteorytów – User manual.pdf");
+				Desktop.getDesktop().open(doc);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
+
