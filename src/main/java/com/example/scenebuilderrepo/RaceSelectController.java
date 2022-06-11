@@ -57,12 +57,17 @@ class RaceSelectController implements Initializable
 	Image Blue = new Image(new File("hexagon_blue.png")
 								   .toURI()
 								   .toString());
+
+
+
 	Faction crystal = new Faction(FactionEnum.CRYSTALMEN,
 								  Purple);
 	Faction tree = new Faction(FactionEnum.FORESTMEN,
 							   Brown);
 	Faction sky = new Faction(FactionEnum.SKYMEN,
 							  Blue);
+
+
 	PlayerSelectController controller;
 	Vector<Image> imgs = new Vector<>();
 	int im1 = 0;

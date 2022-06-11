@@ -382,6 +382,7 @@ class GroupFactory
 			{
 				hex.setImage(forest2);
 			}
+			hex.setTerrain(TerrainEnum.FOREST);
 		}
 		else if ( j > 4 )
 		{
@@ -390,10 +391,12 @@ class GroupFactory
 			if ( randomNum == 1 )
 			{
 				hex.setImage(hills);
+				hex.setTerrain(TerrainEnum.HILL);
 			}
 			else
 			{
 				hex.setImage(mountain);
+				hex.setTerrain(TerrainEnum.MOUNTAIN);
 			}
 		}
 		else
@@ -407,6 +410,7 @@ class GroupFactory
 			else
 			{
 				hex.setImage(desertPond);
+				hex.setTerrain(TerrainEnum.RADIOACTIVE);
 			}
 		}
 	}
@@ -416,6 +420,7 @@ class GroupFactory
 		if ( (j < 3 && (i > 2 && i < 8)) && !(j == 2 && i == 7) && !(j == 2 && i == 3) )
 		{
 			hex.setImage(city);
+			hex.setTerrain(TerrainEnum.RUINS);
 		}
 	}
 

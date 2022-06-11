@@ -83,11 +83,16 @@ class MapTile extends StackPane
 						}
 						isClicked = true;
 						setHexRingToClicked();
-						hex.controller.setUnitPortraitAndDesc(obj);
+						setPortrait();
 					}
 				}
 			}
 		});
+	}
+
+	void setPortrait()
+	{
+		hex.controller.setUnitPortraitAndDesc(this);
 	}
 
 	void setHexRingToClicked ()
@@ -167,6 +172,15 @@ class MapTile extends StackPane
 		}
 	}
 
+	public int getTerrainDef() {
+		if(hex.terrain==null) return 0;
+		return getOwner().faction.getTerrainDef(hex.terrain.getID());
+	}
+
+	public int getTerrainAtk() {
+		if(hex.terrain==null) return 0;
+		return getOwner().faction.getTerrainAtk(hex.terrain.getID());
+	}
 }
 
 class Hexagon extends ImageView
@@ -175,6 +189,7 @@ class Hexagon extends ImageView
 	int x;
 	int y;
 	GameController controller;
+	TerrainEnum terrain;
 
 
 	Hexagon (int x, int y, Player _onwer, GameController controller)
@@ -185,6 +200,9 @@ class Hexagon extends ImageView
 
 	}
 
+	public void setTerrain(TerrainEnum terrain) {
+		this.terrain = terrain;
+	}
 }
 
 class MapObject extends ImageView
@@ -281,7 +299,8 @@ class Unit extends MapObject
 		this.attacker=_attacker;
 		this.attackAnimation=_attackAnimation;
 
-		atk = 18;
+		atk = 7;
+		def = 6;
 		setHp_current(20);
 		setHp_max(20);
 		setAction_points_cur(1);
@@ -316,7 +335,7 @@ class HQ extends MapObject
 		this.faction = _faction;
 		this.portriat = _portriat;
 
-		def = 4;
+		def = 5;
 		atk = 0;
 		setHp_current(95);
 		setHp_max(100);
@@ -434,8 +453,8 @@ class Board
 			selectedTile.getChildren().remove(selectedTile.obj);
 			selectedTile.obj = null;
 		}
-		else if ( destinationTile.obj.getClass().equals(Unit.class) ||
-				  destinationTile.obj.getClass().equals(HQ.class) &&
+		else if ( (destinationTile.obj.getClass().equals(Unit.class) ||
+				  destinationTile.obj.getClass().equals(HQ.class)) &&
 				  destinationTile.getOwner() != selectedTile.getOwner() )
 		{
 			destinationTile.hex.controller.doAttack(selectedTile,destinationTile);
@@ -447,12 +466,21 @@ class Board
 	void battleCalc (MapTile destinationTile)
 	{
 		Random rand = new Random();
-		int max = 2;
-		int min = -2;
+		int max = 1;
+		int min = -1;
 		int attackerHPbefore = selectedTile.obj.getHp_current();
-		int attackerHPafter = attackerHPbefore - destinationTile.obj.def + rand.nextInt((max - min) + 1) + min;
+		int attackerHPafterBase = attackerHPbefore - destinationTile.obj.def;
+		int attackerHPafterTerrainBonus = destinationTile.getTerrainDef();
+		int attackerHPafterRand = rand.nextInt((max - min) + 1) + min;
+
+		int attackerHPafter = attackerHPafterBase - attackerHPafterTerrainBonus - attackerHPafterRand;
+
 		int defenderHPbefore = destinationTile.obj.getHp_current();
-		int defenderHPafter = defenderHPbefore - selectedTile.obj.atk + rand.nextInt((max - min) + 1) + min;
+		int defenderHPafterBase = defenderHPbefore - selectedTile.obj.atk;
+		int defenderHPafterRand = rand.nextInt((max - min) + 1) + min;
+		int defenderHPafterTerrainBonus = selectedTile.getTerrainAtk();
+
+		int defenderHPafter = defenderHPafterBase - defenderHPafterTerrainBonus - defenderHPafterRand;
 
 		if ( attackerHPafter <= 0 )
 		{
@@ -619,10 +647,70 @@ class Faction
 
 	FactionEnum id;
 
+	TerrainEffects effects=new TerrainEffects();
+
 	public
 	Faction (FactionEnum _id, Image _color)
 	{
 		id = _id;
+		if(_id==FactionEnum.CRYSTALMEN)
+		{
+			effects.setAtk(0,0,0,0,0);
+			effects.setDef(0,0,0,0,6);
+		}
+		else if(_id==FactionEnum.FORESTMEN)
+		{
+			effects.setAtk(-2,0,0,2,0);
+			effects.setDef(-3,0,0,2,0);
+		}
+		else if(_id==FactionEnum.SKYMEN)
+		{
+			effects.setAtk(-2,4,2,0,0);
+			effects.setDef(-3,4,2,0,0);
+		}
 		color = _color;
 	}
+
+	public void setEffects(TerrainEffects effects) {
+		this.effects = effects;
+	}
+
+	public int getTerrainDef(int x) {
+		return effects.def.get(x);
+	}
+	public int getTerrainAtk(int x) {
+		return effects.atk.get(x);
+	}
+}
+
+class TerrainEffects
+{
+	Vector<Integer> atk = new Vector<Integer>();
+	Vector<Integer> def = new Vector<Integer>();
+	Vector<TerrainEnum> terrain = new Vector<TerrainEnum>();
+
+	public TerrainEffects()
+	{
+		for(int i=0;i<5;i++) {
+			terrain.add(TerrainEnum.getById(i));
+		}
+	}
+
+	public void setAtk(int radioactiveBonus,int mountainBonus,int hillBonus, int forestBonus, int ruinsBonus)
+	{
+		atk.add(radioactiveBonus);
+		atk.add(mountainBonus);
+		atk.add(hillBonus);
+		atk.add(forestBonus);
+		atk.add(ruinsBonus);
+	}
+	public void setDef(int radioactiveBonus,int mountainBonus,int hillBonus, int forestBonus, int ruinsBonus)
+	{
+		def.add(radioactiveBonus);
+		def.add(mountainBonus);
+		def.add(hillBonus);
+		def.add(forestBonus);
+		def.add(ruinsBonus);
+	}
+
 }
