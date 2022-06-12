@@ -1,6 +1,5 @@
 package com.example.scenebuilderrepo;
 
-import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +22,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
 import java.awt.Desktop;
 
@@ -41,8 +39,8 @@ class GameController implements Initializable
 	private ImageView attacker;
 	private ImageView attackAnimation;
 
-	private ImageView winnerPane;
-	private Text winnerText;
+	private ImageView winnerFractionPane;
+	private ImageView winnerText;
 	private Button quitButton;
 
 	@FXML
@@ -93,7 +91,7 @@ class GameController implements Initializable
 		atkPane = atk.getattackPane();
 		attackAnimation=atk.getAnimation();
 
-		winnerPane=atk.getWinnerPane();
+		winnerFractionPane =atk.getWinnerFraction();
 		winnerText=atk.getWinnerText();
 		quitButton=atk.getQuitButton();
 
@@ -138,7 +136,7 @@ class GameController implements Initializable
 		if(unit.getTerrainDef() > 0)
 			unitStatsDEF.setText("DEF " +(unit.obj.def-1)+"-"+(unit.obj.def+1)+"(+"+unit.getTerrainDef()+")");
 		else
-			unitStatsDEF.setText("DEF " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1));
+			unitStatsDEF.setText("DEF " + (unit.obj.def-1)+"-"+(unit.obj.def+1));
 
 		unitStatsHP.setText("HP " + unit.obj.getHp_current()+ "/" + unit.obj.getHp_max());
 	}
@@ -240,18 +238,9 @@ class GameController implements Initializable
 
 	@FXML
 	public void endGame() {
-		try {
-			Thread.sleep(100);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
 		PauseTransition p = new PauseTransition(Duration.millis(2000));
-		p.setOnFinished(e -> showEnd());
-		setEnd();
+		p.setOnFinished(e -> setEnd());
 		p.play();
-		showEnd();
 	}
 	@FXML
 	public void showEnd()
@@ -278,30 +267,22 @@ class GameController implements Initializable
 		attacked.setImage(null);
 		attackAnimation.setImage(null);
 		hideAttack();
-		winnerPane.setImage(GameInfo.playerHQs.get(0).portriat);
-		Color c;
-		winnerText.setWrappingWidth(500);
+		winnerText.setImage(new Image(new File("win_text.png").toURI().toString()));
 		if(GameInfo.playerHQs.get(0).faction.id==FactionEnum.FORESTMEN)
 		{
-
-			c=Color.web("rgb(130,102,81)");
-
-			winnerText.setText("Wygrali Drzewoludzie");
-			winnerText.setWrappingWidth(500);
+			winnerFractionPane.setImage(new Image(new File("tree_win.png").toURI().toString()));
 		}
 		else if (GameInfo.playerHQs.get(0).faction.id==FactionEnum.SKYMEN)
 		{
-			c = Color.web("rgb(72,192,255)");
-			winnerText.setText("Wygrali Ptakoludzie");
+			winnerFractionPane.setImage(new Image(new File("flying_win.png").toURI().toString()));
 		}
 		else
 		{
-			c = Color.web("rgb(161,112,192)");
-			winnerText.setText("Wygrali Kryształoludzie");
+			winnerFractionPane.setImage(new Image(new File("crystal_win.png").toURI().toString()));
 		}
-		winnerText.setFill(c);
 		quitButton.setVisible(true);
 		quitButton.setDisable(false);
+		showEnd();
 
 	}
 
