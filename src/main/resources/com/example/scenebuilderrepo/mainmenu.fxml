@@ -59,17 +59,11 @@
                <rowConstraints>
                   <RowConstraints maxHeight="302.33333587646484" minHeight="0.0" prefHeight="302.33333587646484" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="408.66666666666663" minHeight="0.0" prefHeight="92.33329264322919" valignment="CENTER" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="421.3333740234375" minHeight="10.0" prefHeight="190.00004069010413" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="421.3333740234375" minHeight="10.0" prefHeight="90.00004069010413" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="274.33331298828125" minHeight="10.0" prefHeight="85.99997965494788" valignment="CENTER" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="237.99997965494788" minHeight="10.0" prefHeight="229.99997965494788" valignment="CENTER" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fx:id="exitButtonImage" fitHeight="155.0" fitWidth="384.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
-                     <image>
-                        <Image url="@../../../../../../BUTTON.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="optionsButtonImage" fitHeight="155.0" fitWidth="384.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                  <ImageView fx:id="exitButtonImage" fitHeight="155.0" fitWidth="384.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                      <image>
                         <Image url="@../../../../../../BUTTON.png" />
                      </image>
@@ -89,12 +83,7 @@
                         <Image url="@../../../../../../BUTTON.png" />
                      </image>
                   </ImageView>
-                  <Label id="exitLabel" text="Wyjście" textFill="WHITE" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Label id="optionsLabel" text="Opcje" textFill="WHITE" GridPane.rowIndex="3">
+                  <Label id="exitLabel" text="Wyjście" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -109,10 +98,9 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Button fx:id="exitButton" blendMode="SRC_ATOP" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitScene" opacity="0.0" prefHeight="41.0" prefWidth="162.0" text="Exit" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#switchToOptions" opacity="0.0" prefHeight="35.0" prefWidth="163.0" text="Options" GridPane.rowIndex="3" />
-                  <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#switchToLoadedGame" opacity="0.0" prefHeight="41.0" prefWidth="163.0" text="Load game" GridPane.rowIndex="2" />
-                  <Button fx:id="newGameButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToNewGame" opacity="0.0" prefHeight="97.0" prefWidth="352.0" stylesheets="@../../../../java/com/example/scenebuilderrepo/style.css" text="New game" GridPane.rowIndex="1">
+                  <Button fx:id="exitButton" blendMode="SRC_ATOP" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitScene" opacity="0.0" prefHeight="88.0" prefWidth="328.0" text="Exit" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#switchToLoadedGame" opacity="0.0" prefHeight="84.0" prefWidth="328.0" text="Load game" GridPane.rowIndex="2" />
+                  <Button fx:id="newGameButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToNewGame" opacity="0.0" prefHeight="97.0" prefWidth="352.0" text="New game" GridPane.rowIndex="1">
                      <font>
                         <Font size="36.0" />
                      </font></Button>

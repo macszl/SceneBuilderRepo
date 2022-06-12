@@ -37,8 +37,6 @@ class MenuController implements Initializable
 	@FXML
 	private Button exitButton;
 	@FXML
-	private Button optionsButton;
-	@FXML
 	private Button loadGameButton;
 	@FXML
 	private Button newGameButton;
@@ -71,25 +69,6 @@ class MenuController implements Initializable
 		stage.close();
 		exit();
 	}
-
-	@FXML
-	void switchToOptions (ActionEvent event) throws IOException
-	{
-		optionsButtonImage.setImage(clickbuttonImage);
-		stage = (Stage) ((Node) event.getSource())
-				.getScene()
-				.getWindow();
-		if ( optionsScene == null )
-		{
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("options.fxml"));
-			optionsScene = new Scene(fxmlLoader.load(),
-									 GameInfo.x,
-									 GameInfo.y);
-		}
-		stage.setScene(optionsScene);
-		stage.show();
-	}
-
 
 	public
 	void switchToLoadedGame (ActionEvent event) throws IOException
@@ -131,7 +110,6 @@ class MenuController implements Initializable
 	{
 		newGameButtonImage.setImage(buttonImage);
 		loadGameButtonImage.setImage(buttonImage);
-		optionsButtonImage.setImage(buttonImage);
 		exitButtonImage.setImage(buttonImage);
 		logoImage.setImage(logo);
 		menuBackgroundImage.setImage(bg);

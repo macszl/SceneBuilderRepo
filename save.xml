@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <game>
     <gameInfo>
-        <playerAmount>2</playerAmount>
-        <turn>1</turn>
-        <currentPlayer>0</currentPlayer>
+        <playerAmount>3</playerAmount>
+        <turn>0</turn>
+        <currentPlayer>1</currentPlayer>
         <factionList>
             <factionEnum>CRYSTALMEN</factionEnum>
             <factionEnum>FORESTMEN</factionEnum>
@@ -11,19 +11,19 @@
         </factionList>
         <PlayerInformation>
             <Player>
-                <gold>6.8</gold>
-                <income>1.8</income>
-                <ownedHexes>4</ownedHexes>
+                <gold>7.4</gold>
+                <income>2.4</income>
+                <ownedHexes>7</ownedHexes>
             </Player>
             <Player>
-                <gold>6.8</gold>
+                <gold>5.0</gold>
                 <income>1.8</income>
                 <ownedHexes>4</ownedHexes>
             </Player>
             <Player>
                 <gold>5.0</gold>
-                <income>1.0</income>
-                <ownedHexes>0</ownedHexes>
+                <income>1.8</income>
+                <ownedHexes>4</ownedHexes>
             </Player>
         </PlayerInformation>
     </gameInfo>
@@ -39,7 +39,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+            <imagefilename>DESERT_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>0</x>
@@ -52,7 +52,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>0</x>
@@ -65,7 +65,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+            <imagefilename>DESERT_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>0</x>
@@ -78,7 +78,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>0</x>
@@ -148,14 +148,14 @@
         <hex>
             <x>0</x>
             <y>9</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
+            <obj>Unit</obj>
+            <actionPointsMax>1</actionPointsMax>
+            <actionPointsCurr>1</actionPointsCurr>
+            <hpCurrent>20</hpCurrent>
+            <hpMax>20</hpMax>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>SKYMEN</tileOwner>
             <imagefilename>HILLS_HEX.png</imagefilename>
         </hex>
         <hex>
@@ -166,9 +166,9 @@
             <actionPointsCurr>0</actionPointsCurr>
             <hpCurrent>95</hpCurrent>
             <hpMax>100</hpMax>
-            <defense>4</defense>
+            <defense>5</defense>
             <attack>0</attack>
-            <tileOwner>CRYSTALMEN</tileOwner>
+            <tileOwner>SKYMEN</tileOwner>
             <imagefilename>hexagon.png</imagefilename>
         </hex>
         <hex>
@@ -195,7 +195,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>1</x>
@@ -208,7 +208,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+            <imagefilename>DESERT_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>1</x>
@@ -273,7 +273,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>1</x>
@@ -286,335 +286,49 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>1</x>
             <y>9</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>1</x>
-            <y>10</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>0</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>1</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>2</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>3</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>4</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>5</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>6</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>7</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>8</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>9</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>2</x>
-            <y>10</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>0</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>BIGCITY_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>1</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>BIGCITY_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>2</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>3</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>4</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>5</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>6</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>7</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>8</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>9</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>3</x>
-            <y>10</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>4</x>
-            <y>0</y>
             <obj>Unit</obj>
             <actionPointsMax>1</actionPointsMax>
             <actionPointsCurr>1</actionPointsCurr>
             <hpCurrent>20</hpCurrent>
             <hpMax>20</hpMax>
-            <defense>0</defense>
-            <attack>18</attack>
-            <tileOwner>FORESTMEN</tileOwner>
-            <imagefilename>BIGCITY_HEX.png</imagefilename>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>SKYMEN</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
         </hex>
         <hex>
-            <x>4</x>
+            <x>1</x>
+            <y>10</y>
+            <obj>Unit</obj>
+            <actionPointsMax>1</actionPointsMax>
+            <actionPointsCurr>1</actionPointsCurr>
+            <hpCurrent>20</hpCurrent>
+            <hpMax>20</hpMax>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>SKYMEN</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>0</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
             <y>1</y>
             <obj>null</obj>
             <actionPointsMax>0</actionPointsMax>
@@ -624,6 +338,292 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>2</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>3</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>DESERT_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>4</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>DESERT_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>5</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>6</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>7</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>8</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>9</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>2</x>
+            <y>10</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>0</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>BIGCITY_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>1</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>BIGCITY_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>2</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>DESERT_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>3</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>DESERT_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>4</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>5</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>6</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>7</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>RIVER_WITHFLOW_HEX_LEFT_TO_RIGHT.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>8</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>9</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>3</x>
+            <y>10</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>null</tileOwner>
+            <imagefilename>HILLS_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>4</x>
+            <y>0</y>
+            <obj>null</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>0</hpCurrent>
+            <hpMax>0</hpMax>
+            <defense>0</defense>
+            <attack>0</attack>
+            <tileOwner>CRYSTALMEN</tileOwner>
+            <imagefilename>BIGCITY_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>4</x>
+            <y>1</y>
+            <obj>Unit</obj>
+            <actionPointsMax>1</actionPointsMax>
+            <actionPointsCurr>1</actionPointsCurr>
+            <hpCurrent>20</hpCurrent>
+            <hpMax>20</hpMax>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>CRYSTALMEN</tileOwner>
             <imagefilename>BIGCITY_HEX.png</imagefilename>
         </hex>
         <hex>
@@ -650,7 +650,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>4</x>
@@ -676,7 +676,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+            <imagefilename>HILLS_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>4</x>
@@ -702,7 +702,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+            <imagefilename>HILLS_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>4</x>
@@ -741,11 +741,24 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>5</x>
             <y>0</y>
+            <obj>HQ</obj>
+            <actionPointsMax>0</actionPointsMax>
+            <actionPointsCurr>0</actionPointsCurr>
+            <hpCurrent>95</hpCurrent>
+            <hpMax>100</hpMax>
+            <defense>5</defense>
+            <attack>0</attack>
+            <tileOwner>CRYSTALMEN</tileOwner>
+            <imagefilename>hexagon.png</imagefilename>
+        </hex>
+        <hex>
+            <x>5</x>
+            <y>1</y>
             <obj>null</obj>
             <actionPointsMax>0</actionPointsMax>
             <actionPointsCurr>0</actionPointsCurr>
@@ -753,33 +766,20 @@
             <hpMax>0</hpMax>
             <defense>0</defense>
             <attack>0</attack>
-            <tileOwner>null</tileOwner>
-            <imagefilename>BIGCITY_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>5</x>
-            <y>1</y>
-            <obj>Unit</obj>
-            <actionPointsMax>1</actionPointsMax>
-            <actionPointsCurr>1</actionPointsCurr>
-            <hpCurrent>20</hpCurrent>
-            <hpMax>20</hpMax>
-            <defense>0</defense>
-            <attack>18</attack>
-            <tileOwner>FORESTMEN</tileOwner>
+            <tileOwner>CRYSTALMEN</tileOwner>
             <imagefilename>BIGCITY_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>5</x>
             <y>2</y>
-            <obj>null</obj>
-            <actionPointsMax>0</actionPointsMax>
-            <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>0</hpCurrent>
-            <hpMax>0</hpMax>
-            <defense>0</defense>
-            <attack>0</attack>
-            <tileOwner>null</tileOwner>
+            <obj>Unit</obj>
+            <actionPointsMax>1</actionPointsMax>
+            <actionPointsCurr>1</actionPointsCurr>
+            <hpCurrent>20</hpCurrent>
+            <hpMax>20</hpMax>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>CRYSTALMEN</tileOwner>
             <imagefilename>BIGCITY_HEX.png</imagefilename>
         </hex>
         <hex>
@@ -832,7 +832,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+            <imagefilename>HILLS_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>5</x>
@@ -845,7 +845,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
+            <imagefilename>HILLS_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>5</x>
@@ -858,7 +858,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>5</x>
@@ -871,7 +871,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>HILLS_HEX.png</imagefilename>
+            <imagefilename>MOUNTAIN_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>5</x>
@@ -889,19 +889,6 @@
         <hex>
             <x>6</x>
             <y>0</y>
-            <obj>Unit</obj>
-            <actionPointsMax>1</actionPointsMax>
-            <actionPointsCurr>1</actionPointsCurr>
-            <hpCurrent>20</hpCurrent>
-            <hpMax>20</hpMax>
-            <defense>0</defense>
-            <attack>18</attack>
-            <tileOwner>FORESTMEN</tileOwner>
-            <imagefilename>BIGCITY_HEX.png</imagefilename>
-        </hex>
-        <hex>
-            <x>6</x>
-            <y>1</y>
             <obj>null</obj>
             <actionPointsMax>0</actionPointsMax>
             <actionPointsCurr>0</actionPointsCurr>
@@ -909,7 +896,20 @@
             <hpMax>0</hpMax>
             <defense>0</defense>
             <attack>0</attack>
-            <tileOwner>null</tileOwner>
+            <tileOwner>CRYSTALMEN</tileOwner>
+            <imagefilename>BIGCITY_HEX.png</imagefilename>
+        </hex>
+        <hex>
+            <x>6</x>
+            <y>1</y>
+            <obj>Unit</obj>
+            <actionPointsMax>1</actionPointsMax>
+            <actionPointsCurr>1</actionPointsCurr>
+            <hpCurrent>20</hpCurrent>
+            <hpMax>20</hpMax>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>CRYSTALMEN</tileOwner>
             <imagefilename>BIGCITY_HEX.png</imagefilename>
         </hex>
         <hex>
@@ -975,7 +975,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>6</x>
@@ -988,7 +988,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>6</x>
@@ -1001,7 +1001,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>6</x>
@@ -1014,7 +1014,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST2_HEX.png</imagefilename>
+            <imagefilename>FOREST_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>6</x>
@@ -1079,7 +1079,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>7</x>
@@ -1118,7 +1118,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>7</x>
@@ -1144,7 +1144,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>7</x>
@@ -1170,7 +1170,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>8</x>
@@ -1196,7 +1196,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+            <imagefilename>DESERT_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>8</x>
@@ -1209,7 +1209,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>8</x>
@@ -1222,7 +1222,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>8</x>
@@ -1261,7 +1261,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>8</x>
@@ -1287,7 +1287,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>8</x>
@@ -1352,7 +1352,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>DESERT_HEX.png</imagefilename>
+            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
         </hex>
         <hex>
             <x>9</x>
@@ -1391,7 +1391,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST2_HEX.png</imagefilename>
+            <imagefilename>FOREST_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>9</x>
@@ -1438,12 +1438,12 @@
             <obj>Unit</obj>
             <actionPointsMax>1</actionPointsMax>
             <actionPointsCurr>1</actionPointsCurr>
-            <hpCurrent>16</hpCurrent>
+            <hpCurrent>20</hpCurrent>
             <hpMax>20</hpMax>
-            <defense>0</defense>
-            <attack>18</attack>
-            <tileOwner>CRYSTALMEN</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>FORESTMEN</tileOwner>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>9</x>
@@ -1451,11 +1451,11 @@
             <obj>Unit</obj>
             <actionPointsMax>1</actionPointsMax>
             <actionPointsCurr>1</actionPointsCurr>
-            <hpCurrent>14</hpCurrent>
+            <hpCurrent>20</hpCurrent>
             <hpMax>20</hpMax>
-            <defense>0</defense>
-            <attack>18</attack>
-            <tileOwner>CRYSTALMEN</tileOwner>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>FORESTMEN</tileOwner>
             <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
@@ -1482,7 +1482,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+            <imagefilename>DESERT_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>10</x>
@@ -1495,7 +1495,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>RADIOACTIVE_POND_HEX_WIATRACZEK.png</imagefilename>
+            <imagefilename>DESERT_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>10</x>
@@ -1547,7 +1547,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>10</x>
@@ -1560,7 +1560,7 @@
             <defense>0</defense>
             <attack>0</attack>
             <tileOwner>null</tileOwner>
-            <imagefilename>FOREST2_HEX.png</imagefilename>
+            <imagefilename>FOREST_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>10</x>
@@ -1581,12 +1581,12 @@
             <obj>Unit</obj>
             <actionPointsMax>1</actionPointsMax>
             <actionPointsCurr>1</actionPointsCurr>
-            <hpCurrent>14</hpCurrent>
+            <hpCurrent>20</hpCurrent>
             <hpMax>20</hpMax>
-            <defense>0</defense>
-            <attack>18</attack>
-            <tileOwner>CRYSTALMEN</tileOwner>
-            <imagefilename>FOREST_HEX.png</imagefilename>
+            <defense>6</defense>
+            <attack>7</attack>
+            <tileOwner>FORESTMEN</tileOwner>
+            <imagefilename>FOREST2_HEX.png</imagefilename>
         </hex>
         <hex>
             <x>10</x>
@@ -1594,9 +1594,9 @@
             <obj>HQ</obj>
             <actionPointsMax>0</actionPointsMax>
             <actionPointsCurr>0</actionPointsCurr>
-            <hpCurrent>40</hpCurrent>
+            <hpCurrent>95</hpCurrent>
             <hpMax>100</hpMax>
-            <defense>4</defense>
+            <defense>5</defense>
             <attack>0</attack>
             <tileOwner>FORESTMEN</tileOwner>
             <imagefilename>hexagon.png</imagefilename>
