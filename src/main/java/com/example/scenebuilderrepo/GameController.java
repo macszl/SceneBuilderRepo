@@ -238,18 +238,9 @@ class GameController implements Initializable
 
 	@FXML
 	public void endGame() {
-		try {
-			Thread.sleep(100);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
 		PauseTransition p = new PauseTransition(Duration.millis(2000));
-		p.setOnFinished(e -> showEnd());
-		setEnd();
+		p.setOnFinished(e -> setEnd());
 		p.play();
-		showEnd();
 	}
 	@FXML
 	public void showEnd()
@@ -291,6 +282,7 @@ class GameController implements Initializable
 		}
 		quitButton.setVisible(true);
 		quitButton.setDisable(false);
+		showEnd();
 
 	}
 
