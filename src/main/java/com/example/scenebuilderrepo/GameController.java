@@ -136,7 +136,7 @@ class GameController implements Initializable
 		if(unit.getTerrainDef() > 0)
 			unitStatsDEF.setText("DEF " +(unit.obj.def-1)+"-"+(unit.obj.def+1)+"(+"+unit.getTerrainDef()+")");
 		else
-			unitStatsDEF.setText("DEF " + (unit.obj.atk-1)+"-"+(unit.obj.atk+1));
+			unitStatsDEF.setText("DEF " + (unit.obj.def-1)+"-"+(unit.obj.def+1));
 
 		unitStatsHP.setText("HP " + unit.obj.getHp_current()+ "/" + unit.obj.getHp_max());
 	}
