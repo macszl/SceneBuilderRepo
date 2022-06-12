@@ -299,7 +299,7 @@ class Unit extends MapObject
 		this.attacker=_attacker;
 		this.attackAnimation=_attackAnimation;
 
-		atk = 7;
+		atk = 27;
 		def = 6;
 		setHp_current(20);
 		setHp_max(20);

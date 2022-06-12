@@ -30,27 +30,26 @@ class AttackController
 	private Button quitButton;
 
 	@FXML
-	private ImageView winnerPane;
+	private ImageView winnerFraction;
 
 	@FXML
-	private Text winnerText;
+	private ImageView winnerText;
 
-	AnchorPane getattackPane ()
+	public AnchorPane getattackPane ()
 	{
 		return attackPane;
 	}
 
-	ImageView getAttacked () {return attacked;}
+	public ImageView getAttacked () {return attacked;}
 
-	ImageView getAttacker () {return attacker;}
+	public ImageView getAttacker () {return attacker;}
 
-	ImageView getAnimation () {return animation;}
+	public ImageView getAnimation () {return animation;}
 
-	Text getWinnerText () {return winnerText;}
+	public ImageView getWinnerText () {return winnerText;}
 
-
-	public ImageView getWinnerPane() {
-		return winnerPane;
+	public ImageView getWinnerFraction() {
+		return winnerFraction;
 	}
 
 	public Button getQuitButton() {

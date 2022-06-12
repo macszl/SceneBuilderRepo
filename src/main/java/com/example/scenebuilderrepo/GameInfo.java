@@ -162,8 +162,6 @@ class GameInfo
 				if ( playerAmount == 1 )
 				{
 					gameController.endGame();
-					//TODO
-					//implementacja ekranu z wygrana
 
 					//wygrana!
 					//terminujemy gre i sie nie przejmujemy reszta.
