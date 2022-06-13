@@ -243,7 +243,6 @@ class SaveBuilder
 					}
 					hex.appendChild(imagefilename);
 
-//                    Element owner = document.createElement("owner");
 
 				}
 			}

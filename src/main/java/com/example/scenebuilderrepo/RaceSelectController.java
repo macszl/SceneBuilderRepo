@@ -231,6 +231,10 @@ class RaceSelectController implements Initializable
 	{
 		br3.setDisable(true);
 		bl3.setDisable(true);
+		br2.setDisable(false);
+		bl2.setDisable(false);
+		br1.setDisable(false);
+		bl1.setDisable(false);
 		imgp3.setImage(null);
 		leftArrowImage3.setImage(greyarrowImage);
 		rightArrowImage3.setImage(greyarrowImage);
@@ -243,6 +247,10 @@ class RaceSelectController implements Initializable
 	{
 		br3.setDisable(false);
 		bl3.setDisable(false);
+		br2.setDisable(false);
+		bl2.setDisable(false);
+		br1.setDisable(false);
+		bl1.setDisable(false);
 		leftArrowImage3.setImage(arrowImage);
 		rightArrowImage3.setImage(arrowImage);
 		im3 = 2;

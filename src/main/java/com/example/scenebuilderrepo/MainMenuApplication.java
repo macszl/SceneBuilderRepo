@@ -25,7 +25,7 @@ class MainMenuApplication extends Application
 		Scene scene = new Scene(fxmlLoader.load(),
 								GameInfo.x,
 								GameInfo.y);
-		stage.setTitle("Wojna meteorytów");
+		stage.setTitle("Wojny meteorytów");
 
 		stage.setScene(scene);
 		stage.show();
