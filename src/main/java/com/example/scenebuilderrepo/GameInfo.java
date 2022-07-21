@@ -28,7 +28,7 @@ enum TerrainEnum
 		this.id=i;
 	}
 
-	static public TerrainEnum getById(int i)
+	static public TerrainEnum getEnumById (int i)
 	{
 		switch (i) {
 			case 0: return TerrainEnum.RADIOACTIVE;
@@ -77,18 +77,12 @@ class GameInfo
 	public static
 	void regenerateAP ()
 	{
-		int size = playerUnits
-				.get(currentPlayerCounter)
-				.size();
+		int size = playerUnits.get(currentPlayerCounter).size();
 		for (int i = 0; i < size; i++)
 		{
-			if ( playerUnits
-						 .get(currentPlayerCounter)
-						 .get(i).getAction_points_cur() == 0 )
+			if ( playerUnits.get(currentPlayerCounter).get(i).getAction_points_cur() == 0 )
 			{
-				playerUnits
-						.get(currentPlayerCounter)
-						.get(i).setAction_points_cur(1);
+				playerUnits.get(currentPlayerCounter).get(i).setAction_points_cur(1);
 			}
 		}
 	}
@@ -123,22 +117,12 @@ class GameInfo
 	void removeUnit (MapTile tile)
 	{
 		int playerID = getPlayerId(tile.obj.faction.id);
-		for (
-				int i = 0;
-				i < playerUnits
-						.get(playerID)
-						.size();
-				i++)
+		for (int i = 0; i < playerUnits.get(playerID).size(); i++)
 		{
-			if ( playerUnits
-					.get(playerID)
-					.get(i)
-					.equals(tile.obj) )
+			if ( playerUnits.get(playerID).get(i).equals(tile.obj) )
 			{
-				//usuniecie jednostki
-				playerUnits
-						.get(playerID)
-						.remove(i);
+				//deleting the unit
+				playerUnits.get(playerID).remove(i);
 				break;
 			}
 		}
@@ -149,22 +133,18 @@ class GameInfo
 	{
 		for (int i = 0; i < playerHQs.size(); i++)
 		{
-			if ( playerHQs
-					.get(i)
-					.equals(tile.obj) )
+			if ( playerHQs.get(i).equals(tile.obj) )
 			{
 				int factionID = getPlayerId(tile.obj.faction.id);
 				playerHQs.remove(i);
 				playerUnits.remove(factionID);
-				//
 				playerFactions.remove(factionID);
 				playerAmount--;
+
 				if ( playerAmount == 1 )
 				{
+					//terminating the game when there's only 1 player present
 					gameController.endGame();
-
-					//wygrana!
-					//terminujemy gre i sie nie przejmujemy reszta.
 				}
 
 				if ( currentPlayerCounter == playerAmount )
@@ -186,15 +166,9 @@ class HexImages
 	public
 	HexImages (String _u, String _c, String _h)
 	{
-		unclicked = new Image(new File(_u)
-									  .toURI()
-									  .toString());
-		clicked = new Image(new File(_c)
-									.toURI()
-									.toString());
-		highlighted = new Image(new File(_h)
-										.toURI()
-										.toString());
+		unclicked = new Image(new File(_u).toURI().toString());
+		clicked = new Image(new File(_c).toURI().toString());
+		highlighted = new Image(new File(_h).toURI().toString());
 	}
 }
 

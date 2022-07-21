@@ -17,6 +17,7 @@ class MainMenuApplication extends Application
 		launch();
 	}
 
+	//Function that launches the application in the main menu screen.
 	@Override
 	public
 	void start (Stage stage) throws IOException

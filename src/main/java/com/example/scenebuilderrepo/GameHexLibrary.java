@@ -17,7 +17,6 @@ class MapTile extends StackPane
 
 	Hexagon hex;
 	ImageView hexColorBase = new ImageView();
-	HexImages hexColorBases;
 	ImageView hexStateRing = new ImageView();
 	HexImages hexStateRings;
 	MapObject obj = null;
@@ -25,10 +24,9 @@ class MapTile extends StackPane
 	boolean isHighlighted = false;
 	private Player owner;
 
-	MapTile (HexImages rings, HexImages hexColorBases)
+	MapTile (HexImages rings)
 	{
 		setHexStateRings(rings);
-		setHexColorBases(hexColorBases);
 		setHexStateRing(rings.unclicked);
 		this.getChildren().add(hexStateRing);
 		this.getChildren().add(hexColorBase);
@@ -111,11 +109,6 @@ class MapTile extends StackPane
 		hexStateRing.setImage(hexStateRings.unclicked);
 		isClicked = false;
 		this.isHighlighted = false;
-	}
-
-	void setHexColorBases (HexImages _bases)
-	{
-		hexColorBases = _bases;
 	}
 
 	void setHexStateRing (Image _ring)
@@ -462,6 +455,7 @@ class Board
 		}
 	}
 
+	//Function that calculates how
 	static
 	void battleCalc (MapTile destinationTile)
 	{
@@ -692,7 +686,7 @@ class TerrainEffects
 	public TerrainEffects()
 	{
 		for(int i=0;i<5;i++) {
-			terrain.add(TerrainEnum.getById(i));
+			terrain.add(TerrainEnum.getEnumById(i));
 		}
 	}
 
