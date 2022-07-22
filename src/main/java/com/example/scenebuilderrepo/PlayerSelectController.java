@@ -17,11 +17,37 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//class responsible for the faction select menu
 public
 class PlayerSelectController implements Initializable
 {
-
+	//this class includes a race select pane
 	RaceSelectController controller;
+	//background
+	@FXML
+	private ImageView backgroundImage;
+	Image bg = new Image(new File("playerSelectBG.png")
+								 .toURI()
+								 .toString());
+
+	boolean loaded = false;
+	private Stage stage;
+
+	//buttons
+	@FXML
+	private Button three;
+	@FXML
+	private Button two;
+	@FXML
+	private Button cont;
+	//button images
+	@FXML
+	private ImageView buttonImage1;
+	@FXML
+	private ImageView buttonImage2;
+	@FXML
+	private ImageView buttonImage3;
+	//button state images
 	Image buttonImage = new Image(new File("BUTTON.png")
 										  .toURI()
 										  .toString());
@@ -31,28 +57,23 @@ class PlayerSelectController implements Initializable
 	Image greybuttonImage = new Image(new File("BUTTONGREY.png")
 											  .toURI()
 											  .toString());
-	Image bg = new Image(new File("playerSelectBG.png")
-								 .toURI()
-								 .toString());
-	boolean loaded = false;
-	private Stage stage;
-	@FXML
-	private Button three;
-	@FXML
-	private Button two;
-	@FXML
-	private Button cont;
+	//greying out and disabling the continue button
+	void enableCnt ()
+	{
+		buttonImage3.setImage(buttonImage);
+		cont.setDisable(false);
+	}
+
+	void disableCnt ()
+	{
+		buttonImage3.setImage(greybuttonImage);
+		cont.setDisable(true);
+	}
+
 	@FXML
 	private AnchorPane raceSelect;
-	@FXML
-	private ImageView backgroundImage;
-	@FXML
-	private ImageView buttonImage1;
-	@FXML
-	private ImageView buttonImage2;
-	@FXML
-	private ImageView buttonImage3;
 
+	//loading the 3 player version of the race select pane
 	@FXML
 	void setThreePlayer (ActionEvent event) throws IOException
 	{
@@ -80,7 +101,7 @@ class PlayerSelectController implements Initializable
 		controller.leftArrowImage2.setImage(controller.arrowImage);
 		controller.enableP3();
 	}
-
+	//loading the 2 player version of the race select pane
 	@FXML
 	void setTwoPlayer (ActionEvent event) throws IOException
 	{
@@ -109,6 +130,7 @@ class PlayerSelectController implements Initializable
 		controller.disableP3();
 	}
 
+	//function that initializes and launches game.fxml
 	@FXML
 	void startGame (ActionEvent event) throws IOException
 	{
@@ -123,18 +145,7 @@ class PlayerSelectController implements Initializable
 		stage.show();
 	}
 
-	void enableCnt ()
-	{
-		buttonImage3.setImage(buttonImage);
-		cont.setDisable(false);
-	}
-
-	void disableCnt ()
-	{
-		buttonImage3.setImage(greybuttonImage);
-		cont.setDisable(true);
-	}
-
+	//initialization function, responsible for loading all the images, buttons and backgrounds
 	@Override
 	public
 	void initialize (URL url, ResourceBundle resourceBundle)
