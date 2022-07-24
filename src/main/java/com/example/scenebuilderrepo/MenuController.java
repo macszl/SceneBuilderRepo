@@ -18,10 +18,14 @@ import java.util.ResourceBundle;
 
 import static javafx.application.Platform.exit;
 
+//class responsible for the main menu
+//contains functions which involve switching to the selection menu
+//switching to the game(if there's a save)
+//and exiting
 public
 class MenuController implements Initializable
 {
-
+	//image assets needed for the menus
 	Image buttonImage = new Image(new File("BUTTON.png")
 										  .toURI()
 										  .toString());
@@ -34,25 +38,26 @@ class MenuController implements Initializable
 	Image bg = new Image(new File("mainbg.png")
 								 .toURI()
 								 .toString());
+	//button elements
 	@FXML
 	private Button exitButton;
 	@FXML
 	private Button loadGameButton;
 	@FXML
 	private Button newGameButton;
+	//button images
 	@FXML
 	private ImageView newGameButtonImage;
 	@FXML
 	private ImageView loadGameButtonImage;
 	@FXML
-	private ImageView optionsButtonImage;
-	@FXML
 	private ImageView exitButtonImage;
+	//miscellaneous images
 	@FXML
 	private ImageView logoImage;
 	@FXML
 	private ImageView menuBackgroundImage;
-	private Scene optionsScene;
+
 	private Stage stage;
 
 	Stage getStage ()
@@ -69,7 +74,6 @@ class MenuController implements Initializable
 		stage.close();
 		exit();
 	}
-
 	public
 	void switchToLoadedGame (ActionEvent event) throws IOException
 	{
@@ -86,7 +90,6 @@ class MenuController implements Initializable
 		stage.setScene(scene);
 		stage.show();
 	}
-
 	public
 	void switchToNewGame (ActionEvent event) throws IOException
 	{

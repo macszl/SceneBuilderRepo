@@ -91,7 +91,7 @@ class GameController implements Initializable
 		atkPane = atk.getattackPane();
 		attackAnimation=atk.getAnimation();
 
-		winnerFractionPane =atk.getWinnerFraction();
+		winnerFractionPane =atk.getWinnerFaction();
 		winnerText=atk.getWinnerText();
 		quitButton=atk.getQuitButton();
 

@@ -12,9 +12,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+//class responsible for selecting the races
+//
 public
 class RaceSelectController implements Initializable
 {
+
 
 	@FXML
 	public ImageView imgp1;
@@ -22,6 +25,8 @@ class RaceSelectController implements Initializable
 	public ImageView imgp2;
 	@FXML
 	public ImageView imgp3;
+
+	//arrow elements and images
 	@FXML
 	public ImageView rightArrowImage1;
 	@FXML
@@ -34,8 +39,6 @@ class RaceSelectController implements Initializable
 	public ImageView leftArrowImage2;
 	@FXML
 	public ImageView leftArrowImage3;
-	@FXML
-	public ImageView backgroundImage;
 	public Image arrowImage = new Image(new File("ARROW.png")
 												.toURI()
 												.toString());
@@ -45,6 +48,11 @@ class RaceSelectController implements Initializable
 	public Image greyarrowImage = new Image(new File("ARROWGREY.png")
 													.toURI()
 													.toString());
+	//background
+	@FXML
+	public ImageView backgroundImage;
+
+	//faction images
 	public Image bg = new Image(new File("raceSelectBG.png")
 										.toURI()
 										.toString());
@@ -70,9 +78,24 @@ class RaceSelectController implements Initializable
 
 	PlayerSelectController controller;
 	Vector<Image> imgs = new Vector<>();
-	int im1 = 0;
-	int im2 = 1;
-	int im3 = 2;
+
+	private final int  	MAX_BOUND =  3;
+	private final int  SKY_FAC_NUM = 2;
+	private final int TREE_FAC_NUM = 1;
+	private final int CRYS_FAC_NUM = 0;
+	private final int   MIN_BOUND = -1;
+
+	private final int PLAYER_ONE = 1;
+	private final int PLAYER_TWO = 2;
+	private final int PLAYER_THREE = 3;
+
+	private final int   PLAYER_ONE_PRIO = 0;
+	private final int   PLAYER_TWO_PRIO = 1;
+	private final int PLAYER_THREE_PRIO = 2;
+
+	int im1 = CRYS_FAC_NUM;
+	int im2 = TREE_FAC_NUM;
+	int im3 = SKY_FAC_NUM;
 	@FXML
 	private Button bl1;
 	@FXML
@@ -88,84 +111,91 @@ class RaceSelectController implements Initializable
 
 	void setImg (int p)
 	{
-		if ( p == 1 )
+		if ( p == PLAYER_ONE )
 		{
-			if ( im1 == 3 )
+			//flipping around from the max value
+			if ( im1 == MAX_BOUND )
 			{
-				im1 = 0;
+				im1 = CRYS_FAC_NUM;
 			}
-			if ( im1 == -1 )
+			//flipping around from the min value
+			if ( im1 == MIN_BOUND )
 			{
-				im1 = 2;
+				im1 = SKY_FAC_NUM;
 			}
+
 			imgp1.setImage(imgs.get(im1));
-			if ( im1 == 0 )
+			if ( im1 == CRYS_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(0,
+				GameInfo.playerFactions.set(PLAYER_ONE_PRIO,
 											crystal);
 			}
-			if ( im1 == 1 )
+			if ( im1 ==TREE_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(0,
+				GameInfo.playerFactions.set(PLAYER_ONE_PRIO,
 											tree);
 			}
-			if ( im1 == 2 )
+			if ( im1 ==SKY_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(0,
+				GameInfo.playerFactions.set(PLAYER_ONE_PRIO,
 											sky);
 			}
 		}
-		if ( p == 2 )
+		if ( p == PLAYER_TWO )
 		{
-			if ( im2 == 3 )
+			//flipping around to the min value
+			if ( im2 == MAX_BOUND )
 			{
-				im2 = 0;
+				im2 = CRYS_FAC_NUM;
 			}
-			if ( im2 == -1 )
+			//flipping around to the max value
+			if ( im2 == MIN_BOUND )
 			{
-				im2 = 2;
+				im2 =SKY_FAC_NUM;
 			}
 			imgp2.setImage(imgs.get(im2));
-			if ( im2 == 0 )
+			if ( im2 == CRYS_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(1,
+				GameInfo.playerFactions.set(PLAYER_TWO_PRIO,
 											crystal);
 			}
-			if ( im2 == 1 )
+			if ( im2 ==TREE_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(1,
+				GameInfo.playerFactions.set(PLAYER_TWO_PRIO,
 											tree);
 			}
-			if ( im2 == 2 )
+			if ( im2 ==SKY_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(1,
+				GameInfo.playerFactions.set(PLAYER_TWO_PRIO,
 											sky);
 			}
 		}
-		if ( p == 3 )
+		if ( p == PLAYER_THREE )
 		{
-			if ( im3 == 3 )
+			//flipping around to the min value
+			if ( im3 == MAX_BOUND )
 			{
-				im3 = 0;
+				im3 = CRYS_FAC_NUM;
 			}
-			if ( im3 == -1 )
+			//flipping around to the max value
+			if ( im3 == MIN_BOUND )
 			{
-				im3 = 2;
+				im3 =SKY_FAC_NUM;
 			}
 			imgp3.setImage(imgs.get(im3));
-			if ( im3 == 0 )
+			if ( im3 == CRYS_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(2,
+				GameInfo.playerFactions.set(PLAYER_THREE_PRIO,
 											crystal);
 			}
-			if ( im3 == 1 )
+			if ( im3 ==TREE_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(2,
+				GameInfo.playerFactions.set(PLAYER_THREE_PRIO,
 											tree);
 			}
-			if ( im3 == 2 )
+			if ( im3 ==SKY_FAC_NUM )
 			{
-				GameInfo.playerFactions.set(2,
+				GameInfo.playerFactions.set(PLAYER_THREE_PRIO,
 											sky);
 			}
 		}
@@ -184,48 +214,51 @@ class RaceSelectController implements Initializable
 		}
 	}
 
+	//functions used when user presses an arrow
+	//for example bl1p is used when a right arrow belonging to the first player is pressed.
 	@FXML
 	void bl1p (ActionEvent event)
 	{
 		im1++;
-		setImg(1);
+		setImg(PLAYER_ONE);
 	}
 
 	@FXML
 	void bl2p (ActionEvent event)
 	{
 		im2++;
-		setImg(2);
+		setImg(PLAYER_TWO);
 	}
 
 	@FXML
 	void bl3p (ActionEvent event)
 	{
 		im3++;
-		setImg(3);
+		setImg(PLAYER_THREE);
 	}
 
 	@FXML
 	void br1p (ActionEvent event)
 	{
 		im1--;
-		setImg(1);
+		setImg(PLAYER_ONE);
 	}
 
 	@FXML
 	void br2p (ActionEvent event)
 	{
 		im2--;
-		setImg(2);
+		setImg(PLAYER_TWO);
 	}
 
 	@FXML
 	void br3p (ActionEvent event)
 	{
 		im3--;
-		setImg(3);
+		setImg(PLAYER_THREE);
 	}
 
+	//enabling and disabling the third player
 	@FXML
 	void disableP3 ()
 	{
@@ -253,10 +286,11 @@ class RaceSelectController implements Initializable
 		bl1.setDisable(false);
 		leftArrowImage3.setImage(arrowImage);
 		rightArrowImage3.setImage(arrowImage);
-		im3 = 2;
+		im3 = SKY_FAC_NUM;
 		checkSelect();
 	}
 
+	//loading the elements and the images
 	@Override
 	public
 	void initialize (URL url, ResourceBundle resourceBundle)

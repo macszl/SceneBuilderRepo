@@ -17,7 +17,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//class responsible for the faction select menu
+//class responsible for the player count menu
+//in that menu, player can either:
+//choose 3 players
+//choose 2 players
+//choose to quit
 public
 class PlayerSelectController implements Initializable
 {
